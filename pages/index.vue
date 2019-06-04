@@ -121,10 +121,19 @@
         }else if(this.user!==null || this.user!==undefined){
           this.$router.push({path:'/Home'});
         }
+      },
+      usermif(){
+        const username = storage.get("user");
+        if(username=== "" || username === undefined || username === null){
+           this.$router.push({path:'/'})
+        }else{
+           this.$router.push({path:'/home/home'})
+        }
       }
     },
     mounted(){
     //   this.userLoding()
+      this.usermif()
     }
   }
 </script>

@@ -109,5 +109,7 @@ export default {
  border-right 0px 
 .v-navigation-drawer__border
  background-color white !important
+.v-navigation-drawer__border
+ background-color #f00 !important
 </style>
 

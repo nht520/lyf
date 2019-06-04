@@ -47,6 +47,7 @@
 <script>
   import Navmenu from '../components/Navmenu';
   import Usermenu from '../components/Usermenu';
+  import storage from '../plugins/storage';
   export default {
       // 页面切换动画
     transition:"transleft",
@@ -69,9 +70,19 @@
     },
     methods:{
       userClick(){
-        console.log("5555")
         this.$refs.menus.tishi();
+      },
+      usermif(){
+        const username = storage.get("user");
+        if(username=== "" || username === undefined || username === null){
+           this.$router.push({path:'/'})
+        }else{
+           this.$router.push({path:'/home/home'})
+        }
       }
+    },
+    mounted(){
+      this.usermif();
     }
 
   }
