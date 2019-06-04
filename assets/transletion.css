@@ -1,0 +1,103 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+  /* loading样式 */
+  .nuxt-progress{
+    background-color: #409eff !important;
+  }
+  .theme--light.application{
+    background: #ffffff !important;
+  }
+  .theme--light.v-toolbar{
+    background-color: #ffffff !important;
+    color: rgba(0,0,0,0.87);
+    box-shadow: 0 3px 14px 2px rgba(0,0,0,0.12);
+  }
+  .container {
+    text-align: center;
+    padding-top: 200px;
+    font-size: 20px;
+    transition: all .5s cubic-bezier(.55,0,.1,1);
+  }
+  .page-enter-active, .page-leave-active {
+    transition: opacity .5s
+  }
+  .page-enter, .page-leave-active {
+    opacity: 0
+  }
+  .bounce-enter-active {
+    animation: bounce-in .8s;
+  }
+  .bounce-leave-active {
+    animation: bounce-out .5s;
+  }
+  @keyframes bounce-in {
+    0% { transform: scale(0) }
+    50% { transform: scale(1.5) }
+    100% { transform: scale(1) }
+  }
+  @keyframes bounce-out {
+    0% { transform: scale(1) }
+    50% { transform: scale(1.5) }
+    100% { transform: scale(0) }
+  }
+  /*动画1  */
+  .slide-left-enter,
+  .slide-right-leave-active {
+    opacity: 0;
+    transform: translate(30px, 0);
+  }
+  .slide-left-leave-active,
+  .slide-right-enter {
+    opacity: 0;
+    transform: translate(-30px, 0);
+  }
+  /*动画2  */
+  /* .transleft-enter-active{
+    transition: all 1s ease;
+  } 
+  .transleft-leave-active{
+    transition: all 0.5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .transleft-enter, .transleft-leave-to{
+    transform: translateX(100px);
+    opacity: 0;
+  } */
+  
+   /*动画3  */
+  /* .transleft-enter-active{
+    transition: all 1s ease;
+  } 
+  .transleft-leave-active{
+    opacity: 0;
+    transform: translate(-30px, 0);
+  }
+  .transleft-enter, .transleft-leave-to{
+    opacity: 0;
+    transform: translate(30px, 0);
+  }
+   */
+   /* 动画4 */
+  /* .transleft-enter-active{
+    transition: all 1s ease;
+  } 
+  .transleft-leave-active{
+    opacity: 0;
+    transform: translate(-30px, 0);
+  }
+  .transleft-enter, .transleft-leave-to{
+    opacity: 01;
+    transform: translate(30px, 0);
+  } */
+  /* 动画5 */
+.transleft-enter-active{
+  transition: all .4s ease;
+}
+.transleft-leave-active{
+  transition: all .6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.transleft-enter, .transleft-leave-to{
+  transform: translateX(-10px);
+  opacity: 0;
+}
+/* 全局样式 */
