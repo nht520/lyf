@@ -30,22 +30,22 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="扣量基数">
-            <el-input placeholder="请输入内容" v-model="input2">
+            <el-input placeholder="请输入内容" v-model="form.region">
                 <template slot="append">单</template>
             </el-input>
         </el-form-item>
         <el-form-item label="扣量比列">
-            <el-input placeholder="请输入内容" v-model="input2">
+            <el-input placeholder="请输入内容" v-model="form.region">
                 <template slot="append">:1</template>
             </el-input>
         </el-form-item>
         <el-form-item label="安装扣量基数">
-            <el-input placeholder="请输入内容" v-model="input2">
+            <el-input placeholder="请输入内容" v-model="form.region">
                 <template slot="append">个</template>
             </el-input>
         </el-form-item>
         <el-form-item label="安装扣量保留">
-            <el-input placeholder="请输入内容" v-model="input2">
+            <el-input placeholder="请输入内容" v-model="form.region">
                 <template slot="append">%</template>
             </el-input>
         </el-form-item>
@@ -57,12 +57,12 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="一级渠道结算比列">
-            <el-input placeholder="请输入内容" v-model="input2">
+            <el-input placeholder="请输入内容" v-model="form.region">
                 <template slot="append">%</template>
             </el-input>
         </el-form-item>
             <el-form-item label="二级渠道结算比列">
-            <el-input placeholder="请输入内容" v-model="input2">
+            <el-input placeholder="请输入内容" v-model="form.region">
                 <template slot="append">%</template>
             </el-input>
         </el-form-item>
@@ -98,7 +98,7 @@ export default {
     data(){
         return{
             txtone:"渠道管理",
-            txtTwo:"",
+            txtTwo:"添加包",
             form: {
               name: '',
               region: '',
