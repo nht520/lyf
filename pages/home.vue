@@ -76,8 +76,6 @@
         const username = storage.get("user");
         if(username=== "" || username === undefined || username === null){
            this.$router.push({path:'/'})
-        }else{
-           this.$router.push({path:'/home/home'})
         }
       }
     },

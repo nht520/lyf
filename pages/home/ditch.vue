@@ -80,7 +80,9 @@
             fixed="right"
             align="right">
             <template slot="header">
-                <el-button type="primary" icon="el-icon-plus" size="mini" @click="addith()">添加</el-button>
+              <nuxt-link to="/home/addditch">
+                <el-button type="primary" icon="el-icon-plus" size="mini">添加</el-button>
+              </nuxt-link>
             </template>
             <template slot-scope="scope" >
                 <el-button
