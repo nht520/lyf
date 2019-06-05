@@ -114,14 +114,6 @@
         this.goLogin();
       },
       //判断用户是否登录
-      userLoding () {
-        this.user = storage.get("user");
-        if(this.user==null || this.user===undefined){
-          this.$router.push({path:'/'});
-        }else if(this.user!==null || this.user!==undefined){
-          this.$router.push({path:'/Home'});
-        }
-      },
       usermif(){
         const username = storage.get("user");
         if(username=== "" || username === undefined || username === null){
@@ -132,7 +124,6 @@
       }
     },
     mounted(){
-    //   this.userLoding()
       this.usermif()
     }
   }

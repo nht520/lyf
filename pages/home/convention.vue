@@ -2,8 +2,19 @@
     <div class="convention">
       <!-- 面包屑 -->
       <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
-      <!--  -->
-      <h1>convention</h1>
+      <!-- 内容 -->
+       <el-form ref="form" :model="form" label-width="150px">
+        <el-form-item label="订单预支付">
+          <el-input type="textarea" v-model="form.desc"></el-input>
+        </el-form-item>
+        <el-form-item label="订单预支付">
+          <el-input type="textarea" v-model="form.desc"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">保存</el-button>
+          <el-button>重置</el-button>
+        </el-form-item>
+      </el-form>
     </div>
 </template>
 
@@ -20,10 +31,23 @@ export default {
         return{
             txtone:"常规设置",
             txtTwo:"",
+            form: {
+              name: '',
+              region: '',
+              regionone:["1","2","3"],
+              date1: '',
+              date2: '',
+              delivery: false,
+              type: [],
+              resource: '',
+              desc: ''
+            }
         }
     },
     methods:{
-
+      onSubmit() {
+        console.log(this.form);
+      }
     },
     mounted(){
       this.txtTwo = storage.get("linktxt")
@@ -37,4 +61,8 @@ export default {
     background #ffffff
     padding 1%
     min-height 800px
+  .convention .el-form
+    margin 2% 4%
+    width 50%
+    text-align left   
 </style>
