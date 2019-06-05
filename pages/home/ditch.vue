@@ -134,7 +134,7 @@ export default {
     },
     data(){
         return{
-            txtone:"常规设置",
+            txtone:"渠道管理",
             txtTwo:"",
             hedTitle:"",
             text:"",
