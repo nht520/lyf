@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item :to="{ path: '/' }">{{txtone}}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{txtone}}</el-breadcrumb-item>
             <el-breadcrumb-item>{{txtTwo}}</el-breadcrumb-item>
         </el-breadcrumb>
     </div>
