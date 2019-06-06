@@ -61,7 +61,7 @@
                 <template slot="append">%</template>
             </el-input>
         </el-form-item>
-            <el-form-item label="二级渠道结算比列">
+        <el-form-item label="二级渠道结算比列">
             <el-input placeholder="请输入内容" v-model="form.region">
                 <template slot="append">%</template>
             </el-input>

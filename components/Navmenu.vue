@@ -117,19 +117,19 @@ export default {
                             id:1,
                             icon:"backqww",
                             title:"设备安装量",
-                            path:"/home/chanlinterface"
+                            path:"/home/iphoneinstall"
                         },
                         {
                             id:2,
                             icon:"backqww",
                             title:"设备有效量",
-                            path:"/home/chanlinterface"
+                            path:"/home/iphonevalid"
                         },
                         {
                             id:3,
                             icon:"backqww",
                             title:"设备无效量",
-                            path:"/home/chanlinterface"
+                            path:"/home/iphoneinvalid"
                         },
                     ]
                 }

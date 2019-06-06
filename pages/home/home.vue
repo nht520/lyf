@@ -2,7 +2,7 @@
   <div>
         <div class="home">
          <!-- 统计+ -->
-         <h5 @click="setTimer()">设备统计</h5>
+         <h5>设备统计</h5>
          <el-row class="statistics"  :gutter="15">
             <el-col :span="4" :offset="1">
                 <el-row class="search1"  :gutter="15">
