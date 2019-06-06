@@ -2,9 +2,9 @@
   <div class="hello">
   <!--  -->
    <div class="content">
-      <h2>后台登录</h2>
      <v-form v-model="valid">
        <v-container>
+         <h2>后台登录</h2><br/>
          <v-flex xs12>
            <v-text-field
              type="username"
@@ -130,7 +130,7 @@
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   .hello
     background #1f2d3d
     position absolute
@@ -160,6 +160,8 @@
    width 100%
    margin-top 9%
    height 45px
+  .content .v-form
+   width 100%
 </style>
 
  
