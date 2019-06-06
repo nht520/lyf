@@ -85,7 +85,7 @@ export default {
                 },
                 {
                     id:2,
-                    icon:"settings_input_component",
+                    icon:"dns",
                     title:"通道管理",
                     twolist:[
                         {
@@ -98,6 +98,37 @@ export default {
                             id:1,
                             icon:"backqww",
                             title:"通道接口",
+                            path:"/home/chanlinterface"
+                        },
+                    ]
+                },
+                {
+                    id:3,
+                    icon:"settings_cell",
+                    title:"设备统计",
+                    twolist:[
+                        {
+                            id:0,
+                            icon:"back",
+                            title:"网页UV量",
+                            path:"/home/chanlintype"
+                        },
+                        {
+                            id:1,
+                            icon:"backqww",
+                            title:"设备安装量",
+                            path:"/home/chanlinterface"
+                        },
+                        {
+                            id:2,
+                            icon:"backqww",
+                            title:"设备有效量",
+                            path:"/home/chanlinterface"
+                        },
+                        {
+                            id:3,
+                            icon:"backqww",
+                            title:"设备无效量",
                             path:"/home/chanlinterface"
                         },
                     ]
