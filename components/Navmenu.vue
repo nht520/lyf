@@ -82,6 +82,25 @@ export default {
                             path:"/home/convention"
                         },
                     ]
+                },
+                {
+                    id:2,
+                    icon:"settings_input_component",
+                    title:"通道管理",
+                    twolist:[
+                        {
+                            id:0,
+                            icon:"back",
+                            title:"通道类型",
+                            path:"/home/chanlintype"
+                        },
+                        {
+                            id:1,
+                            icon:"backqww",
+                            title:"通道接口",
+                            path:"/home/chanlinterface"
+                        },
+                    ]
                 }
             ]
         }
