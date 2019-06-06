@@ -111,7 +111,7 @@ export default {
                             id:0,
                             icon:"back",
                             title:"网页UV量",
-                            path:"/home/chanlintype"
+                            path:"/home/htmluv"
                         },
                         {
                             id:1,

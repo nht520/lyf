@@ -1,12 +1,68 @@
 <template>
+  <div>
+        <div class="home">
+         <!-- 统计+ -->
+         <h5>设备统计</h5>
+         <el-row class="statistics"  :gutter="15">
+            <el-col :span="4" :offset="1">
+                <el-row class="search1"  :gutter="15">
+                    <el-col :span="10">
+                        <h2>100</h2>
+                        <h6>网页UV量</h6>    
+                    </el-col>
+                    <el-col :span="14">
+                         <v-icon>language</v-icon>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="4" :offset="2">
+                <el-row class="search2" :gutter="15">
+                    <el-col :span="10">
+                        <h2>100</h2>
+                        <h6>设备安装量</h6>    
+                    </el-col>
+                    <el-col :span="14">
+                         <v-icon>settings_cell</v-icon>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="4" :offset="2">
+                <el-row class="search3"  :gutter="15">
+                    <el-col :span="10">
+                        <h2>100</h2>
+                        <h6>设备有效量</h6>    
+                    </el-col>
+                    <el-col :span="14">
+                         <v-icon>visibility</v-icon>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="4" :offset="2">
+                <el-row class="search4" :gutter="15">
+                    <el-col :span="10">
+                        <h2>100</h2>
+                        <h6>设备无效量</h6>    
+                    </el-col>
+                    <el-col :span="14">
+                         <v-icon>visibility_off</v-icon>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+    </div>
     <div class="home">
-         <!-- 用户量 -->
+         <!-- 统计+ -->
+             <!-- 用户量 -->
          <h5>最近3天用户下单统计</h5>
          <ve-line :data="chartData" class="homchaert"></ve-line>
+    </div>
+    <div class="home">
          <!-- 流水 -->
          <h5>最近3天流水分析</h5>
          <ve-histogram :data="running"></ve-histogram>
     </div>
+  </div>
+    
 </template>
 
 <script>
@@ -53,6 +109,7 @@ export default {
 
     },
     mounted(){
+        
     }
 }
 </script>
@@ -60,10 +117,40 @@ export default {
 .home
  background #ffffff
  padding 1%
- min-height 800px
+ margin-bottom 1%
 .home h5  
  text-align left 
  padding 1%
 .homchaert
  width 100% !important 
+.statistics
+ margin 1% 0%
+.statistics .v-icon 
+    font-size 40px
+    color #ffffff
+    margin-top 10%
+.statistics .search1
+    background #19d4ae
+    padding 5% 1%
+    text-align center
+    color #ffff
+    border-radius 5px;
+.statistics .search2
+    background #5ab1ef
+    padding 5% 1%
+    text-align center
+    color #ffff
+    border-radius 5px;
+.statistics .search3
+    background #fa6e86
+    padding 5% 1%
+    text-align center
+    color #ffff
+    border-radius 5px;
+.statistics .search4
+    background #9076ff
+    padding 5% 1%
+    text-align center
+    color #ffff
+    border-radius 5px;
 </style>
