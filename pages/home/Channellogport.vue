@@ -11,10 +11,10 @@
              <el-col :span="3">
                 <el-input v-model="form.name" placeholder="请输入系统订单编号"  size="small"></el-input>
             </el-col>           
-            <el-col :span="2">
+            <el-col :span="3">
                 <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="3">
                 <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
             </el-col>
             <el-col :span="2">

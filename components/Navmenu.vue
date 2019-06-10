@@ -244,6 +244,43 @@ export default {
                         },                                                                                                                                                                                                                                                                                                                                                                                                                    
                     ]
                 },
+                {
+                    id:7,
+                    icon:"bubble_chart",
+                    title:"系统管理",
+                    twolist:[
+                        {
+                            id:0,
+                            icon:"back",
+                            title:"系统菜单",
+                            path:"/home/channelearnings"
+                        },
+                        {
+                            id:1,
+                            icon:"backqww",
+                            title:"操作菜单",
+                            path:"/home/channelearningstwo"
+                        },
+                        {
+                            id:2,
+                            icon:"backqww",
+                            title:"用户管理",
+                            path:"/home/channelagency"
+                        },
+                        {
+                            id:3,
+                            icon:"backqww",
+                            title:"角色管理",
+                            path:"/home/channelearningstwo"
+                        },
+                        {
+                            id:4,
+                            icon:"backqww",
+                            title:"部门管理",
+                            path:"/home/channelagency"
+                        },
+                    ]
+                },
             ]
         }
     },
