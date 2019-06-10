@@ -253,7 +253,7 @@ export default {
                             id:0,
                             icon:"back",
                             title:"系统菜单",
-                            path:"/home/channelearnings"
+                            path:"/home/systemmenu"
                         },
                         {
                             id:1,
@@ -265,7 +265,7 @@ export default {
                             id:2,
                             icon:"backqww",
                             title:"用户管理",
-                            path:"/home/channelagency"
+                            path:"/home/usermanage"
                         },
                         {
                             id:3,
