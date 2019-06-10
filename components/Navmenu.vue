@@ -195,6 +195,55 @@ export default {
                         },
                     ]
                 },
+                {
+                    id:6,
+                    icon:"date_range",
+                    title:"日志管理",
+                    twolist:[
+                        {
+                            id:0,
+                            icon:"back",
+                            title:"通道日志[接口]",
+                            path:"/home/Channellogport"
+                        },
+                        {
+                            id:1,
+                            icon:"backqww",
+                            title:"通讯日志[渠道]",
+                            path:"/home/Channellogditch"
+                        },
+                        {
+                            id:2,
+                            icon:"backqww",
+                            title:"登录日志[用户]",
+                            path:"/home/Logontologuser"
+                        },
+                        {
+                            id:3,
+                            icon:"backqww",
+                            title:"登录日志[管理员]",
+                            path:"/home/Logontologadmin"
+                        },     
+                        {
+                            id:4,
+                            icon:"backqww",
+                            title:"操作日志[用户]",
+                            path:"/home/operationloguser"
+                        },
+                        {
+                            id:5,
+                            icon:"backqww",
+                            title:"操作日志[管理员]",
+                            path:"/home/operationlogadmin"
+                        },      
+                        {
+                            id:6,
+                            icon:"backqww",
+                            title:"操作日志[系统]",
+                            path:"/home/errorlogsystem"
+                        },                                                                                                                                                                                                                                                                                                                                                                                                                    
+                    ]
+                },
             ]
         }
     },
