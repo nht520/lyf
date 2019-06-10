@@ -5,48 +5,6 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
-            <el-col :span="3">
-                <el-input v-model="form.name" placeholder="请输入订单编号"  size="small"></el-input>
-            </el-col>
-            <el-col :span="2">
-                <el-input v-model="form.name" placeholder="请输入包编号"  size="small"></el-input>
-            </el-col>
-            <el-col :span="2">
-                <el-select  v-model="form.region"  size="small" placeholder="普通渠道">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-select  v-model="form.region"  size="small" placeholder="代理渠道">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-select  v-model="form.region"  size="small" placeholder="支付渠道">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-select  v-model="form.region"  size="small" placeholder="接入类型">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-select  v-model="form.region"  size="small" placeholder="支付类型">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-select v-model="form.region"  size="small" placeholder="app上报">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
             <el-col :span="2">
                 <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
             </el-col>
@@ -66,74 +24,73 @@
             @selection-change="selectionRowsChange" >
             <el-table-column
             prop="date"
-            label="订单编号">
+            label="日期">
             </el-table-column>
             <el-table-column
-            label="包编号"
+            label="请求量"
             prop="name"
             >
             </el-table-column>
             <el-table-column
             prop="date"
-            label="渠道标识">
+            label="效果数">
             </el-table-column>
             <el-table-column
-            label="通道名称"
+            label="效果金额"
             prop="name"
             >
             </el-table-column>
              <el-table-column
-            label="接入类型"
+            label="扣量数"
+             prop="name"
             >
-                <template slot-scope="scope">
-                    <span style="color: #22d5b1">{{scope.row.name}}</span>
-                </template>
             </el-table-column>
             <el-table-column
-            label="支付类型"
-            >
-                <template slot-scope="scope">
-                    <span style="color: #60b4f0">{{scope.row.name}}</span>
-                </template>
-            </el-table-column>
-            <el-table-column
-            label="通道费率"
-            >
-                <template slot-scope="scope">
-                    <span style="color: rgb(255, 161, 14)">{{scope.row.name}}</span>
-                </template>
-            </el-table-column>
-            <el-table-column
-            label="描述"
+            label="扣量收益"
             prop="name"
             >
             </el-table-column>
             <el-table-column
-            label="级别属性"
+            label="渠道收益[代]"
+             prop="name"
+            >
+            </el-table-column>
+            <el-table-column
+            label="渠道收益"
             prop="name"
             >
             </el-table-column>
             <el-table-column
-            label="预计件"
+            label="收益"
             prop="name"
             >
             </el-table-column>
             <el-table-column
-            label="实际计件"
+            label="活跃量"
             prop="name"
             >
             </el-table-column>
             <el-table-column
-            label="app上报"
+            label="安装量"
+            prop="name"
+            >
+            </el-table-column>
+            <el-table-column
+            label="成功率"
+             prop="name"
+            >
+            </el-table-column>
+            <el-table-column
+            label="AP"
+            prop="name"
+            >
+            </el-table-column>
+            <el-table-column
+            label="计费情况"
             >
                 <template slot-scope="scope">
                     <span style="color: #f00">{{scope.row.name}}</span>
                 </template>
-            </el-table-column>
-            <el-table-column
-            label="创建时间"
-            prop="name"
-            >
             </el-table-column>
         </el-table>
         <!-- 分业 -->
@@ -172,7 +129,7 @@ export default {
     },
     data(){
         return{
-            txtone:"设备统计",
+            txtone:"统计分析",
             txtTwo:"",
             hedTitle:"",
             text:"",

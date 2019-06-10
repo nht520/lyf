@@ -65,10 +65,6 @@
             style="width: 100%"
             @selection-change="selectionRowsChange" >
             <el-table-column
-            type="selection"
-            width="55">
-            </el-table-column>
-            <el-table-column
             prop="date"
             label="订单编号">
             </el-table-column>
@@ -90,21 +86,21 @@
             label="接入类型"
             >
                 <template slot-scope="scope">
-                    <span style="color: #60b4f0">{{scope.row.name}}</span>
+                    <span style="color: #22d5b1">{{scope.row.name}}</span>
                 </template>
             </el-table-column>
             <el-table-column
             label="支付类型"
             >
                 <template slot-scope="scope">
-                    <span style="color: rgb(158, 119, 0)">{{scope.row.name}}</span>
+                    <span style="color: #60b4f0">{{scope.row.name}}</span>
                 </template>
             </el-table-column>
             <el-table-column
             label="通道费率"
             >
                 <template slot-scope="scope">
-                    <span style="color: #22d5b1">{{scope.row.name}}</span>
+                    <span style="color: rgb(255, 161, 14)">{{scope.row.name}}</span>
                 </template>
             </el-table-column>
             <el-table-column

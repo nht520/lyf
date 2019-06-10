@@ -132,6 +132,43 @@ export default {
                             path:"/home/iphoneinvalid"
                         },
                     ]
+                },
+                {
+                    id:4,
+                    icon:"assessment",
+                    title:"统计分析",
+                    twolist:[
+                        {
+                            id:0,
+                            icon:"back",
+                            title:"流量概述[日期]",
+                            path:"/home/flowsummarize"
+                        },
+                        {
+                            id:1,
+                            icon:"backqww",
+                            title:"通道概述[日期]",
+                            path:"/home/aislesummarize"
+                        },
+                        {
+                            id:2,
+                            icon:"backqww",
+                            title:"通道概述[时段]",
+                            path:"/home/aislesmtime"
+                        },
+                        {
+                            id:3,
+                            icon:"backqww",
+                            title:"产品概述[日期]",
+                            path:"/home/productsummzrize"
+                        },
+                        {
+                            id:4,
+                            icon:"backqww",
+                            title:"渠道概述[日期]",
+                            path:"/home/channelsummzrize"
+                        },
+                    ]
                 }
             ]
         }

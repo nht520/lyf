@@ -29,10 +29,6 @@
             style="width: 100%"
             @selection-change="selectionRowsChange" >
             <el-table-column
-            type="selection"
-            width="55">
-            </el-table-column>
-            <el-table-column
             prop="date"
             label="包编号">
             </el-table-column>
