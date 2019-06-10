@@ -48,10 +48,10 @@
             </el-table-column>
             <el-table-column
             prop="address"
-            label="权重">
+            label="排序">
             </el-table-column>
             <el-table-column
-            prop="address"
+            prop="state"
             label="状态">
             </el-table-column>
             <el-table-column
@@ -131,19 +131,22 @@ export default {
             currentPage1: 4,
             tableData: [{
             id: 1,
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄',
+            date: '系统管理',
+            name: 'back',
+            address: '1',
+            state:'开启',
             children: [{
                 id: 31,
-                date: '2016-05-01',
+                date: '系统菜单',
                 name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
+                state:'开启',
+                address: '2'
                 }, {
                 id: 32,
-                date: '2016-05-01',
+                date: '操作菜单',
                 name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
+                state:'开启',
+                address: '3'
             }]
             },{
             id: 2,
