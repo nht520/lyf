@@ -169,7 +169,32 @@ export default {
                             path:"/home/channelsummzrize"
                         },
                     ]
-                }
+                },
+                {
+                    id:5,
+                    icon:"shopping_basket",
+                    title:"结算管理",
+                    twolist:[
+                        {
+                            id:0,
+                            icon:"back",
+                            title:"渠道收益[直属]",
+                            path:"/home/channelearnings"
+                        },
+                        {
+                            id:1,
+                            icon:"backqww",
+                            title:"渠道收益[二级]",
+                            path:"/home/channelearningstwo"
+                        },
+                        {
+                            id:2,
+                            icon:"backqww",
+                            title:"渠道收益[代理]",
+                            path:"/home/channelagency"
+                        },
+                    ]
+                },
             ]
         }
     },
