@@ -6,83 +6,64 @@
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
             <el-col :span="3">
-                <el-input v-model="form.name" placeholder="请输入登录名"  size="small"></el-input>
+                <el-input v-model="form.name" placeholder="请输入角色名"  size="small"></el-input>
             </el-col>
              <el-col :span="3">
-                <el-input v-model="form.name" placeholder="请输入手机号"  size="small"></el-input>
+                <el-input v-model="form.name" placeholder="请输入部门"  size="small"></el-input>
             </el-col>       
-            <el-col :span="3">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
-            </el-col>
-            <el-col :span="3">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
-            </el-col>
             <el-col :span="2">
-               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+               <el-button type="primary" icon="el-icon-search" size="small" plain @click="seekdithc()">搜索</el-button>
             </el-col>
         </el-row>
         <!-- 表格 -->
-          <el-table
+           <el-table
             :data="tableData"
-            style="width: 100%"
-            row-key="id"
             border
-            lazy
             @selection-change="selectionRowsChange" 
             ref="multipleTable"
             tooltip-effect="dark"
-            :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+            style="width: 100%">
             <el-table-column
             type="selection"
             width="55">
             </el-table-column>
             <el-table-column
-            prop="date"
-            label="菜单名称"
-            width="180">
+              prop="name"
+              label="角色"
+              width="180">
             </el-table-column>
             <el-table-column
-            prop="name"
-            label="Icon"
-            width="180">
+              prop="name"
+              label="角色部门">
             </el-table-column>
             <el-table-column
-            prop="address"
-            label="排序">
+              prop="amount1"
+              label="是否超级管理员">
             </el-table-column>
             <el-table-column
-            prop="state"
-            label="状态">
-            </el-table-column>
-            <el-table-column
+              prop="amount2"
+              label="权限">
+            </el-table-column>  
+             <el-table-column
             fixed="right"
             align="right">
             <template slot="header">
-              <nuxt-link to="/home/addststem">
+              <nuxt-link to="/home/addrole">
                 <el-button type="primary" icon="el-icon-plus" size="mini" plain>添加</el-button>
               </nuxt-link>
             </template>
             <template slot-scope="scope" >
-                <el-button
-                    size="mini"
-                    icon="el-icon-edit" 
-                >编辑</el-button>
-                <el-button
-                     type="success"
-                    size="mini" plain
-                >新增(子)</el-button>
-                <el-button
-                size="mini"
-                type="danger" plain
-                @click="deleteRow(scope.$index, scope.row)">删除</el-button>
+                <el-button size="mini"  icon="el-icon-edit"> 编辑 </el-button>
+                <el-button size="mini"  icon="el-icon-edit" type="success" plain> 权限 </el-button>
+                <el-button size="mini" type="danger" @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
             </template>
-            </el-table-column>  
-        </el-table>
+            </el-table-column>       
+          </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
             <el-col :span="6">
                 <el-button @click="toggleSelect(tableData)" size="mini">全选/反选</el-button>
-                <el-button  size="mini">保存权重</el-button>
+                <el-button  size="mini">批量结算</el-button>
                 <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
             <el-col :span="10" :offset="7">
@@ -130,45 +111,57 @@ export default {
             },
             currentPage1: 4,
             tableData: [{
-            id: 1,
-            date: '系统管理',
-            name: 'back',
-            address: '1',
-            state:'开启',
-            children: [{
-                id: 31,
-                date: '系统菜单',
+                id: '12987122',
                 name: '王小虎',
-                state:'开启',
-                address: '2'
-                }, {
-                id: 32,
-                date: '操作菜单',
+                amount1: '234',
+                amount2: '3.2',
+                amount3: 10,
+                amount4: 10,
+                amount5: 11,
+                amount6: 5,
+                amount7: 1,
+              }, {
+                id: '12987123',
                 name: '王小虎',
-                state:'开启',
-                address: '3'
-            }]
-            },{
-            id: 2,
-            date: '系统管理',
-            name: 'back',
-            address: '1',
-            state:'开启',
-            children: [{
-                id: 31,
-                date: '系统菜单',
+                amount1: '165',
+                amount2: '4.43',
+                amount3: 12,
+                amount4: 10,
+                amount5: 11,
+                amount6: 5,
+                amount7: 1,
+              }, {
+                id: '12987124',
                 name: '王小虎',
-                state:'开启',
-                address: '2'
-                }, {
-                id: 32,
-                date: '操作菜单',
+                amount1: '324',
+                amount2: '1.9',
+                amount3: 9,
+                amount4: 10,
+                amount5: 11,
+                amount6: 5,
+                amount7: 1,
+              }, {
+                id: '12987125',
                 name: '王小虎',
-                state:'开启',
-                address: '3'
-            }]
-            },],
-            search: ''
+                amount1: '621',
+                amount2: '2.2',
+                amount3: 17,
+                amount4: 10,
+                amount5: 11,
+                amount6: 5,
+                amount7: 1,
+              }, {
+                id: '12987126',
+                name: '王小虎',
+                amount1: '539',
+                amount2: '4.1',
+                amount3: 15,
+                amount4: 10,
+                amount5: 11,
+                amount6: 5,
+                amount7: 1,
+              }],
+              search: ''
         }
     },
     methods:{
@@ -248,7 +241,6 @@ export default {
       seekdithc(){
         console.log(this.form);
       },
-    //   
     },
     mounted(){
       this.txtTwo = storage.get("linktxt")

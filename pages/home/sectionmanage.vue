@@ -6,106 +6,74 @@
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
             <el-col :span="3">
-                <el-input v-model="form.name" placeholder="请输入包编号"  size="small"></el-input>
+                <el-input v-model="form.name" placeholder="请输入部门名称"  size="small"></el-input>
             </el-col>
-            <el-col :span="2">
-                <el-select v-model="form.condition"  size="small" placeholder="请选择渠道" >
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-select v-model="form.condition"  size="small" placeholder="请选择通道" >
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
-            </el-col>
-            <el-col :span="2">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
-            </el-col>
+             <el-col :span="3">
+                <el-input v-model="form.name" placeholder="请输入负责人"  size="small"></el-input>
+            </el-col>       
             <el-col :span="2">
                <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
         </el-row>
         <!-- 表格 -->
-         <el-table
-            :data="list"
+          <el-table
+            :data="tableData"
+            style="width: 100%"
+            row-key="id"
+            border
+            lazy
+            @selection-change="selectionRowsChange" 
             ref="multipleTable"
             tooltip-effect="dark"
-            style="width: 100%"
-            @selection-change="selectionRowsChange" >
+            :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
             <el-table-column
-            prop="date"
-            label="日期">
-            </el-table-column>
-            <el-table-column
-            label="通道"
-            prop="name"
-            >
+            type="selection"
+            width="55">
             </el-table-column>
             <el-table-column
             prop="date"
-            label="请求量">
+            label="部门名称">
             </el-table-column>
             <el-table-column
-            label="效果数"
             prop="name"
-            >
-            </el-table-column>
-             <el-table-column
-            label="效果金额"
-             prop="name"
-            >
+            label="负责人">
             </el-table-column>
             <el-table-column
-            label="扣量数"
-            prop="name"
-            >
+            prop="address"
+            label="排序">
             </el-table-column>
             <el-table-column
-            label="扣量收益"
-             prop="name"
-            >
-            </el-table-column>
-            <el-table-column
-            label="渠道收益[代]"
-            prop="name"
-            >
-            </el-table-column>
-            <el-table-column
-            label="渠道收益"
-            prop="name"
-            >
-            </el-table-column>
-            <el-table-column
-            label="收益"
-            prop="name"
-            >
-            </el-table-column>
-            <el-table-column
-            label="成功率"
-             prop="name"
-            >
-            </el-table-column>
-            <el-table-column
-            label="计费情况"
-            >
-                <template slot-scope="scope">
-                    <span style="color: #f00">{{scope.row.name}}</span>
-                </template>
-            </el-table-column>
+            fixed="right"
+            align="right">
+            <template slot="header">
+              <nuxt-link to="/home/addsection">
+                <el-button type="primary" icon="el-icon-plus" size="mini" plain>添加</el-button>
+              </nuxt-link>
+            </template>
+            <template slot-scope="scope" >
+                <el-button
+                    size="mini"
+                    icon="el-icon-edit" 
+                >编辑</el-button>
+                <el-button
+                     type="success"
+                    size="mini" plain
+                >新增(子)</el-button>
+                <el-button
+                size="mini"
+                type="danger" plain
+                @click="deleteRow(scope.$index, scope.row)">删除</el-button>
+            </template>
+            </el-table-column>  
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-            <el-col >
-                <!-- <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
+            <el-col :span="6">
+                <el-button @click="toggleSelect(tableData)" size="mini">全选/反选</el-button>
                 <el-button  size="mini">保存权重</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
+                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
-            <el-col :span="14" :offset="10">
+            <el-col :span="10" :offset="7">
                 <div class="block">
                     <el-pagination
                         @size-change="handleSizeChange"
@@ -134,7 +102,7 @@ export default {
     },
     data(){
         return{
-            txtone:"统计分析",
+            txtone:"系统管理",
             txtTwo:"",
             hedTitle:"",
             text:"",
@@ -149,27 +117,75 @@ export default {
               
             },
             currentPage1: 4,
-            list: [{
-                date: '2016-05-02',
+            tableData: [{
+            id: 1,
+            date: '技术部',
+            name: 'back',
+            address: '1',
+            state:'开启',
+            children: [{
+                id: 31,
+                date: '系统菜单',
                 name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
+                state:'开启',
+                address: '2'
                 }, {
-                date: '2016-05-04',
+                id: 32,
+                date: '操作菜单',
                 name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
+                state:'开启',
+                address: '3'
+            }]
+            },{
+            id: 2,
+            date: '网络部',
+            name: 'back',
+            address: '1',
+            state:'开启',
+            children: [{
+                id: 31,
+                date: '系统菜单',
+                name: '王小虎',
+                state:'开启',
+                address: '2'
                 }, {
-                date: '2016-05-01',
+                id: 32,
+                date: '操作菜单',
                 name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-                }],
-                search: ''
+                state:'开启',
+                address: '3'
+            }]
+            },],
+            search: ''
         }
     },
     methods:{
+      getSummaries(param) {
+        const { columns, data } = param;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '总价';
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += ' 元';
+          } else {
+            sums[index] = 'N/A';
+          }
+        });
+
+        return sums;
+      },
       onSubmit() {
         console.log('submit!');
       },
@@ -219,7 +235,8 @@ export default {
      //   搜索
       seekdithc(){
         console.log(this.form);
-      }
+      },
+    //   
     },
     mounted(){
       this.txtTwo = storage.get("linktxt")

@@ -21,7 +21,7 @@
                 </el-select>
             </el-col>
             <el-col :span="2">
-               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()">搜索</el-button>
+               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
         </el-row>
         <!-- 表格 -->
@@ -81,7 +81,7 @@
             align="right">
             <template slot="header">
               <nuxt-link to="/home/addditch">
-                <el-button type="primary" icon="el-icon-plus" size="mini">添加</el-button>
+                <el-button type="primary" icon="el-icon-plus" size="mini" plain>添加</el-button>
               </nuxt-link>
             </template>
             <template slot-scope="scope" >
@@ -92,7 +92,7 @@
                 <el-button
                 size="mini"
                 type="danger"
-                @click="deleteRow(scope.$index, scope.row)">删除</el-button>
+                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
             </template>
             </el-table-column>
         </el-table>
@@ -103,7 +103,7 @@
                 <el-button size="mini" icon="el-icon-lock">冻结</el-button>
                 <el-button size="mini" icon="el-icon-unlock">解冻</el-button>
                 <el-button size="mini" icon="el-icon-brush">密码初始</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" >删除</el-button>
+                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
             <el-col :span="10" :offset="5">
                 <div class="block">

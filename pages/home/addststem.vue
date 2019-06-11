@@ -4,32 +4,20 @@
       <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
       <!-- 内容 -->
       <el-form ref="form" :model="form" label-width="150px">
-        <el-form-item label="*账号">
+        <el-form-item label="*菜单名">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="*姓名">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="*电话">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="QQ">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="邮件">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="角色">
+        <el-form-item label="请选择上级菜单">
           <el-select v-model="form.region" placeholder="请选择活动区域">
             <el-option label="区域一" value="shanghai"></el-option>
             <el-option label="区域二" value="beijing"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="部门">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+        <el-form-item label="*图标">
+          <el-input v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="*排序">
+          <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="*状态">
           <el-switch

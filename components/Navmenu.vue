@@ -54,7 +54,7 @@ export default {
                             id:1,
                             icon:"backqww",
                             title:"PSA配置",
-                            path:"/home/convention"
+                            path:"/home/psadeploy"
                         },
                         {
                             id:2,
@@ -259,7 +259,7 @@ export default {
                             id:1,
                             icon:"backqww",
                             title:"操作菜单",
-                            path:"/home/channelearningstwo"
+                            path:"/home/"
                         },
                         {
                             id:2,
@@ -271,13 +271,13 @@ export default {
                             id:3,
                             icon:"backqww",
                             title:"角色管理",
-                            path:"/home/channelearningstwo"
+                            path:"/home/roleadmin"
                         },
                         {
                             id:4,
                             icon:"backqww",
                             title:"部门管理",
-                            path:"/home/channelagency"
+                            path:"/home/sectionmanage"
                         },
                     ]
                 },

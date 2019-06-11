@@ -24,7 +24,7 @@
                 <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
             </el-col>
             <el-col :span="2">
-               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()">搜索</el-button>
+               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
         </el-row>
         <!-- 表格 -->
@@ -99,6 +99,7 @@
                 <el-button
                     size="mini"
                     icon="el-icon-edit"
+                    @click="open(scope.row)"
                 >补量</el-button>
               </template>
             </el-table-column>
@@ -125,17 +126,19 @@
             </el-col>
         </el-row>
       </div>
+      <!-- 补量 -->
+      <Recharge ref="recharge"></Recharge>
     </div>
 </template>
-
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
+import Recharge from '../../components/Recharge'; 
 import storage from '~~/plugins/storage';
 export default {
     // 页面切换动画
     transition:"transleft",
     components:{
-      Breadcrumb
+      Breadcrumb,Recharge
     },
     data(){
         return{
@@ -156,7 +159,7 @@ export default {
             currentPage1: 4,
             tableData: [{
                 id: '12987122',
-                name: '王小虎',
+                name: '2015.02.03',
                 amount1: '234',
                 amount2: '3.2',
                 amount3: 10,
@@ -166,7 +169,7 @@ export default {
                 amount7: 1,
               }, {
                 id: '12987123',
-                name: '王小虎',
+                name: '2015.02.03',
                 amount1: '165',
                 amount2: '4.43',
                 amount3: 12,
@@ -176,7 +179,7 @@ export default {
                 amount7: 1,
               }, {
                 id: '12987124',
-                name: '王小虎',
+                name: '2015.02.03',
                 amount1: '324',
                 amount2: '1.9',
                 amount3: 9,
@@ -186,7 +189,7 @@ export default {
                 amount7: 1,
               }, {
                 id: '12987125',
-                name: '王小虎',
+                name: '2015.02.03',
                 amount1: '621',
                 amount2: '2.2',
                 amount3: 17,
@@ -196,7 +199,7 @@ export default {
                 amount7: 1,
               }, {
                 id: '12987126',
-                name: '王小虎',
+                name: '2015.02.03',
                 amount1: '539',
                 amount2: '4.1',
                 amount3: 15,
@@ -209,32 +212,36 @@ export default {
         }
     },
     methods:{
-      getSummaries(param) {
-        const { columns, data } = param;
-        const sums = [];
-        columns.forEach((column, index) => {
-          if (index === 0) {
-            sums[index] = '总价';
-            return;
-          }
-          const values = data.map(item => Number(item[column.property]));
-          if (!values.every(value => isNaN(value))) {
-            sums[index] = values.reduce((prev, curr) => {
-              const value = Number(curr);
-              if (!isNaN(value)) {
-                return prev + curr;
-              } else {
-                return prev;
-              }
-            }, 0);
-            sums[index] += ' 元';
-          } else {
-            sums[index] = 'N/A';
-          }
-        });
-
-        return sums;
+      // 补量
+      open(e) {
+        console.log(e);
+        this.$refs.recharge.open();
       },
+      // getSummaries(param) {
+      //   const { columns, data } = param;
+      //   const sums = [];
+      //   columns.forEach((column, index) => {
+      //     if (index === 0) {
+      //       sums[index] = '总价';
+      //       return;
+      //     }
+      //     const values = data.map(item => Number(item[column.property]));
+      //     if (!values.every(value => isNaN(value))) {
+      //       sums[index] = values.reduce((prev, curr) => {
+      //         const value = Number(curr);
+      //         if (!isNaN(value)) {
+      //           return prev + curr;
+      //         } else {
+      //           return prev;
+      //         }
+      //       }, 0);
+      //       sums[index] += ' 元';
+      //     } else {
+      //       sums[index] = 'N/A';
+      //     }
+      //   });
+      //   return sums;
+      // },
       onSubmit() {
         console.log('submit!');
       },

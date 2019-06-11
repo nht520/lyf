@@ -4,39 +4,11 @@
       <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
       <!-- 内容 -->
       <el-form ref="form" :model="form" label-width="150px">
-        <el-form-item label="*账号">
-          <el-input v-model="form.name"></el-input>
+        <el-form-item label="*2048位公匙">
+          <el-input type="textarea" v-model="form.desc"></el-input>
         </el-form-item>
-        <el-form-item label="*姓名">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="*电话">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="QQ">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="邮件">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="角色">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="部门">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="*状态">
-          <el-switch
-            v-model="form.value"
-            active-color="#13ce66"
-            inactive-color="#dddddd">
-          </el-switch>
+        <el-form-item label="*2048位私匙">
+          <el-input type="textarea" v-model="form.desc"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit" plain>保存</el-button>
@@ -60,7 +32,7 @@ export default {
     },
     data(){
         return{
-            txtone:"系统管理",
+            txtone:"常规设置",
             txtTwo:"",
             form: {
               name: '',
