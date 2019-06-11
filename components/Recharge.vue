@@ -5,7 +5,7 @@
         <v-dialog v-model="dialog"  max-width="500px">
           <v-card>
             <v-card-title>
-              <span class="headline">补量操作</span>
+              <span class="headline">扣量操作</span>
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md>

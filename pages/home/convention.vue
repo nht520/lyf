@@ -159,19 +159,19 @@ export default {
             },
             currentPage1: 4,
             list: [{
-                date: '2016-05-02',
+                date: '20',
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1518 弄'
                 }, {
-                date: '2016-05-04',
+                date: '20',
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1517 弄'
                 }, {
-                date: '2016-05-01',
+                date: '20',
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1519 弄'
                 }, {
-                date: '2016-05-03',
+                date: '201',
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1516 弄'
                 }],

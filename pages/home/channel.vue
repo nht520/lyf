@@ -28,15 +28,10 @@
         <el-form-item label="*SOCKET通讯端口">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-        <el-form-item label="活动区域">
-          <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option v-for="item in form.regionone" :label="item" :value="item" ></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item label="*订单预支付开启状态">
           <el-radio-group v-model="form.resource">
-            <el-radio label="线上品牌商赞助"></el-radio>
-            <el-radio label="线下场地免费"></el-radio>
+            <el-radio label="开启"></el-radio>
+            <el-radio label="关闭"></el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="订单预支付">
