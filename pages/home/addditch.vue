@@ -20,7 +20,7 @@
                     </el-form-item>
                     <el-form-item label="代理渠道">
                         <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option v-for="item in form.regionone" :label="item" :value="item" ></el-option>
+                            <el-option v-for="item in form.regionone" key="index" :label="item" :value="item" ></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="*昵称">

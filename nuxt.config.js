@@ -2,8 +2,8 @@ import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 import pkg from './package'
 
 export default {
+  loading: '~components/loading.vue',
   mode: 'spa',
-
   /*
   ** Headers of the page
   */
@@ -53,7 +53,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-  ],
+  ],  
 
   /*
   ** Build configuration
@@ -71,5 +71,9 @@ export default {
     */
     extend(config, ctx) {
     }
-  }
+  },
+  server: {
+    port: 8889, // default: 3000
+    host: '0.0.0.0', // default: localhost
+  },
 }

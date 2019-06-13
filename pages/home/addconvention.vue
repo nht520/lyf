@@ -9,12 +9,12 @@
         </el-form-item>
         <el-form-item label="所属渠道">
           <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option v-for="item in form.regionone" :label="item" :value="item" ></el-option>
+            <el-option v-for="item in form.regionone" :key="item" :label="item" :value="item" ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="产品类型">
           <el-select v-model="form.region" placeholder="请选择活动区域">
-            <el-option v-for="item in form.regionone" :label="item" :value="item" ></el-option>
+            <el-option v-for="item in form.regionone" :key="item" :label="item" :value="item" ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="*落地页地址">
@@ -80,9 +80,6 @@
           <el-button>取消</el-button>
         </el-form-item>
       </el-form>
-      <!--  -->
-      
-      <!--  -->
     </div>
 </template>
 

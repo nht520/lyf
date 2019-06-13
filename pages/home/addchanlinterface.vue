@@ -6,7 +6,7 @@
       <el-form ref="form" :model="form" label-width="150px">
         <el-form-item label="服务商">
             <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option v-for="item in form.regionone" :label="item" :value="item" ></el-option>
+              <el-option v-for="item in form.regionone" key="index" :label="item" :value="item" ></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="*通道名称">
@@ -49,7 +49,7 @@
         </el-form-item>
         <el-form-item label="单笔限额模式">
             <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option v-for="item in form.regionone" :label="item" :value="item" ></el-option>
+              <el-option v-for="item in form.regionone" key="index" :label="item" :value="item" ></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="单笔最小金额">
