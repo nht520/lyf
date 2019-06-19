@@ -87,8 +87,8 @@ export default {
               templateWeb:"",
               packageUpgrade:"",
               packageSign:"",
-              bucklone:true,
-              buckltwo:true,
+              bucklone:false,
+              buckltwo:false,
             }
         }
     },

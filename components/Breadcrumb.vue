@@ -4,6 +4,7 @@
             <el-breadcrumb-item>{{txtone}}</el-breadcrumb-item>
             <el-breadcrumb-item>{{txtTwo}}</el-breadcrumb-item>
         </el-breadcrumb>
+        <!-- <el-page-header @back="goBack()" :content="txtTwo" size="mini"></el-page-header> -->
     </div>
 </template>
 
@@ -14,6 +15,14 @@ export default {
         return{
 
         }
+    },
+    methods:{
+    //  goBack() {
+    //     console.log('go back详情页面');
+    //   }
+    },
+    mounted(){
+
     }
 }
 </script>
