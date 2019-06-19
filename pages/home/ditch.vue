@@ -36,30 +36,30 @@
             width="55">
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="id"
             label="编号">
             </el-table-column>
             <el-table-column
             label="登录名"
-            prop="name"
+            prop="spMerchantLoginName"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="spMerchantType"
             label="类型">
             </el-table-column>
             <el-table-column
             label="昵称"
-            prop="name"
+            prop="spMerchantNickName"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="spMerchantMobile"
             label="电话">
             </el-table-column>
             <el-table-column
             label="邮箱"
-            prop="name"
+            prop="spMerchantEmail"
             >
             </el-table-column>
             <el-table-column
@@ -68,7 +68,7 @@
             </el-table-column>
             <el-table-column
             label="状态"
-            prop="name"
+            prop="spMerchantNo"
             >
             </el-table-column>
             <el-table-column
@@ -88,6 +88,7 @@
                 <el-button
                     size="mini"
                     icon="el-icon-edit"
+                    @click="compile(scope.$index, scope.row)"
                 >编辑</el-button>
                 <el-button
                 size="mini"
@@ -110,7 +111,7 @@
                     <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
-                        :current-page="currentPage1"
+                        :current-page="current"
                         :page-sizes="[10, 20, 30, 40]"
                         :page-size="10"
                         layout="total, sizes, prev, pager, next, jumper"
@@ -126,6 +127,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -143,25 +145,9 @@ export default {
               region:"",
               condition:"",
             },
-            currentPage1: 4,
-            list: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-                }],
-                search: ''
+            current: 4,
+            list: [],
+            search: ''
         }
     },
     methods:{
@@ -170,9 +156,13 @@ export default {
       },
      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+        this.present=val;
+        this.ditch();
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.present=val;
+        this.ditch();
       },
         //全选
       toggleSelect(rows) {
@@ -198,7 +188,7 @@ export default {
         }).then(() => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: '删除成功!',
           });
         }).catch(() => {
           this.$message({
@@ -207,17 +197,52 @@ export default {
           });
         });
       },
+      // 编辑
+      compile(index, rows){
+        console.log(rows)
+      },
       //删除选中数据
-      qxDete(){
+      merchantdelete(index, rows){
+        const api = window.g.merchantdelete;
+        const date = new URLSearchParams();
+              date.append("spIsDelete","1");
+              date.append("id",rows.id)
+        Axios.post(api,date).then((res)=>{
+          console.log(res);
+          this.ditch();
+        }).catch((err)=>{
+          console.log(err);
+        })
         console.log("删除选中数据");
+      },
+      // 批量删除
+      qxDete(){
+
       },
      //   搜索
       seekdithc(){
         console.log(this.form);
+      },
+      // 获取数据
+      ditch(){
+        const api = window.g.merchant;
+        const date ={
+            params:{
+                current:this.present,
+                size:this.number,
+            }
+        }
+        Axios.get(api,date).then((res)=>{
+          console.log(res)
+          this.list=res.data.records;
+        }).catch((err)=>{
+          console.log(err)
+        })
       }
     },
     mounted(){
-      this.txtTwo = storage.get("linktxt")
+      this.txtTwo = storage.get("linktxt");
+      this.ditch();
     }
 }
 

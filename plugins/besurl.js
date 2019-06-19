@@ -5,8 +5,10 @@ window.g = {
     login:api+"/login",
     // 前端配置
     webConfig:api+"/webConfig",
+    // 渠道管理
+    merchant:api+'/merchant',
+    merchantdelete:api+'/merchant/delete',
 
-    register:api+'/distributor/member/updatePass',
     mcMembers:api+'/distributor/mcMembers/findById',
     //我的库存
     getBoxNum:api+"/distributor/stock/getBoxNum",

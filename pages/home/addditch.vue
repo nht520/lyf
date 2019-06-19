@@ -9,41 +9,41 @@
                     <el-form-item label="*用户名">
                     <el-input v-model="form.name"></el-input>
                     </el-form-item>
-                    <el-form-item label="*密码">
-                    <el-input v-model="form.name"></el-input>
+                    <el-form-item label="*密码" >
+                    <el-input v-model="form.password" type="password"></el-input>
                     </el-form-item>
                     <el-form-item label="*渠道类型">
-                        <el-radio-group v-model="form.resource">
+                        <el-radio-group v-model="form.type">
                             <el-radio label="普通"></el-radio>
                             <el-radio label="代理"></el-radio>
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="代理渠道">
-                        <el-select v-model="form.region" placeholder="请选择活动区域">
-                            <el-option v-for="item in form.regionone" key="index" :label="item" :value="item" ></el-option>
+                        <el-select v-model="form.agent" placeholder="请选择渠道">
+                            <el-option v-for="item in form.agentlist" :key="item" :label="item" :value="item" ></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="*昵称">
-                    <el-input v-model="form.name"></el-input>
+                    <el-input v-model="form.nickname"></el-input>
                     </el-form-item>
                     <el-form-item label="*电话">
-                    <el-input v-model="form.name"></el-input>
+                    <el-input v-model="form.mobile"></el-input>
                     </el-form-item>
                     <el-form-item label="*邮件">
-                    <el-input v-model="form.name"></el-input>
+                    <el-input v-model="form.email"></el-input>
                     </el-form-item>
                     <el-form-item label="*状态">
                         <el-switch
-                            v-model="form.value"
+                            v-model="form.chantno"
                             active-color="#13ce66"
                             inactive-color="#dddddd">
                         </el-switch>
                     </el-form-item>
                     <el-form-item label="备注">
-                    <el-input type="textarea" v-model="form.desc"></el-input>
+                    <el-input type="textarea" v-model="form.eremark"></el-input>
                     </el-form-item>
                     <el-form-item>
-                    <el-button type="primary" @click="onSubmit" plain>立即创建</el-button>
+                    <el-button type="primary" @click="addditch()" plain>立即创建</el-button>
                     <el-button>重置</el-button>
                     </el-form-item>
                 </el-form>
@@ -63,7 +63,7 @@
                     <el-input v-model="form.name"></el-input>
                     </el-form-item>
                     <el-form-item>
-                    <el-button type="primary" @click="onSubmit" plain>立即创建</el-button>
+                    <el-button type="primary" @click="addditch()" plain>立即创建</el-button>
                     <el-button>重置</el-button>
                     </el-form-item>
                 </el-form>
@@ -75,6 +75,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     components:{
         Breadcrumb
@@ -84,17 +85,26 @@ export default {
          activeName: 'second',
          txtone:"渠道管理",
          txtTwo:"添加渠道",
-            form: {
-                name: '',
-                region: '',
-                regionone:["1","2","3"],
-                date1: '',
-                date2: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: ''
-            }
+         form: {
+            name: '',
+            password:"",
+            type:"",
+            agent:"",
+            agentlist:["渠道1","渠道2"],
+            nickname:"",
+            mobile:"",
+            email:"",
+            chantno:false,
+            eremark:"",
+
+            region: '',
+            regionone:["1","2","3"],
+            date1: '',
+            date2: '',
+            delivery: false,
+            resource: '',
+            desc: ''
+         }
         }
     },
     methods:{
@@ -103,10 +113,27 @@ export default {
       },
       onSubmit() {
         console.log(this.form);
+      },
+      addditch(){
+          const api = window.g.merchant;
+          const _params = new URLSearchParams();
+                _params.append("spMerchantLoginName",this.form.name);
+                _params.append("spMerchantLoginPass",this.form.password);
+                _params.append("spMerchantType",this.form.type);
+                _params.append("spMerchantAgent",this.form.agent); 
+                _params.append("spMerchantNickName",this.form.nickname);   
+                _params.append("spMerchantNickName",this.form.mobile);       
+                _params.append("spMerchantEmail",this.form.email);      
+                _params.append("spMerchantNo",this.form.chantno);      
+                _params.append("spRemark",this.form.eremark);                           
+          Axios.post(api,_params).then((res)=>{
+              console.log(res)
+          }).catch((err)=>{
+              console.log(err)
+          })
       }
     },
     mounted(){
-      
     }
 }
 </script>
