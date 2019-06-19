@@ -6,44 +6,44 @@
       <el-form ref="form" :model="form" label-width="150px">
         <el-form-item label="*扣量开关">
           <el-switch
-            v-model="form.value"
+            v-model="form.bucklone"
             active-color="#13ce66"
             inactive-color="#dddddd">
           </el-switch>
         </el-form-item>
         <el-form-item label="*扣量基数">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.buckleSwitch"></el-input>
         </el-form-item>
         <el-form-item label="*扣量比列">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.deductionBase"></el-input>
         </el-form-item>
         <el-form-item label="*金额区间">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.deductionRatio"></el-input>
         </el-form-item>
         <el-form-item label="*图片域名">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.amountInterval"></el-input>
         </el-form-item>
         <el-form-item label="*媒体域名">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.imageDomain"></el-input>
         </el-form-item>
         <el-form-item label="*限制转移包（APP）">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.videoDomain"></el-input>
         </el-form-item>
         <el-form-item label="*闲置转移包（h5）">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.transferApp"></el-input>
         </el-form-item>
         <el-form-item label="*落地页模版">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.transferWeb"></el-input>
         </el-form-item>
         <el-form-item label="*APK下载模版">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.landingTemplate"></el-input>
         </el-form-item>
         <el-form-item label="*H5网页模版">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.templateApk"></el-input>
         </el-form-item>
         <el-form-item label="*包升级开关">
           <el-switch
-            v-model="form.value"
+            v-model="form.buckltwo"
             active-color="#13ce66"
             inactive-color="#dddddd">
           </el-switch>
@@ -62,6 +62,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -73,26 +74,60 @@ export default {
             txtone:"常规设置",
             txtTwo:"",
             form: {
-              value:false,
-              name: '',
-              region: '',
-              regionone:["1","2","3"],
-              date1: '',
-              date2: '',
-              delivery: false,
-              type: [],
-              resource: '',
-              desc: ''
+              buckleSwitch:"",
+              deductionBase:"",
+              deductionRatio:"",
+              amountInterval:"",
+              imageDomain:"",
+              videoDomain:"",
+              transferApp:"",
+              transferWeb:"",
+              landingTemplate:"",
+              templateApk:"",
+              templateWeb:"",
+              packageUpgrade:"",
+              packageSign:"",
+              bucklone:"",
+              buckltwo:"",
             }
         }
     },
     methods:{
       onSubmit() {
         console.log(this.form);
+      },
+      webConfig(){
+        const api = window.g.webConfig;
+        // const params = new URLSearchParams();
+        const date={
+          params:{
+            buckltwo:"",
+            bucklone:"",
+            buckleSwitch:this.present,
+            deductionBase:this.number,
+            deductionRatio:this.number,
+            amountInterval:this.number,
+            imageDomain:this.number,
+            videoDomain:this.present,
+            transferApp:this.number,
+            transferWeb:this.number,
+            landingTemplate:this.number,
+            templateApk:this.number, 
+            templateWeb:this.number,
+            packageUpgrade:this.number,
+            packageSign:this.number,           
+          }
+        };
+        Axios.get(api).then((res)=>{
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err)
+        })
       }
     },
     mounted(){
-      this.txtTwo = storage.get("linktxt")
+      this.txtTwo = storage.get("linktxt");
+      this.webConfig();
     }
 }
 

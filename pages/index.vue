@@ -69,7 +69,7 @@
     },
     methods:{
       goLogin(){
-        let _this = this;
+        const _this = this;
         if (_this.username === "" || _this.username===null){
           this.$message('用户名不能为空');
         } else if( _this.password === "" || _this.password===null) {
@@ -79,14 +79,14 @@
         } else {
           //把用户名  密码统一存在_param里面  把_param提交到后台
           const _param = new URLSearchParams();
-                _param.append("memberPhone",_this.username);
-                _param.append("memberPassword",_this.password);
-          let Api = window.g.login;
+                _param.append("username",_this.username);
+                _param.append("pwd",_this.password);
+          const Api = window.g.login;
           Axios.post(Api,_param).then((res)=>{
-            console.log(res);
+            console.log(res); 
             if (res.status === 200){
                 const code = res.data.code;
-                if ( code === "200"){
+                if ( code === 200){
                   //将数据存在store
                   // _this.$store.commit('login',res.data.data);
                   //获取store里面的数据
@@ -96,14 +96,14 @@
                   storage.set("user",res.data.data);
                   _this.$router.push({path:'/home/home'});
                 } else if( code === "0"){
-                  this.$message(res.data.message);
+                  this.$message(res.data.msg);
                 }else if ( code === "2") {
-                  this.$message(res.data.message);
+                  this.$message(res.data.msg);
                 }else {
-                  this.$message(res.data.message);
+                  this.$message(res.data.msg);
                 }
             } else{
-              this.$message(res.data.message);
+              this.$message(res.data.msg);
             }
           },(err)=>{
             console.log(err)

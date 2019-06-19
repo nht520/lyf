@@ -1,9 +1,11 @@
 // const api = "http://wx.bomao.xyz:8181/distributor";
-const api = "http://wx.bomao.xyz:8080/distributor";
+const api = "http://192.168.3.45:9999";
 window.g = {
     AXIOS_TIMEOUT: 10000,
-    login:api+"/distributor/member/login",
-    findById:api+"/distributor/member/findById",
+    login:api+"/login",
+    // 前端配置
+    webConfig:api+"/webConfig",
+
     register:api+'/distributor/member/updatePass',
     mcMembers:api+'/distributor/mcMembers/findById',
     //我的库存
