@@ -180,16 +180,27 @@ export default {
         console.log(val);
       },
       //删除当前一行
-      deleteRow(index, rows) {
+    async  deleteRow(index, rows) {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!',
-          });
+                const api = window.g.merchantdelete;
+                const date = new URLSearchParams();
+                      date.append("spIsDelete","1");
+                      date.append("id",rows.id)
+                Axios.post(api,date).then((res)=>{
+                  console.log(res);
+                  console.log("78")
+                  this.ditch();
+                }).catch((err)=>{
+                  console.log(err);
+                });
+              this.$message({
+                type: 'success',
+                message: '删除成功!',
+              });
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -202,19 +213,19 @@ export default {
         console.log(rows)
       },
       //删除选中数据
-      merchantdelete(index, rows){
-        const api = window.g.merchantdelete;
-        const date = new URLSearchParams();
-              date.append("spIsDelete","1");
-              date.append("id",rows.id)
-        Axios.post(api,date).then((res)=>{
-          console.log(res);
-          this.ditch();
-        }).catch((err)=>{
-          console.log(err);
-        })
-        console.log("删除选中数据");
-      },
+      // merchantdelete(index, rows){
+      //   const api = window.g.merchantdelete;
+      //   const date = new URLSearchParams();
+      //         date.append("spIsDelete","1");
+      //         date.append("id",rows.id)
+      //   Axios.post(api,date).then((res)=>{
+      //     console.log(res);
+      //     this.ditch();
+      //   }).catch((err)=>{
+      //     console.log(err);
+      //   })
+      //   console.log("删除选中数据");
+      // },
       // 批量删除
       qxDete(){
 
