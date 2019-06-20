@@ -93,7 +93,7 @@
                 <el-button
                 size="mini"
                 type="danger"
-                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
+                @click="merchantdelete(scope.$index, scope.row)" plain>删除</el-button>
             </template>
             </el-table-column>
         </el-table>
@@ -213,19 +213,19 @@ export default {
         console.log(rows)
       },
       //删除选中数据
-      // merchantdelete(index, rows){
-      //   const api = window.g.merchantdelete;
-      //   const date = new URLSearchParams();
-      //         date.append("spIsDelete","1");
-      //         date.append("id",rows.id)
-      //   Axios.post(api,date).then((res)=>{
-      //     console.log(res);
-      //     this.ditch();
-      //   }).catch((err)=>{
-      //     console.log(err);
-      //   })
-      //   console.log("删除选中数据");
-      // },
+      merchantdelete(index, rows){
+        const api = window.g.merchantdelete;
+        const date = new URLSearchParams();
+              date.append("spIsDelete","1");
+              date.append("id",rows.id)
+        Axios.post(api,date).then((res)=>{
+          console.log(res);
+          this.ditch();
+        }).catch((err)=>{
+          console.log(err);
+        })
+        console.log("删除选中数据");
+      },
       // 批量删除
       qxDete(){
 
