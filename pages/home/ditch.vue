@@ -93,7 +93,7 @@
                 <el-button
                 size="mini"
                 type="danger"
-                @click="merchantdelete(scope.$index, scope.row)" plain>删除</el-button>
+                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
             </template>
             </el-table-column>
         </el-table>
@@ -186,17 +186,19 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-                const api = window.g.merchantdelete;
+
+               const api = window.g.merchantdelete;
                 const date = new URLSearchParams();
                       date.append("spIsDelete","1");
                       date.append("id",rows.id)
                 Axios.post(api,date).then((res)=>{
                   console.log(res);
-                  console.log("78")
                   this.ditch();
                 }).catch((err)=>{
                   console.log(err);
                 });
+
+
               this.$message({
                 type: 'success',
                 message: '删除成功!',

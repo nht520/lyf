@@ -8,6 +8,8 @@ window.g = {
     // 渠道管理
     merchant:api+'/merchant',
     merchantdelete:api+'/merchant/delete',
+    // 包管理
+    productPackage:api+'/productPackage',
 
     mcMembers:api+'/distributor/mcMembers/findById',
     //我的库存

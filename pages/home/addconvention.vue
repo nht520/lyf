@@ -76,7 +76,7 @@
           <el-input type="textarea" v-model="form.desc"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit" plain>立即创建</el-button>
+          <el-button type="primary" @click="addconvention()" plain>添加</el-button>
           <el-button>取消</el-button>
         </el-form-item>
       </el-form>
@@ -86,6 +86,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -112,6 +113,14 @@ export default {
     methods:{
       onSubmit() {
         console.log(this.form);
+      },
+      addconvention(){
+        const api = window.g.productPackage;
+        Axios.post(api).then((res)=>{
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err)
+        })
       }
     },
     mounted(){

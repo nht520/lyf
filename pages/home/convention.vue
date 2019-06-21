@@ -140,6 +140,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -228,9 +229,20 @@ export default {
      //   搜索
       seekdithc(){
         console.log(this.form);
+      },
+      //数据 
+      conventionlist(){
+        const api = window.g.productPackage;
+        Axios.get(api).then((res)=>{
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err)
+        })
       }
     },
     mounted(){
+      // 获取列表数据
+      this.conventionlist();
       this.txtTwo = storage.get("linktxt")
     }
 }
