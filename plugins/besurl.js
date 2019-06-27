@@ -1,5 +1,5 @@
 // const api = "http://wx.bomao.xyz:8181/distributor";
-const api = "http://192.168.3.45:9999";
+const api = "http://192.168.96.1:9999";
 window.g = {
     AXIOS_TIMEOUT: 10000,
     login:api+"/login",
@@ -10,6 +10,10 @@ window.g = {
     merchantdelete:api+'/merchant/delete',
     // 包管理
     productPackage:api+'/productPackage',
+  //最近3日流水
+    latelyDayData:api+'/report/latelyFlowing',
+//今日用户下单统计
+  todayOrder:api+'/report/orderToday',
 
     mcMembers:api+'/distributor/mcMembers/findById',
     //我的库存
