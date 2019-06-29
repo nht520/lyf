@@ -76,7 +76,6 @@
             label="注册">
             </el-table-column>
             <el-table-column
-            width="170px"
             fixed="right"
             align="right">
             <template slot="header">
