@@ -29,31 +29,31 @@
             style="width: 100%"
             @selection-change="selectionRowsChange" >
             <el-table-column
-            prop="date"
+            prop="packageNo"
             label="包编号">
             </el-table-column>
             <el-table-column
             label="渠道标识"
-            prop="name"
+            prop="channelNo"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="deviceType"
             label="设备类型">
             </el-table-column>
             <el-table-column
             label="来源网页"
-            prop="name"
+            prop="webSource"
             >
             </el-table-column>
             <el-table-column
             label="设备IP"
-            prop="name"
+            prop="deviceIp"
             >
             </el-table-column>
             <el-table-column
             label="安装时间"
-            prop="name"
+            prop="installTime"
             >
             </el-table-column>
         </el-table>
@@ -85,6 +85,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -107,23 +108,25 @@ export default {
               
             },
             currentPage1: 4,
-            list: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-                }],
+            list: [
+              // {
+              //   date: '2016-05-02',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1518 弄'
+              //   }, {
+              //   date: '2016-05-04',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1517 弄'
+              //   }, {
+              //   date: '2016-05-01',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1519 弄'
+              //   }, {
+              //   date: '2016-05-03',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1516 弄'
+              //   }
+                ],
                 search: ''
         }
     },
@@ -177,9 +180,22 @@ export default {
      //   搜索
       seekdithc(){
         console.log(this.form);
-      }
+      },
+      getData:function(){
+        let url = window.g.webUv;
+        let _this = this;
+        let _param = _this.getParam();
+        Axios.get(url,_param).then(function(value){
+          console.log(value);
+          _this.list = value.data.records;
+        }).catch(function(res){
+          console.log(res);
+        })
+      },
+      getParam:function(){},
     },
     mounted(){
+      this.getData();
       this.txtTwo = storage.get("linktxt")
     }
 }

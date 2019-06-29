@@ -28,69 +28,70 @@
             </el-table-column>
             <el-table-column
             label="请求量"
-            prop="name"
+            prop="requestCount"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="payCount"
             label="效果数">
             </el-table-column>
             <el-table-column
             label="效果金额"
-            prop="name"
+            prop="payAmount"
             >
             </el-table-column>
              <el-table-column
             label="扣量数"
-             prop="name"
+             prop="deductionCount"
             >
             </el-table-column>
             <el-table-column
             label="扣量收益"
-            prop="name"
+            prop="deductionYield"
             >
             </el-table-column>
             <el-table-column
             label="渠道收益[代]"
-             prop="name"
+             prop="channelRevenue"
             >
             </el-table-column>
             <el-table-column
             label="渠道收益"
-            prop="name"
+            prop="channelProfit"
             >
             </el-table-column>
             <el-table-column
             label="收益"
-            prop="name"
+            prop="revenue"
             >
             </el-table-column>
             <el-table-column
             label="活跃量"
-            prop="name"
+            prop="activeCount"
             >
             </el-table-column>
             <el-table-column
             label="安装量"
-            prop="name"
+            prop="installCount"
             >
             </el-table-column>
             <el-table-column
             label="成功率"
-             prop="name"
+             prop="successRate"
             >
             </el-table-column>
             <el-table-column
             label="AP"
-            prop="name"
+            prop="ap"
             >
             </el-table-column>
             <el-table-column
             label="计费情况"
             >
-                <template slot-scope="scope">
-                    <span style="color: #f00">{{scope.row.name}}</span>
-                </template>
+              <template slot-scope="scope">
+                <span style="color: #22af00 ">{{scope.row.chargingRequestCount}}</span>
+                <p style="color: #f00">{{scope.row.chargingPayCount}}</p>
+              </template>
             </el-table-column>
         </el-table>
         <!-- 分业 -->
@@ -121,6 +122,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -144,23 +146,25 @@ export default {
               
             },
             currentPage1: 4,
-            list: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-                }],
+            list: [
+              // {
+              //   date: '2016-05-02',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1518 弄'
+              //   }, {
+              //   date: '2016-05-04',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1517 弄'
+              //   }, {
+              //   date: '2016-05-01',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1519 弄'
+              //   }, {
+              //   date: '2016-05-03',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1516 弄'
+              //   }
+                ],
                 search: ''
         }
     },
@@ -214,9 +218,39 @@ export default {
      //   搜索
       seekdithc(){
         console.log(this.form);
-      }
+      },
+      getData:function(){
+        var _this = this;
+        var url = window.g.flowsummarize;
+        var param = _this.getParams();
+        Axios.get(url,param).then(function(value){
+          let data = value.data.records;
+          console.log(data);
+          for(let i =0;i<data.length;i++){
+           let jsonArray =  _this.nullChangeZero(data[i]);
+            _this.list.push(jsonArray);
+          }
+        }).catch(function(res){
+          console.log(res);
+        });
+      },
+      nullChangeZero:function(data){
+        let json = {};
+        for(let item in data){
+          if(data[item]==null || data[item]=='null' || data[item]==undefined || data[item]=='undefined'){
+            json[item] = 0;
+          }else{
+            json[item] =data[item];
+          }
+        }
+        return json;
+      },
+      getParams:function(){
+
+      },
     },
     mounted(){
+      this.getData();
       this.txtTwo = storage.get("linktxt")
     }
 }

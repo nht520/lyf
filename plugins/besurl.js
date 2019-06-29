@@ -14,7 +14,21 @@ window.g = {
     latelyDayData:api+'/report/latelyFlowing',
 //今日用户下单统计
   todayOrder:api+'/report/orderToday',
-
+  //通道概述【日期】
+   aislesummarize:api+'/report/payOverview',
+  //通道概述【时段】
+  aislesmtime:api+'/report/payTimerOverview',
+  //流量概述【日期】
+  flowsummarize:api+'/report/flowOverview',
+  //产品概述【日期】
+  productsummzrize:api+'/report/productOverview',
+  //渠道概述【日期】
+    channelsummzrize:api+'/report/channelOverview',
+  //设备有效量
+    iphonevalid:api+'/',
+  //网页UV
+    webUv:api+'/webUv',
+    iphoneinstall:api+'/device',
     mcMembers:api+'/distributor/mcMembers/findById',
     //我的库存
     getBoxNum:api+"/distributor/stock/getBoxNum",
@@ -25,6 +39,8 @@ window.g = {
     //  套餐
     meal:api+"/distributor/meal",
     mealDts:api+"/distributor/meal/findById?",
+
+
     //自己发货订单
     indent:api+"/distributor/order",
     update:api+"/distributor/order/update",

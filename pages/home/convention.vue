@@ -42,52 +42,52 @@
             width="55">
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="packageNo"
             label="包编号">
             </el-table-column>
             <el-table-column
             label="渠道编号"
-            prop="name"
+            prop="merchantNo"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="merchantLoginName"
             label="渠道账号">
             </el-table-column>
             <el-table-column
             label="产品类型"
-            prop="name"
+            prop="productType"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="deductionStatus"
             label="扣量状态">
             </el-table-column>
             <el-table-column
             label="扣量基数"
-            prop="name"
+            prop="deductionBase"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="deductionRatio"
             label="扣量比列">
             </el-table-column>
             <el-table-column
             label="一级渠道比例"
-            prop="name"
+            prop="primaryChannel"
             >
             </el-table-column>
             <el-table-column
-            prop="name"
+            prop="twoChannel"
             label="二级渠道比例">
             </el-table-column>
             <el-table-column
             label="状态"
-            prop="name"
+            prop="packageStatus"
             >
             </el-table-column>
             <el-table-column
-            prop="name"
+            prop="createDate"
             label="时间">
             </el-table-column>
             <el-table-column
@@ -158,24 +158,27 @@ export default {
               region:"",
               condition:"",
             },
+           selectIds:[],//选中的ids
             currentPage1: 4,
-            list: [{
-                date: '20',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                date: '20',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                date: '20',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                date: '201',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-                }],
+            list: [
+              // {
+              //   date: '20',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1518 弄'
+              //   }, {
+              //   date: '20',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1517 弄'
+              //   }, {
+              //   date: '20',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1519 弄'
+              //   }, {
+              //   date: '201',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1516 弄'
+              //   }
+                ],
                 search: ''
         }
     },
@@ -233,8 +236,10 @@ export default {
       //数据 
       conventionlist(){
         const api = window.g.productPackage;
+        const _this = this;
         Axios.get(api).then((res)=>{
           console.log(res)
+          _this.list = res.data.records;
         }).catch((err)=>{
           console.log(err)
         })
