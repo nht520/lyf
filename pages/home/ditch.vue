@@ -76,7 +76,6 @@
             label="注册">
             </el-table-column>
             <el-table-column
-            width="170px"
             fixed="right"
             align="right">
             <template slot="header">
@@ -115,7 +114,7 @@
                         :page-sizes="[10, 20, 30, 40]"
                         :page-size="10"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="100">
+                        :total="branches">
                     </el-pagination>
                 </div>
             </el-col>
@@ -145,7 +144,8 @@ export default {
               region:"",
               condition:"",
             },
-            current: 4,
+            current: 0,
+            branches:0,
             list: [],
             search: ''
         }
@@ -161,7 +161,7 @@ export default {
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
-        this.present=val;
+        this.number=val;
         this.ditch();
       },
         //全选
@@ -241,13 +241,15 @@ export default {
         const api = window.g.merchant;
         const date ={
             params:{
-                current:this.present,
-                size:this.number,
+                current:this.number,
+                size:this.present,
             }
         }
         Axios.get(api,date).then((res)=>{
           console.log(res)
           this.list=res.data.records;
+          this.branches = res.data.total;
+          this.current = res.current;
         }).catch((err)=>{
           console.log(err)
         })

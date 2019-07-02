@@ -149,7 +149,6 @@ export default {
             let json = { 'date': data[i].date, '前日流水': data[i].firstDay, '昨日流水': data[i].twoDay, '今日流水': data[i].threeDay };
             _this.running.rows.push(json);
           }
-
         }).catch(function(res){
           console.log("======近3日流水=====");
           console.log(res);

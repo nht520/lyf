@@ -1,5 +1,5 @@
 // const api = "http://wx.bomao.xyz:8181/distributor";
-const api = "http://192.168.96.1:9999";
+const api = "http://2h1037w727.51mypc.cn:41884";
 window.g = {
     AXIOS_TIMEOUT: 10000,
     login:api+"/login",
@@ -40,7 +40,6 @@ window.g = {
     //  套餐
     meal:api+"/distributor/meal",
     mealDts:api+"/distributor/meal/findById?",
-
 
     //自己发货订单
     indent:api+"/distributor/order",

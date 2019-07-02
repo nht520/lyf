@@ -91,7 +91,6 @@
             label="时间">
             </el-table-column>
             <el-table-column
-            width="170px"
             fixed="right"
             align="right">
             <template slot="header">
@@ -124,11 +123,11 @@
                     <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
-                        :current-page="currentPage1"
+                        :current-page="current"
                         :page-sizes="[10, 20, 30, 40]"
                         :page-size="10"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="100">
+                        :total="branches">
                     </el-pagination>
                 </div>
             </el-col>
@@ -159,27 +158,10 @@ export default {
               condition:"",
             },
            selectIds:[],//选中的ids
-            currentPage1: 4,
-            list: [
-              // {
-              //   date: '20',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1518 弄'
-              //   }, {
-              //   date: '20',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1517 弄'
-              //   }, {
-              //   date: '20',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1519 弄'
-              //   }, {
-              //   date: '201',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1516 弄'
-              //   }
-                ],
-                search: ''
+            current: 0,
+            branches:0,
+            list: [],
+            search: ''
         }
     },
     methods:{
@@ -188,9 +170,13 @@ export default {
       },
      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+        this.atnumber = val;
+        this.conventionlist();
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.atcurrent = val;
+        this.conventionlist();
       },
         //全选
       toggleSelect(rows) {
@@ -245,9 +231,18 @@ export default {
       conventionlist(){
         const api = window.g.productPackage;
         const _this = this;
-        Axios.get(api).then((res)=>{
+        const date ={
+            params:{
+                current:this.atcurrent,
+                size:this.atnumber,
+            }
+        }
+        Axios.get(api,date).then((res)=>{
           console.log(res)
           _this.list = res.data.records;
+          // this.current = res.data.current;
+          // this.size =1;
+          this.branches = res.data.total;
         }).catch((err)=>{
           console.log(err)
         })

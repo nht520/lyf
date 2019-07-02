@@ -134,35 +134,43 @@ export default {
           packageStatus =1;
         }
         console.log(packageStatus);
-        _param.append("merchantNo",merchant.spMerchantNo);//渠道编号
-        _param.append("packageNo",_this.form.packageNo);//包编号
-        _param.append("merchantLoginName",merchant.spMerchantLoginName);//渠道账号
-        _param.append("productType","");//产品类型
-        _param.append("deductionStatus",deductionStatus);//扣量状态
-        _param.append("deductionBase",_this.form.deductionBase);//扣量基数
-        _param.append("deductionRatio",_this.form.deductionRatio);//扣量比例
-        _param.append("primaryChannel",_this.form.primaryChannel);//一级渠道比例
-        _param.append("twoChannel",_this.form.twoChannel);//二级渠道比例
-        _param.append("pageUrl",_this.form.pageUrl);//落地页地址
-        _param.append("packageUrl",_this.form.packageUrl);//包下载地址
-        _param.append("installDeduction",_this.form.installDeduction);//安装扣量基数
-        _param.append("installRetain",_this.form.installRetain);//安装扣量保留
-        _param.append("packageRemark",_this.form.packageRemark);//备注
-        _param.append("packageStatus",packageStatus);//安装包状态
+          _param.append("merchantNo",merchant.spMerchantNo);//渠道编号
+          _param.append("packageNo",_this.form.packageNo);//包编号
+          _param.append("merchantLoginName",merchant.spMerchantLoginName);//渠道账号
+          _param.append("productType","");//产品类型
+          _param.append("deductionStatus",deductionStatus);//扣量状态
+          _param.append("deductionBase",_this.form.deductionBase);//扣量基数
+          _param.append("deductionRatio",_this.form.deductionRatio);//扣量比例
+          _param.append("primaryChannel",_this.form.primaryChannel);//一级渠道比例
+          _param.append("twoChannel",_this.form.twoChannel);//二级渠道比例
+          _param.append("pageUrl",_this.form.pageUrl);//落地页地址
+          _param.append("packageUrl",_this.form.packageUrl);//包下载地址
+          _param.append("installDeduction",_this.form.installDeduction);//安装扣量基数
+          _param.append("installRetain",_this.form.installRetain);//安装扣量保留
+          _param.append("packageRemark",_this.form.packageRemark);//备注
+          _param.append("packageStatus",packageStatus);//安装包状态
         Axios.post(api,_param).then((res)=>{
-          console.log(res)
+          console.log(res);
+          if(res.data.code === 200){
+              this.$message({
+                  message: '添加成功',
+                  type: 'success'
+              });
+            this.$router.push({path:'/home/convention'})
+          }
         }).catch((err)=>{
           console.log(err)
         })
       },
-      //得到全部渠道
-      searchChannel:function(){
+      //得到包
+      searchChannel(){
         let _this = this;
         let url = window.g.merchant;
         Axios.get(url+'/findAll').then(function(value){
           console.log(value);
           _this.form.regionone = value.data.data;
           console.log(_this.regionone);
+          
         }).catch(function(res){
           console.log(res);
         });
