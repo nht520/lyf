@@ -146,6 +146,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",

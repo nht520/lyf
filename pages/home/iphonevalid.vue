@@ -65,35 +65,35 @@
             style="width: 100%"
             @selection-change="selectionRowsChange" >
             <el-table-column
-            prop="date"
+            prop="payNo"
             label="订单编号">
             </el-table-column>
             <el-table-column
             label="包编号"
-            prop="name"
+            prop="payPackage"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="payChannelId"
             label="渠道标识">
             </el-table-column>
             <el-table-column
             label="通道名称"
-            prop="name"
+            prop="payUpper"
             >
             </el-table-column>
             <el-table-column
             label="接入类型"
             >
                 <template slot-scope="scope">
-                    <span style="color: #22d5b1">{{scope.row.name}}</span>
+                    <span style="color: #22d5b1">{{scope.row.accessType}}</span>
                 </template>
             </el-table-column>
             <el-table-column
             label="支付类型"
             >
                 <template slot-scope="scope">
-                    <span style="color: #60b4f0">{{scope.row.name}}</span>
+                    <span style="color: #60b4f0">{{scope.row.payType}}</span>
                 </template>
             </el-table-column>
             <el-table-column
@@ -110,7 +110,7 @@
             </el-table-column>
             <el-table-column
             label="级别属性"
-            prop="name"
+            prop="levelAttribute"
             >
             </el-table-column>
             <el-table-column
@@ -132,7 +132,7 @@
             </el-table-column>
             <el-table-column
             label="创建时间"
-            prop="name"
+            prop="payTime"
             >
             </el-table-column>
         </el-table>
@@ -164,6 +164,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -187,23 +188,25 @@ export default {
               
             },
             currentPage1: 4,
-            list: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-                }],
+            list: [
+              // {
+              //   date: '2016-05-02',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1518 弄'
+              //   }, {
+              //   date: '2016-05-04',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1517 弄'
+              //   }, {
+              //   date: '2016-05-01',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1519 弄'
+              //   }, {
+              //   date: '2016-05-03',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1516 弄'
+              //   }
+                ],
                 search: ''
         }
     },
@@ -257,9 +260,25 @@ export default {
      //   搜索
       seekdithc(){
         console.log(this.form);
-      }
+      },
+      getData:function(){
+        let _this = this;
+        let _param = {
+          params:{
+            payStatus:1,
+          }
+        };
+        let url = window.g.iphonevalid;
+        Axios.get(url,_param).then(function(value){
+          console.log(value);
+          _this.list = value.data.records;
+        }).catch(function(res){
+          console.log(res);
+        })
+      },
     },
     mounted(){
+      this.getData();
       this.txtTwo = storage.get("linktxt")
     }
 }

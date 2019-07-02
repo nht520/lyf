@@ -94,9 +94,40 @@ export default {
     },
     methods:{
       onSubmit() {
-        console.log(this.form);
+        // console.log(this.form);
+        const _this = this;
+        const url = window.g.webConfig;
+        const _param = new URLSearchParams();
+        let buckleSwitch = 0;
+        if(!_this.form.buckleSwitch){
+          buckleSwitch = 1;
+        }
+        let packageUpgrade = 1;
+        if(!_this.form.packageUpgrade){
+          packageUpgrade = 0;
+        }
+        _param.append("amountInterval",_this.form.amountInterval);
+        _param.append("buckleSwitch",buckleSwitch);
+        _param.append("deductionBase",_this.form.deductionBase);
+        _param.append("deductionRatio",_this.form.deductionRatio);
+        _param.append("id",_this.form.id);
+        _param.append("imageDomain",_this.form.imageDomain);
+        _param.append("landingTemplate",_this.form.landingTemplate);
+        _param.append("packageSign",_this.form.packageSign);
+        _param.append("packageUpgrade",packageUpgrade);
+        _param.append("templateApk",_this.form.templateApk);
+        _param.append("templateWeb",_this.form.templateWeb);
+        _param.append("transferApp",_this.form.transferApp);
+        _param.append("transferWeb",_this.form.transferWeb);
+        _param.append("videoDomain",_this.form.videoDomain);
+        Axios.post(url,_param).then(function(value){
+          console.log(value);
+        }).catch(function(res){
+          console.log(res);
+        })
       },
       webConfig(){
+        const _this = this;
         const api = window.g.webConfig;
         // const params = new URLSearchParams();
         const date={
@@ -119,7 +150,10 @@ export default {
           }
         };
         Axios.get(api).then((res)=>{
-          console.log(res)
+          // console.log(res.data.data)
+          _this.form = res.data.data;
+
+          console.log(_this.form);
         }).catch((err)=>{
           console.log(err)
         })

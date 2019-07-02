@@ -194,7 +194,12 @@ export default {
       },
         //全选
       toggleSelect(rows) {
-        console.log(rows);
+        const _this = this;
+        _this.selectIds=[];
+        rows.forEach(row=>{
+          _this.selectIds.push()
+        });
+        // console.log(rows);
         if (rows) {
           rows.forEach(row => {
             this.$refs.multipleTable.toggleRowSelection(row);
@@ -205,7 +210,10 @@ export default {
       },
        //获取全选的key
       selectionRowsChange(val){
-        console.log(val);
+        // console.log(val);
+        val.forEach(i=>{
+          console.log(i);
+        })
       },
       //删除当前一行
       deleteRow(index, rows) {

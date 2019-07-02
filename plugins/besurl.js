@@ -3,6 +3,7 @@ const api = "http://192.168.96.1:9999";
 window.g = {
     AXIOS_TIMEOUT: 10000,
     login:api+"/login",
+  channel:api+'/sysConfig',
     // 前端配置
     webConfig:api+"/webConfig",
     // 渠道管理
@@ -25,7 +26,7 @@ window.g = {
   //渠道概述【日期】
     channelsummzrize:api+'/report/channelOverview',
   //设备有效量
-    iphonevalid:api+'/',
+    iphonevalid:api+'/pay',
   //网页UV
     webUv:api+'/webUv',
     iphoneinstall:api+'/device',
