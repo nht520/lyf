@@ -59,6 +59,9 @@ export default {
   ** Build configuration
   */
   build: {
+
+    assetsPublicPath:'/1001/',
+
     transpile: ['vuetify/lib'],
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {

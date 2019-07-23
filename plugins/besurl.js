@@ -1,5 +1,5 @@
 // const api = "http://wx.bomao.xyz:8181/distributor";
-const api = "http://2h1037w727.51mypc.cn:41884";
+const api = "http://192.168.1.8:9999";
 window.g = {
     AXIOS_TIMEOUT: 10000,
     login:api+"/login",
@@ -9,6 +9,8 @@ window.g = {
     // 渠道管理
     merchant:api+'/merchant',
     merchantdelete:api+'/merchant/delete',
+  //通道
+  chanlinterface:api+'/way',
     // 包管理
     productPackage:api+'/productPackage',
   //最近3日流水
@@ -30,6 +32,10 @@ window.g = {
   //网页UV
     webUv:api+'/webUv',
     iphoneinstall:api+'/device',
+
+  //结算
+  channelearnings:api+'/settlement',
+  //补量
     mcMembers:api+'/distributor/mcMembers/findById',
     //我的库存
     getBoxNum:api+"/distributor/stock/getBoxNum",

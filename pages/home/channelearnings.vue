@@ -41,55 +41,55 @@
             width="55">
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="settlementDate"
               label="日期"
               width="180">
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="channelName"
               label="渠道名称">
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="channelNo"
               label="渠道账户">
             </el-table-column>
             <el-table-column
-              prop="amount1"
+              prop="requestCount"
               sortable
               label="请求量">
             </el-table-column>
             <el-table-column
-              prop="amount2"
+              prop="successCount"
               sortable
               label="成功量">
             </el-table-column>
             <el-table-column
-              prop="amount3"
+              prop="settlementProfit"
               sortable
               label="收益">
             </el-table-column>
             <el-table-column
-              prop="amount4"
+              prop="installCount"
               sortable
               label="安装量">
             </el-table-column>
             <el-table-column
-              prop="amount5"
+              prop="activeCount"
               sortable
               label="活跃量">
             </el-table-column>
             <el-table-column
-              prop="amount6"
+              prop="supplementaryAmount"
               sortable
               label="补量金额">
             </el-table-column>
             <el-table-column
-              prop="amount7"
+              prop="ap"
               sortable
               label="AP">
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="settlementStatus"
               label="状态">
             </el-table-column>
             <el-table-column
@@ -108,7 +108,7 @@
         <el-row class="Pagination">
             <el-col :span="5">
                 <el-button @click="toggleSelect(tableData)" size="mini">全选/反选</el-button>
-                <el-button  size="mini">批量结算</el-button>
+                <el-button @click="batchSettlement"  size="mini">批量结算</el-button>
                 <!-- <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
             </el-col>
             <el-col :span="14" :offset="5">
@@ -127,13 +127,14 @@
         </el-row>
       </div>
       <!-- 补量 -->
-      <Recharge ref="recharge"></Recharge>
+      <Recharge ref="recharge" :bsid="title"></Recharge>
     </div>
 </template>
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import Recharge from '../../components/Recharge'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -143,6 +144,7 @@ export default {
     data(){
         return{
             txtone:"统计分析",
+            title:"",
             txtTwo:"",
             hedTitle:"",
             text:"",
@@ -157,64 +159,69 @@ export default {
               
             },
             currentPage1: 4,
-            tableData: [{
-                id: '12987122',
-                name: '2015.02.03',
-                amount1: '234',
-                amount2: '3.2',
-                amount3: 10,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987123',
-                name: '2015.02.03',
-                amount1: '165',
-                amount2: '4.43',
-                amount3: 12,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987124',
-                name: '2015.02.03',
-                amount1: '324',
-                amount2: '1.9',
-                amount3: 9,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987125',
-                name: '2015.02.03',
-                amount1: '621',
-                amount2: '2.2',
-                amount3: 17,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987126',
-                name: '2015.02.03',
-                amount1: '539',
-                amount2: '4.1',
-                amount3: 15,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }],
-              search: ''
+            tableData: [
+              // {
+              //   id: '12987122',
+              //   name: '2015.02.03',
+              //   amount1: '234',
+              //   amount2: '3.2',
+              //   amount3: 10,
+              //   amount4: 10,
+              //   amount5: 11,
+              //   amount6: 5,
+              //   amount7: 1,
+              // }, {
+              //   id: '12987123',
+              //   name: '2015.02.03',
+              //   amount1: '165',
+              //   amount2: '4.43',
+              //   amount3: 12,
+              //   amount4: 10,
+              //   amount5: 11,
+              //   amount6: 5,
+              //   amount7: 1,
+              // }, {
+              //   id: '12987124',
+              //   name: '2015.02.03',
+              //   amount1: '324',
+              //   amount2: '1.9',
+              //   amount3: 9,
+              //   amount4: 10,
+              //   amount5: 11,
+              //   amount6: 5,
+              //   amount7: 1,
+              // }, {
+              //   id: '12987125',
+              //   name: '2015.02.03',
+              //   amount1: '621',
+              //   amount2: '2.2',
+              //   amount3: 17,
+              //   amount4: 10,
+              //   amount5: 11,
+              //   amount6: 5,
+              //   amount7: 1,
+              // }, {
+              //   id: '12987126',
+              //   name: '2015.02.03',
+              //   amount1: '539',
+              //   amount2: '4.1',
+              //   amount3: 15,
+              //   amount4: 10,
+              //   amount5: 11,
+              //   amount6: 5,
+              //   amount7: 1,
+              // }
+              ],
+              search: '',
+          rowIsSelected:0,
+          ids:[],
         }
     },
     methods:{
       // 补量
-      open(e) {
-        console.log(e);
+      open(index, rows) {
+        console.log(index.id);
+        this.title = index.id;
         this.$refs.recharge.open();
       },
       // getSummaries(param) {
@@ -254,17 +261,33 @@ export default {
         //全选
       toggleSelect(rows) {
         console.log(rows);
+        let _this = this;
+        _this.ids = [];
+        if(_this.rowIsSelected==0){
+          _this.rowIsSelected = 1;
+        }else{
+          _this.rowIsSelected = 0;
+        }
         if (rows) {
           rows.forEach(row => {
+            if(_this.rowIsSelected==1){
+              _this.ids.push(row.id);
+            }else{
+              _this.ids = [];
+            }
             this.$refs.multipleTable.toggleRowSelection(row);
           });
         } else {
           this.$refs.multipleTable.clearSelection();
         }
       },
+
        //获取全选的key
       selectionRowsChange(val){
         console.log(val);
+        let _this = this;
+        _this.ids = [];
+        _this.ids.push(val.id);
       },
       //删除当前一行
       deleteRow(index, rows) {
@@ -292,8 +315,28 @@ export default {
       seekdithc(){
         console.log(this.form);
       },
+      getData:function(){
+        let _this = this;
+        let url = window.g.channelearnings;
+        let _param = _this.getParam();
+        Axios.get(url,_param).then(function(value){
+          _this.tableData = value.data.records;
+          console.log(value);
+        }).catch(function(res){
+          console.log(res);
+        });
+      },
+      getParam:function(){},
+      batchSettlement:function(){
+        let _this = this;
+        let url = window.g.channelearnings+'/batchSettlement';
+        var _param = new URLSearchParams();
+        _param.append("ids",_this.ids);
+        Axios.post(url,_param).then(function(value){console.log(value);}).catch(function(res){console.log(res)});
+      },
     },
     mounted(){
+      this.getData();
       this.txtTwo = storage.get("linktxt")
     }
 }

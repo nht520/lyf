@@ -6,7 +6,7 @@
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
             <el-col :span="2">
-                <el-input v-model="form.name" placeholder="通道名称"  size="small"></el-input>
+                <el-input v-model="form.region" placeholder="通道名称"  size="small"></el-input>
             </el-col>
             <el-col :span="2">
                 <el-select  v-model="form.region"  size="small" placeholder="通道服务商">
@@ -54,48 +54,48 @@
             width="55">
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="payName"
             label="通道名称">
             </el-table-column>
             <el-table-column
             label="服务商"
-            prop="name"
+            prop="payProvider"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="payType"
             label="支付类型">
             </el-table-column>
             <el-table-column
             label="通道模式"
-            prop="name"
+            prop="payModel"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="payAttribute"
             label="通道属性">
             </el-table-column>
             <el-table-column
             label="通道费率"
-            prop="name"
+            prop="payRate"
             >
             </el-table-column>
             <el-table-column
-            prop="date"
+            prop="singleQuota"
             label="单笔限额">
             </el-table-column>
             <el-table-column
             label="限量"
-            prop="name"
+            prop="payLimit"
             >
             </el-table-column>
             <el-table-column
-            prop="name"
+            prop="payPriority"
             label="优先级">
             </el-table-column>
             <el-table-column
             label="状态"
-            prop="name"
+            prop="payStatus"
             >
             </el-table-column>
             <el-table-column
@@ -165,23 +165,25 @@ export default {
               condition:"",
             },
             currentPage1: 4,
-            list: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-                }],
+            list: [
+              // {
+              //   date: '2016-05-02',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1518 弄'
+              //   }, {
+              //   date: '2016-05-04',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1517 弄'
+              //   }, {
+              //   date: '2016-05-01',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1519 弄'
+              //   }, {
+              //   date: '2016-05-03',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1516 弄'
+              //   }
+                ],
                 search: ''
         }
     },
@@ -235,9 +237,22 @@ export default {
      //   搜索
       seekdithc(){
         console.log(this.form);
-      }
+      },
+      getData:function(){
+        let _this = this;
+        let url = window.g.chanlinterface;
+        let _param = _this.getParam();
+        Axios.get(url,_param).then(function (value) {
+          console.log(value);
+          _this.list = value.data.records;
+        }).catch(function (res) {
+          console.log(res);
+        })
+      },
+      getParam:function(){},
     },
     mounted(){
+      this.getData();
       this.txtTwo = storage.get("linktxt")
     }
 }

@@ -220,9 +220,9 @@ export default {
         console.log(this.form);
       },
       getData:function(){
-        var _this = this;
-        var url = window.g.flowsummarize;
-        var param = _this.getParams();
+        let _this = this;
+        let url = window.g.flowsummarize;
+        let param = _this.getParams();
         Axios.get(url,param).then(function(value){
           let data = value.data.records;
           console.log(data);

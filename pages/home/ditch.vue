@@ -68,11 +68,11 @@
             </el-table-column>
             <el-table-column
             label="状态"
-            prop="spMerchantNo"
+            prop="spMerchantStatus"
             >
             </el-table-column>
             <el-table-column
-            prop="name"
+            prop="spCreateDate"
             label="注册">
             </el-table-column>
             <el-table-column
@@ -100,8 +100,8 @@
         <el-row class="Pagination">
             <el-col :span="7" >
                 <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                <el-button size="mini" icon="el-icon-lock">冻结</el-button>
-                <el-button size="mini" icon="el-icon-unlock">解冻</el-button>
+                <el-button size="mini" @click="frozenOrThaw(1)" icon="el-icon-lock">冻结</el-button>
+                <el-button size="mini" @click="frozenOrThaw(0)" icon="el-icon-unlock">解冻</el-button>
                 <el-button size="mini" icon="el-icon-brush">密码初始</el-button>
                 <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
@@ -147,7 +147,9 @@ export default {
             current: 0,
             branches:0,
             list: [],
-            search: ''
+            search: '',
+          ids:[],
+          rowIsSelected:0,
         }
     },
     methods:{
@@ -166,18 +168,44 @@ export default {
       },
         //全选
       toggleSelect(rows) {
-        console.log(rows);
+        let _this = this;
+        _this.ids = [];
+        if(_this.rowIsSelected==0){
+          _this.rowIsSelected = 1;
+        }else{
+          _this.rowIsSelected = 0;
+        }
         if (rows) {
           rows.forEach(row => {
+            if(_this.rowIsSelected==1){
+              _this.ids.push(row.id);
+            }else{
+              _this.ids = [];
+            }
             this.$refs.multipleTable.toggleRowSelection(row);
           });
         } else {
+          _this.ids = [];
           this.$refs.multipleTable.clearSelection();
         }
+        console.log(_this.ids);
       },
        //获取全选的key
       selectionRowsChange(val){
         console.log(val);
+      },
+      //冻结/解冻
+      frozenOrThaw:function(status){
+        let _this = this;
+        let url = window.g.merchant;
+        var _param = new URLSearchParams();
+        _param.append("status",status);
+        _param.append("ids",_this.ids);
+        Axios.post(url+'/enables',_param).then(function(value){
+          console.log(value);
+        }).catch(function(res){
+          console.log(res);
+        });
       },
       //删除当前一行
     async  deleteRow(index, rows) {

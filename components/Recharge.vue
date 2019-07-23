@@ -11,7 +11,9 @@
               <v-container grid-list-md>
                 <v-layout wrap>
                   <v-flex xs12>
-                    <v-text-field label="*结算标识" v-model="name" required></v-text-field>
+<!--                    <p>{{bsid}}</p>-->
+
+                                        <v-text-field label="*结算标识" v-model="name" required></v-text-field>
                   </v-flex>
                   <v-flex xs12>
                     <v-text-field label="*补量金额" v-model="citry"  required></v-text-field>
@@ -35,7 +37,11 @@
 </template>
 
 <script>
+  import Axios from 'axios';
 export default {
+    props: {
+      bsid: String,
+    },
     data(){
         return{
             dialog: false,
@@ -49,12 +55,23 @@ export default {
             this.dialog=true;
         },
         submit(){
-            console.log(this.name)
-            this.dialog=false;
+          let url = window.g.channelearnings+'/supplementary';
+          let _this = this;
+          let _param = new URLSearchParams();
+          _param.append("id",this.bsid);
+          _param.append("password",_this.password);
+          _param.append("supplementaryAmount",_this.citry);
+          Axios.post(url,_param).then(function(value){
+            if(value.data.code==200){
+              _this.dialog=false;
+            }
+            console.log(value)}).catch(function(res){console.log(res)});
+            console.log(this.bsid);
+
         }
     },
     mounted(){
-
+      // console.log(this.bsid+"111");
     }
 }
 </script>

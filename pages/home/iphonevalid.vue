@@ -100,12 +100,12 @@
             label="通道费率"
             >
                 <template slot-scope="scope">
-                    <span style="color: rgb(255, 161, 14)">{{scope.row.name}}</span>
+                    <span style="color: rgb(255, 161, 14)">{{scope.row.payRate}}</span>
                 </template>
             </el-table-column>
             <el-table-column
             label="描述"
-            prop="name"
+            prop="payDesc"
             >
             </el-table-column>
             <el-table-column
@@ -115,19 +115,19 @@
             </el-table-column>
             <el-table-column
             label="预计件"
-            prop="name"
+            prop="payAmount"
             >
             </el-table-column>
             <el-table-column
             label="实际计件"
-            prop="name"
+            prop="payAmount"
             >
             </el-table-column>
             <el-table-column
             label="是否扣量"
             >
                 <template slot-scope="scope">
-                    <span style="color: #f00">{{scope.row.name}}</span>
+                    <span style="color: #f00">{{scope.row.isDisplay}}</span>
                 </template>
             </el-table-column>
             <el-table-column
