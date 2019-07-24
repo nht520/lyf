@@ -92,7 +92,9 @@
             </el-table-column>
             <el-table-column
             fixed="right"
-            align="right">
+            align="right"
+             width="200"
+            >
             <template slot="header">
               <nuxt-link to="/home/addconvention">
                 <el-button type="primary" icon="el-icon-plus" size="mini" plain>添加</el-button>
