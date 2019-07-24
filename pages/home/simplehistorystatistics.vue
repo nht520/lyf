@@ -4,17 +4,17 @@
     <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
     <!-- 内容 -->
     <div class="conttab">
-<!--      <el-row class="search" :model="form" :gutter="15">-->
-<!--        <el-col :span="2">-->
-<!--          <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>-->
-<!--        </el-col>-->
-<!--        <el-col :span="2">-->
-<!--          <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>-->
-<!--        </el-col>-->
-<!--        <el-col :span="2">-->
-<!--          <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>-->
-<!--        </el-col>-->
-<!--      </el-row>-->
+      <el-row class="search" :model="form" :gutter="15">
+        <el-col :span="2">
+          <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
+        </el-col>
+        <el-col :span="2">
+          <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+        </el-col>
+      </el-row>
       <!-- 表格 -->
       <el-table
         :data="list"
@@ -102,26 +102,26 @@
           </el-table-column>
       </el-table> -->
       <!-- 分业 -->
-<!--      <el-row class="Pagination">-->
-<!--        <el-col >-->
-<!--          &lt;!&ndash; <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>-->
-<!--          <el-button  size="mini">保存权重</el-button>-->
-<!--          <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> &ndash;&gt;-->
-<!--        </el-col>-->
-<!--        <el-col :span="14" :offset="10">-->
-<!--          <div class="block">-->
-<!--            <el-pagination-->
-<!--              @size-change="handleSizeChange"-->
-<!--              @current-change="handleCurrentChange"-->
-<!--              :current-page="currentPage1"-->
-<!--              :page-sizes="[10, 20, 30, 40]"-->
-<!--              :page-size="10"-->
-<!--              layout="total, sizes, prev, pager, next, jumper"-->
-<!--              :total="100">-->
-<!--            </el-pagination>-->
-<!--          </div>-->
-<!--        </el-col>-->
-<!--      </el-row>-->
+      <el-row class="Pagination">
+        <el-col >
+          <!-- <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
+          <el-button  size="mini">保存权重</el-button>
+          <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
+        </el-col>
+        <el-col :span="14" :offset="10">
+          <div class="block">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage1"
+              :page-sizes="[10, 20, 30, 40]"
+              :page-size="10"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="100">
+            </el-pagination>
+          </div>
+        </el-col>
+      </el-row>
         
 
 
@@ -258,11 +258,10 @@
       },
       getData:function(){
         let _this = this;
-        let url = window.g.comicssimple;
+        let url = window.g.simplehistorystatistics;
         let param = _this.getParams();
         Axios.get(url,param).then(function(value){
-          let data = value.data.data;
-          console.log(data);
+          let data = value.data.records;
           for(let i =0;i<data.length;i++){
             let jsonArray =  _this.nullChangeZero(data[i]);
             _this.list.push(jsonArray);

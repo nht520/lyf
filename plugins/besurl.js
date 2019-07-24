@@ -24,6 +24,7 @@ window.g = {
   //流量概述【日期】
   flowsummarize:api+'/report/flowOverview',
   comicssimple:api+'/comicssimple/find',
+  simplehistorystatistics:api+'/comicssimple',
   //产品概述【日期】
   productsummzrize:api+'/report/productOverview',
   //渠道概述【日期】

@@ -192,8 +192,8 @@ export default {
                   {
                     id:0,
                     icon:"back",
-                    title:"流量概述[日期]",
-                    path:"/home/flowsummarize"
+                    title:"简单统计",
+                    path:"/home/simplehistorystatistics"
                   },
 
                 ]
