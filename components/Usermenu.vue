@@ -35,19 +35,19 @@
                 <v-divider></v-divider>
 
                 <v-list>
-                <v-list-tile>
-                    <v-list-tile-action>
-                    <v-switch v-model="message" color="purple"></v-switch>
-                    </v-list-tile-action>
-                    <v-list-tile-title>11111</v-list-tile-title>
-                </v-list-tile>
+                    <v-list-tile>
+                        <v-list-tile-action>
+                        <v-switch v-model="message" color="purple"></v-switch>
+                        </v-list-tile-action>
+                        <v-list-tile-title>11111</v-list-tile-title>
+                    </v-list-tile>
 
-                <v-list-tile>
-                    <v-list-tile-action>
-                    <v-switch v-model="hints" color="purple"></v-switch>
-                    </v-list-tile-action>
-                    <v-list-tile-title>2222</v-list-tile-title>
-                </v-list-tile>
+                    <!-- <v-list-tile>
+                        <v-list-tile-action>
+                        <v-switch v-model="hints" color="purple"></v-switch>
+                        </v-list-tile-action>
+                        <v-list-tile-title>2222</v-list-tile-title>
+                    </v-list-tile> -->
                 </v-list>
 
                 <v-card-actions>

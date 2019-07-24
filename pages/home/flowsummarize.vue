@@ -131,7 +131,7 @@ export default {
     },
     data(){
         return{
-            txtone:"统计分析",
+            txtone:"漫画统计",
             txtTwo:"",
             hedTitle:"",
             text:"",
@@ -169,6 +169,8 @@ export default {
         }
     },
     methods:{
+      
+      // 
       onSubmit() {
         console.log('submit!');
       },
