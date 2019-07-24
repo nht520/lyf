@@ -72,35 +72,7 @@
         >
         </el-table-column>
       </el-table>
-      <!-- <el-table
-          :data="list"
-          border
-          height="200"
-          :summary-method="getSummaries"
-          show-summary
-          style="width: 100%; margin-top: 20px">
-          <el-table-column
-            prop="id"
-            label="ID"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名">
-          </el-table-column>
-          <el-table-column
-            prop="amount1"
-            label="数值 1（元）">
-          </el-table-column>
-          <el-table-column
-            prop="amount2"
-            label="数值 2（元）">
-          </el-table-column>
-          <el-table-column
-            prop="amount3"
-            label="数值 3（元）">
-          </el-table-column>
-      </el-table> -->
+      
       <!-- 分业 -->
 <!--      <el-row class="Pagination">-->
 <!--        <el-col >-->

@@ -28,7 +28,7 @@ window.g = {
   //产品概述【日期】
   productsummzrize:api+'/report/productOverview',
   //渠道概述【日期】
-    channelsummzrize:api+'/report/channelOverview',
+  channelsummzrize:api+'/report/channelOverview',
   //设备有效量
     iphonevalid:api+'/pay',
   //网页UV

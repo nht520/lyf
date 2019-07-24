@@ -5,11 +5,17 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="2">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
+        <el-col :span="3">
+          <el-date-picker type="date" 
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd"
+          placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
         </el-col>
-        <el-col :span="2">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
+        <el-col :span="3">
+          <el-date-picker type="date"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd"
+           placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
         </el-col>
         <el-col :span="2">
           <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
@@ -72,35 +78,6 @@
         >
         </el-table-column>
       </el-table>
-      <!-- <el-table
-          :data="list"
-          border
-          height="200"
-          :summary-method="getSummaries"
-          show-summary
-          style="width: 100%; margin-top: 20px">
-          <el-table-column
-            prop="id"
-            label="ID"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名">
-          </el-table-column>
-          <el-table-column
-            prop="amount1"
-            label="数值 1（元）">
-          </el-table-column>
-          <el-table-column
-            prop="amount2"
-            label="数值 2（元）">
-          </el-table-column>
-          <el-table-column
-            prop="amount3"
-            label="数值 3（元）">
-          </el-table-column>
-      </el-table> -->
       <!-- 分业 -->
       <el-row class="Pagination">
         <el-col >
@@ -113,11 +90,11 @@
             <el-pagination
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
-              :current-page="currentPage1"
+              :current-page="current"
               :page-sizes="[10, 20, 30, 40]"
               :page-size="10"
               layout="total, sizes, prev, pager, next, jumper"
-              :total="100">
+              :total="brtotal">
             </el-pagination>
           </div>
         </el-col>
@@ -147,14 +124,8 @@
         hedTitle:"",
         text:"",
         form: {
-          name: '',
-          qzhong:'',
-          region:"",
-          condition:"",
           date1:"",
           date2:"",
-          regionone:"",
-
         },
         currentPage1: 4,
         list: [ ],
@@ -162,6 +133,8 @@
         payCountTotal:0,
         payAmount:0,
         revenue:0,
+        current: 0,
+        brtotal:0,
         newMemberTotal:0,
         successRevenue:0,
         Ap:0,
@@ -209,11 +182,15 @@
       onSubmit() {
         console.log('submit!');
       },
-      handleSizeChange(val) {
+     handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+        this.present=val;
+        this.getData();
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.number=val;
+        this.getData();
       },
       //全选
       toggleSelect(rows) {
@@ -254,20 +231,29 @@
       },
       //   搜索
       seekdithc(){
-        console.log(this.form);
+        console.log(this.form.date1 + this.form.date2);
       },
-      getData:function(){
+      // 获取列表数据
+      getData(){
         let _this = this;
-        let url = window.g.simplehistorystatistics;
-        let param = _this.getParams();
-        Axios.get(url,param).then(function(value){
-          let data = value.data.records;
-          for(let i =0;i<data.length;i++){
+        let api = window.g.simplehistorystatistics;
+        const date ={
+            params:{
+                current:this.number,
+                size:this.present,
+            }
+        }
+        Axios.get(api,date).then(function(res){
+          let data = res.data.records;
+          console.log(res);
+          _this.brtotal = res.data.total;
+          _this.current = res.data.current;
+          for(let i =0; i<data.length; i++){
             let jsonArray =  _this.nullChangeZero(data[i]);
             _this.list.push(jsonArray);
           }
-        }).catch(function(res){
-          console.log(res);
+        }).catch(function(err){
+          console.log(err);
         });
       },
       nullChangeZero:function(data){
