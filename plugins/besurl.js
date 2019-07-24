@@ -1,5 +1,5 @@
 // const api = "http://wx.bomao.xyz:8181/distributor";
-const api = "http://192.168.1.8:9999";
+const api = "http://192.168.1.7:9999";
 window.g = {
     AXIOS_TIMEOUT: 10000,
     login:api+"/login",
@@ -23,6 +23,7 @@ window.g = {
   aislesmtime:api+'/report/payTimerOverview',
   //流量概述【日期】
   flowsummarize:api+'/report/flowOverview',
+  comicssimple:api+'/comicssimple/find',
   //产品概述【日期】
   productsummzrize:api+'/report/productOverview',
   //渠道概述【日期】

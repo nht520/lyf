@@ -170,8 +170,36 @@ export default {
                         },
                     ]
                 },
+              {
+                id:5,
+                icon:"assessment",
+                title:"漫画今日统计分析",
+                twolist:[
+                  {
+                    id:0,
+                    icon:"back",
+                    title:"简单统计",
+                    path:"/home/simplestatistics"
+                  },
+
+                ]
+              },
+              {
+                id:9,
+                icon:"assessment",
+                title:"漫画历史统计",
+                twolist:[
+                  {
+                    id:0,
+                    icon:"back",
+                    title:"流量概述[日期]",
+                    path:"/home/flowsummarize"
+                  },
+
+                ]
+              },
                 {
-                    id:5,
+                    id:6,
                     icon:"shopping_basket",
                     title:"结算管理",
                     twolist:[
@@ -196,7 +224,7 @@ export default {
                     ]
                 },
                 {
-                    id:6,
+                    id:7,
                     icon:"date_range",
                     title:"日志管理",
                     twolist:[
@@ -245,7 +273,7 @@ export default {
                     ]
                 },
                 {
-                    id:7,
+                    id:8,
                     icon:"bubble_chart",
                     title:"系统管理",
                     twolist:[

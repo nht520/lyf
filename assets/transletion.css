@@ -52,6 +52,9 @@ body {
     opacity: 0;
     transform: translate(-30px, 0);
   }
+  .tableclass .el-table__body-wrapper is-scrolling-none .el-table__empty-block .el-table__empty-text{
+     display: none !important;
+   }
   /*动画2  */
   /* .transleft-enter-active{
     transition: all 1s ease;
