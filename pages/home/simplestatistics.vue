@@ -16,8 +16,10 @@
 <!--        </el-col>-->
 <!--      </el-row>-->
       <!-- 表格 -->
-      <!-- <el-table
+      <el-table
         :data="list"
+        :summary-method="getSummaries"
+        show-summary
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
@@ -59,18 +61,18 @@
           label="成功率">
           <template slot-scope="scope">{{ scope.row.successRate }}%</template>
         </el-table-column>
-<!--        <el-table-column-->
-<!--          label="成功率"-->
-<!--          prop="successRate"-->
-<!--        >-->
-<!--        </el-table-column>-->
-        <!-- <el-table-column
+       <el-table-column
+         label="成功率"
+         prop="successRate"
+       >
+      </el-table-column>
+        <el-table-column
           label="AP"
           prop="ap"
         >
         </el-table-column>
-      </el-table> -->
-      <el-table
+      </el-table>
+      <!-- <el-table
           :data="list"
           border
           height="200"
@@ -98,7 +100,7 @@
             prop="amount3"
             label="数值 3（元）">
           </el-table-column>
-      </el-table>
+      </el-table> -->
       <!-- 分业 -->
 <!--      <el-row class="Pagination">-->
 <!--        <el-col >-->
@@ -155,39 +157,7 @@
 
         },
         currentPage1: 4,
-        list: [
-          {
-          id: '12987122',
-          name: '王小虎',
-          amount1: '234',
-          amount2: '3.2',
-          amount3: 10
-        }, {
-          id: '12987123',
-          name: '王小虎',
-          amount1: '165',
-          amount2: '4.43',
-          amount3: 12
-        }, {
-          id: '12987124',
-          name: '王小虎',
-          amount1: '324',
-          amount2: '1.9',
-          amount3: 9
-        }, {
-          id: '12987125',
-          name: '王小虎',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          id: '12987126',
-          name: '王小虎',
-          amount1: '539',
-          amount2: '4.1',
-          amount3: 15
-        }
-        ],
+        list: [ ],
         requestCountTotal:0,
         payCountTotal:0,
         payAmount:0,
@@ -309,7 +279,7 @@
       },
     },
     mounted(){
-      // this.getData();
+      this.getData();
       this.txtTwo = storage.get("linktxt")
     }
   }
