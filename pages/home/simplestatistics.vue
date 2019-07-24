@@ -16,7 +16,61 @@
 <!--        </el-col>-->
 <!--      </el-row>-->
       <!-- 表格 -->
-     <el-table
+      <!-- <el-table
+        :data="list"
+        ref="multipleTable"
+        tooltip-effect="dark"
+        style="width: 100%"
+        @selection-change="selectionRowsChange" >
+        <el-table-column
+          prop="date"
+          label="日期">
+        </el-table-column>
+        <el-table-column
+          label="包名"
+          prop="packageNo"
+        >
+        </el-table-column>
+        <el-table-column
+          label="请求量"
+          prop="requestCount"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="payCount"
+          label="效果数">
+        </el-table-column>
+        <el-table-column
+          label="效果金额"
+          prop="payAmount"
+        >
+        </el-table-column>
+        <el-table-column
+          label="收益"
+          prop="revenue"
+        >
+        </el-table-column>
+        <el-table-column
+          label="新增会员"
+          prop="installCount"
+        >
+        </el-table-column>
+        <el-table-column
+          label="成功率">
+          <template slot-scope="scope">{{ scope.row.successRate }}%</template>
+        </el-table-column>
+<!--        <el-table-column-->
+<!--          label="成功率"-->
+<!--          prop="successRate"-->
+<!--        >-->
+<!--        </el-table-column>-->
+        <!-- <el-table-column
+          label="AP"
+          prop="ap"
+        >
+        </el-table-column>
+      </el-table> -->
+      <el-table
           :data="list"
           border
           height="200"
@@ -154,7 +208,7 @@
               return;
             };
             if (index === 4) {
-              sums[index] = '胖子' +"%";
+              sums[index] = '胖子';
               return;
             }
             const values = data.map(item => Number(item[column.property]));
