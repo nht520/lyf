@@ -7,13 +7,13 @@
       <el-row class="search" :model="form" :gutter="15">
         <el-col :span="3">
           <el-date-picker type="date" 
-          format="yyyy 年 MM 月 dd 日"
+          format="yyyy-MM-dd"
           value-format="yyyy-MM-dd"
           placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
         </el-col>
         <el-col :span="3">
           <el-date-picker type="date"
-          format="yyyy 年 MM 月 dd 日"
+          format="yyyy-MM-dd"
           value-format="yyyy-MM-dd"
            placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
         </el-col>
@@ -155,7 +155,7 @@
               return;
             }
            if(index===7){
-             sums[index]=(sums[3]/sums[2]).toFixed(2)+'%';
+             sums[index]=((sums[3]/sums[2])*100).toFixed(2)+'%';
              return;
            }
            if(index===8){
@@ -232,6 +232,7 @@
       //   搜索
       seekdithc(){
         console.log(this.form.date1 + this.form.date2);
+        this.getData();
       },
       // 获取列表数据
       getData(){
@@ -241,11 +242,14 @@
             params:{
                 current:this.number,
                 size:this.present,
+              startTime:this.form.date1,
+              endTime:this.form.date2,
             }
         }
         Axios.get(api,date).then(function(res){
           let data = res.data.records;
           console.log(res);
+          _this.list = [];
           _this.brtotal = res.data.total;
           _this.current = res.data.current;
           for(let i =0; i<data.length; i++){

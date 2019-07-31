@@ -154,7 +154,7 @@
               return;
             }
            if(index===7){
-             sums[index]=(sums[3]/sums[2]).toFixed(2)+'%';
+             sums[index]=((sums[3]/sums[2])*100).toFixed(2)+'%';
              return;
            }
            if(index===8){
