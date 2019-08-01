@@ -102,97 +102,97 @@ export default {
                         },
                     ]
                 },
-                {
-                    id:3,
-                    icon:"settings_cell",
-                    title:"设备统计",
-                    twolist:[
-                        {
-                            id:0,
-                            icon:"back",
-                            title:"网页UV量",
-                            path:"/home/htmluv"
-                        },
-                        {
-                            id:1,
-                            icon:"backqww",
-                            title:"设备安装量",
-                            path:"/home/iphoneinstall"
-                        },
-                        {
-                            id:2,
-                            icon:"backqww",
-                            title:"设备有效量",
-                            path:"/home/iphonevalid"
-                        },
-                        {
-                            id:3,
-                            icon:"backqww",
-                            title:"设备无效量",
-                            path:"/home/iphoneinvalid"
-                        },
-                    ]
-                },
-                {
-                    id:4,
-                    icon:"assessment",
-                    title:"统计分析",
-                    twolist:[
-                        {
-                            id:0,
-                            icon:"back",
-                            title:"流量概述[日期]",
-                            path:"/home/flowsummarize"
-                        },
-                        {
-                            id:1,
-                            icon:"backqww",
-                            title:"通道概述[日期]",
-                            path:"/home/aislesummarize"
-                        },
-                        {
-                            id:2,
-                            icon:"backqww",
-                            title:"通道概述[时段]",
-                            path:"/home/aislesmtime"
-                        },
-                        {
-                            id:3,
-                            icon:"backqww",
-                            title:"产品概述[日期]",
-                            path:"/home/productsummzrize"
-                        },
-                        {
-                            id:4,
-                            icon:"backqww",
-                            title:"渠道概述[日期]",
-                            path:"/home/channelsummzrize"
-                        },
-                    ]
-                },
-              {
-                id:5,
-                icon:"assessment",
-                title:"漫画今日统计分析",
-                twolist:[
-                  {
-                    id:0,
-                    icon:"back",
-                    title:"简单统计",
-                    path:"/home/simplestatistics"
-                  },
-
-                ]
-              },
+                // {
+                //     id:3,
+                //     icon:"settings_cell",
+                //     title:"设备统计",
+                //     twolist:[
+                //         {
+                //             id:0,
+                //             icon:"back",
+                //             title:"网页UV量",
+                //             path:"/home/htmluv"
+                //         },
+                //         {
+                //             id:1,
+                //             icon:"backqww",
+                //             title:"设备安装量",
+                //             path:"/home/iphoneinstall"
+                //         },
+                //         {
+                //             id:2,
+                //             icon:"backqww",
+                //             title:"设备有效量",
+                //             path:"/home/iphonevalid"
+                //         },
+                //         {
+                //             id:3,
+                //             icon:"backqww",
+                //             title:"设备无效量",
+                //             path:"/home/iphoneinvalid"
+                //         },
+                //     ]
+                // },
+                // {
+                //     id:4,
+                //     icon:"assessment",
+                //     title:"统计分析",
+                //     twolist:[
+                //         {
+                //             id:0,
+                //             icon:"back",
+                //             title:"流量概述[日期]",
+                //             path:"/home/flowsummarize"
+                //         },
+                //         {
+                //             id:1,
+                //             icon:"backqww",
+                //             title:"通道概述[日期]",
+                //             path:"/home/aislesummarize"
+                //         },
+                //         {
+                //             id:2,
+                //             icon:"backqww",
+                //             title:"通道概述[时段]",
+                //             path:"/home/aislesmtime"
+                //         },
+                //         {
+                //             id:3,
+                //             icon:"backqww",
+                //             title:"产品概述[日期]",
+                //             path:"/home/productsummzrize"
+                //         },
+                //         {
+                //             id:4,
+                //             icon:"backqww",
+                //             title:"渠道概述[日期]",
+                //             path:"/home/channelsummzrize"
+                //         },
+                //     ]
+                // },
+              // {
+              //   id:5,
+              //   icon:"assessment",
+              //   title:"漫画今日统计分析",
+              //   twolist:[
+              //     {
+              //       id:0,
+              //       icon:"back",
+              //       title:"简单统计",
+              //       path:"/home/simplestatistics"
+              //     },
+              //
+              //   ]
+              // },
               {
                 id:9,
                 icon:"assessment",
-                title:"漫画历史统计",
+                title:"漫画统计",
                 twolist:[
                   {
                     id:0,
                     icon:"back",
-                    title:"简单统计",
+                    title:"统计",
                     path:"/home/simplehistorystatistics"
                   },
 
@@ -203,112 +203,118 @@ export default {
                     icon:"shopping_basket",
                     title:"结算管理",
                     twolist:[
-                        {
-                            id:0,
-                            icon:"back",
-                            title:"渠道收益[直属]",
-                            path:"/home/channelearnings"
-                        },
-                        {
-                            id:1,
-                            icon:"backqww",
-                            title:"渠道收益[二级]",
-                            path:"/home/channelearningstwo"
-                        },
-                        {
-                            id:2,
-                            icon:"backqww",
-                            title:"渠道收益[代理]",
-                            path:"/home/channelagency"
-                        },
+                        // {
+                        //     id:0,
+                        //     icon:"back",
+                        //     title:"渠道收益[直属]",
+                        //     path:"/home/channelearnings"
+                        // },
+                        // {
+                        //     id:1,
+                        //     icon:"backqww",
+                        //     title:"渠道收益[二级]",
+                        //     path:"/home/channelearningstwo"
+                        // },
+                        // {
+                        //     id:2,
+                        //     icon:"backqww",
+                        //     title:"渠道收益[代理]",
+                        //     path:"/home/channelagency"
+                        // },
+                      {
+                        id:3,
+                        icon:"backqww",
+                        title:"渠道结算",
+                        path:"/home/channelSettlement"
+                      },
                     ]
                 },
-                {
-                    id:7,
-                    icon:"date_range",
-                    title:"日志管理",
-                    twolist:[
-                        {
-                            id:0,
-                            icon:"back",
-                            title:"通道日志[接口]",
-                            path:"/home/Channellogport"
-                        },
-                        {
-                            id:1,
-                            icon:"backqww",
-                            title:"通讯日志[渠道]",
-                            path:"/home/Channellogditch"
-                        },
-                        {
-                            id:2,
-                            icon:"backqww",
-                            title:"登录日志[用户]",
-                            path:"/home/Logontologuser"
-                        },
-                        {
-                            id:3,
-                            icon:"backqww",
-                            title:"登录日志[管理员]",
-                            path:"/home/Logontologadmin"
-                        },     
-                        {
-                            id:4,
-                            icon:"backqww",
-                            title:"操作日志[用户]",
-                            path:"/home/operationloguser"
-                        },
-                        {
-                            id:5,
-                            icon:"backqww",
-                            title:"操作日志[管理员]",
-                            path:"/home/operationlogadmin"
-                        },      
-                        {
-                            id:6,
-                            icon:"backqww",
-                            title:"操作日志[系统]",
-                            path:"/home/errorlogsystem"
-                        },                                                                                                                                                                                                                                                                                                                                                                                                                    
-                    ]
-                },
-                {
-                    id:8,
-                    icon:"bubble_chart",
-                    title:"系统管理",
-                    twolist:[
-                        {
-                            id:0,
-                            icon:"back",
-                            title:"系统菜单",
-                            path:"/home/systemmenu"
-                        },
-                        {
-                            id:1,
-                            icon:"backqww",
-                            title:"操作菜单",
-                            path:"/home/"
-                        },
-                        {
-                            id:2,
-                            icon:"backqww",
-                            title:"用户管理",
-                            path:"/home/usermanage"
-                        },
-                        {
-                            id:3,
-                            icon:"backqww",
-                            title:"角色管理",
-                            path:"/home/roleadmin"
-                        },
-                        {
-                            id:4,
-                            icon:"backqww",
-                            title:"部门管理",
-                            path:"/home/sectionmanage"
-                        },
-                    ]
-                },
+                // {
+                //     id:7,
+                //     icon:"date_range",
+                //     title:"日志管理",
+                //     twolist:[
+                //         {
+                //             id:0,
+                //             icon:"back",
+                //             title:"通道日志[接口]",
+                //             path:"/home/Channellogport"
+                //         },
+                //         {
+                //             id:1,
+                //             icon:"backqww",
+                //             title:"通讯日志[渠道]",
+                //             path:"/home/Channellogditch"
+                //         },
+                //         {
+                //             id:2,
+                //             icon:"backqww",
+                //             title:"登录日志[用户]",
+                //             path:"/home/Logontologuser"
+                //         },
+                //         {
+                //             id:3,
+                //             icon:"backqww",
+                //             title:"登录日志[管理员]",
+                //             path:"/home/Logontologadmin"
+                //         },
+                //         {
+                //             id:4,
+                //             icon:"backqww",
+                //             title:"操作日志[用户]",
+                //             path:"/home/operationloguser"
+                //         },
+                //         {
+                //             id:5,
+                //             icon:"backqww",
+                //             title:"操作日志[管理员]",
+                //             path:"/home/operationlogadmin"
+                //         },
+                //         {
+                //             id:6,
+                //             icon:"backqww",
+                //             title:"操作日志[系统]",
+                //             path:"/home/errorlogsystem"
+                //         },
+                //     ]
+                // },
+                // {
+                //     id:8,
+                //     icon:"bubble_chart",
+                //     title:"系统管理",
+                //     twolist:[
+                //         {
+                //             id:0,
+                //             icon:"back",
+                //             title:"系统菜单",
+                //             path:"/home/systemmenu"
+                //         },
+                //         {
+                //             id:1,
+                //             icon:"backqww",
+                //             title:"操作菜单",
+                //             path:"/home/"
+                //         },
+                //         {
+                //             id:2,
+                //             icon:"backqww",
+                //             title:"用户管理",
+                //             path:"/home/usermanage"
+                //         },
+                //         {
+                //             id:3,
+                //             icon:"backqww",
+                //             title:"角色管理",
+                //             path:"/home/roleadmin"
+                //         },
+                //         {
+                //             id:4,
+                //             icon:"backqww",
+                //             title:"部门管理",
+                //             path:"/home/sectionmanage"
+                //         },
+                //     ]
+                // },
             ]
         }
     },
