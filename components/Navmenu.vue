@@ -102,6 +102,26 @@ export default {
                         },
                     ]
                 },
+              {
+                id:3,
+                icon:"assessment",
+                title:"订单统计",
+                twolist:[
+                  {
+                    id:0,
+                    icon:"back",
+                    title:"成功订单",
+                    path:"/home/successOrder"
+                  },
+                  {
+                    id:1,
+                    icon:"back",
+                    title:"未支付订单",
+                    path:"/home/noPayOrder"
+                  },
+
+                ]
+              },
                 // {
                 //     id:3,
                 //     icon:"settings_cell",
