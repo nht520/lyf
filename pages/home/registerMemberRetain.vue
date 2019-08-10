@@ -4,10 +4,7 @@
     <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
     <!-- 内容 -->
     <div class="conttab">
-      <el-row class="search" :model="form" :gutter="15">
-<!--        <el-col :span="3">-->
-<!--          <el-input v-model="memberLoginName" placeholder="请输入会员登录名"></el-input>-->
-<!--        </el-col>-->
+      <el-row class="search"  :gutter="15">
         <el-col :span="3">
           <el-input v-model="packageNo" placeholder="包编号"></el-input>
         </el-col>
@@ -26,14 +23,13 @@
             type="date"
             format="yyyy-MM-dd"
             value-format="yyyy-MM-dd"
-            placeholder="选择结束日期">
+            placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="2">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
+        <el-col :span="3">
+          <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
         </el-col>
       </el-row>
-
       <!-- 表格 -->
       <el-table
         :data="list"
