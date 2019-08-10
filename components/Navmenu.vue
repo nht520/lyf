@@ -122,133 +122,96 @@ export default {
 
                 ]
               },
-                // {
-                //     id:3,
-                //     icon:"settings_cell",
-                //     title:"设备统计",
-                //     twolist:[
-                //         {
-                //             id:0,
-                //             icon:"back",
-                //             title:"网页UV量",
-                //             path:"/home/htmluv"
-                //         },
-                //         {
-                //             id:1,
-                //             icon:"backqww",
-                //             title:"设备安装量",
-                //             path:"/home/iphoneinstall"
-                //         },
-                //         {
-                //             id:2,
-                //             icon:"backqww",
-                //             title:"设备有效量",
-                //             path:"/home/iphonevalid"
-                //         },
-                //         {
-                //             id:3,
-                //             icon:"backqww",
-                //             title:"设备无效量",
-                //             path:"/home/iphoneinvalid"
-                //         },
-                //     ]
-                // },
-                // {
-                //     id:4,
-                //     icon:"assessment",
-                //     title:"统计分析",
-                //     twolist:[
-                //         {
-                //             id:0,
-                //             icon:"back",
-                //             title:"流量概述[日期]",
-                //             path:"/home/flowsummarize"
-                //         },
-                //         {
-                //             id:1,
-                //             icon:"backqww",
-                //             title:"通道概述[日期]",
-                //             path:"/home/aislesummarize"
-                //         },
-                //         {
-                //             id:2,
-                //             icon:"backqww",
-                //             title:"通道概述[时段]",
-                //             path:"/home/aislesmtime"
-                //         },
-                //         {
-                //             id:3,
-                //             icon:"backqww",
-                //             title:"产品概述[日期]",
-                //             path:"/home/productsummzrize"
-                //         },
-                //         {
-                //             id:4,
-                //             icon:"backqww",
-                //             title:"渠道概述[日期]",
-                //             path:"/home/channelsummzrize"
-                //         },
-                //     ]
-                // },
-              // {
-              //   id:5,
-              //   icon:"assessment",
-              //   title:"漫画今日统计分析",
-              //   twolist:[
-              //     {
-              //       id:0,
-              //       icon:"back",
-              //       title:"简单统计",
-              //       path:"/home/simplestatistics"
-              //     },
-              //
-              //   ]
-              // },
               {
-                id:9,
+                id:4,
+                icon:"assessment",
+                title:"漫画资源",
+                twolist:[
+                  {
+                    id:0,
+                    icon:"back",
+                    title:"漫画资源",
+                    path:"/home/cartoonResource"
+                  },
+                ]
+              },
+              {
+                id:5,
+                icon:"assessment",
+                title:"会员管理",
+                twolist:[
+                  {
+                    id:0,
+                    icon:"back",
+                    title:"会员管理",
+                    path:"/home/memberList"
+                  },
+                ]
+              },
+              {
+                id:6,
+                icon:"shopping_basket",
+                title:"结算管理",
+                twolist:[
+                  {
+                    id:1,
+                    icon:"backqww",
+                    title:"渠道结算",
+                    path:"/home/channelSettlement"
+                  },
+                ]
+              },
+              {
+                id:7,
+                icon:"shopping_basket",
+                title:"设置",
+                twolist:[
+                  {
+                    id:1,
+                    icon:"backqww",
+                    title:"支付设置",
+                    path:"/home/paySetting"
+                  },
+                ]
+              },
+              {
+                id:8,
                 icon:"assessment",
                 title:"漫画统计",
                 twolist:[
                   {
                     id:0,
                     icon:"back",
-                    title:"统计",
+                    title:"每日统计",
                     path:"/home/simplehistorystatistics"
                   },
-
+                  {
+                    id:1,
+                    icon:"back",
+                    title:"会员情况分析",
+                    path:"/home/memberSituation"
+                  },
+                  {
+                    id:2,
+                    icon:"back",
+                    title:"注册用户留存分析",
+                    path:"/home/registerMemberRetain"
+                  },
+                  {
+                    id:3,
+                    icon:"back",
+                    title:"每日时段统计",
+                    path:"/home/dayTimeInterval"
+                  },
+                  {
+                    id:4,
+                    icon:"back",
+                    title:"汇总统计",
+                    path:"/home/summaryStatistics"
+                  },
                 ]
               },
-                {
-                    id:6,
-                    icon:"shopping_basket",
-                    title:"结算管理",
-                    twolist:[
-                        // {
-                        //     id:0,
-                        //     icon:"back",
-                        //     title:"渠道收益[直属]",
-                        //     path:"/home/channelearnings"
-                        // },
-                        // {
-                        //     id:1,
-                        //     icon:"backqww",
-                        //     title:"渠道收益[二级]",
-                        //     path:"/home/channelearningstwo"
-                        // },
-                        // {
-                        //     id:2,
-                        //     icon:"backqww",
-                        //     title:"渠道收益[代理]",
-                        //     path:"/home/channelagency"
-                        // },
-                      {
-                        id:3,
-                        icon:"backqww",
-                        title:"渠道结算",
-                        path:"/home/channelSettlement"
-                      },
-                    ]
-                },
+
                 // {
                 //     id:7,
                 //     icon:"date_range",

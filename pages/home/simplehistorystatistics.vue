@@ -6,6 +6,9 @@
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
         <el-col :span="3">
+          <el-input v-model="packageNo" placeholder="包编号"></el-input>
+        </el-col>
+        <el-col :span="3">
           <el-date-picker type="date" 
           format="yyyy-MM-dd"
           value-format="yyyy-MM-dd"
@@ -19,6 +22,9 @@
         </el-col>
         <el-col :span="2">
           <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="primary" icon="el-icon-search" size="small" @click="sysComicsStatistics()" plain>同步</el-button>
         </el-col>
       </el-row>
       <!-- 表格 -->
@@ -101,7 +107,6 @@
       </el-row>
         
 
-
     </div>
 
   </div>
@@ -127,6 +132,7 @@
           date1:"",
           date2:"",
         },
+        packageNo:'',
         currentPage1: 4,
         list: [ ],
         requestCountTotal:0,
@@ -234,6 +240,16 @@
         console.log(this.form.date1 + this.form.date2);
         this.getData();
       },
+      sysComicsStatistics(){
+        let _this = this;
+        let api = window.g.simplehistorystatistics+'/sysComicsStatistics';
+        Axios.post(api).then((res)=>{
+          console.log(res);
+          this.getData();
+        }).catch((err)=>{
+          console.log(err);
+        })
+      },
       // 获取列表数据
       getData(){
         let _this = this;
@@ -242,6 +258,7 @@
             params:{
                 current:this.number,
                 size:this.present,
+              packageNo:this.packageNo,
               startTime:this.form.date1,
               endTime:this.form.date2,
             }

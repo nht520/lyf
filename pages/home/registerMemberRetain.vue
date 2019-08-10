@@ -5,27 +5,27 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
+<!--        <el-col :span="3">-->
+<!--          <el-input v-model="memberLoginName" placeholder="请输入会员登录名"></el-input>-->
+<!--        </el-col>-->
         <el-col :span="3">
-          <el-input v-model="memberLoginName" placeholder="请输入会员登录名"></el-input>
-        </el-col>
-        <el-col :span="3">
-          <el-input v-model="memberPhone" placeholder="会员手机号"></el-input>
+          <el-input v-model="packageNo" placeholder="包编号"></el-input>
         </el-col>
         <el-col :span="3">
           <el-date-picker
             v-model="startTime"
-            type="datetime"
-            format="yyyy-MM-dd HH:mm:ss"
-            value-format="yyyy-MM-dd HH:mm:ss"
+            type="date"
+            format="yyyy-MM-dd"
+            value-format="yyyy-MM-dd"
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
         <el-col :span="3">
           <el-date-picker
             v-model="endTime"
-            type="datetime"
-            format="yyyy-MM-dd HH:mm:ss"
-            value-format="yyyy-MM-dd HH:mm:ss"
+            type="date"
+            format="yyyy-MM-dd"
+            value-format="yyyy-MM-dd"
             placeholder="选择结束日期">
           </el-date-picker>
         </el-col>
@@ -42,47 +42,47 @@
         style="width: 100%"
         @selection-change="selectionRowsChange" >
         <el-table-column
-          prop="payNo"
-          label="订单编号">
+          prop="date"
+          label="时间">
         </el-table-column>
         <el-table-column
-          label="支付平台订单号"
-          prop="orderNum"
-        >
-        </el-table-column>
-        <el-table-column
-          label="创建订单时间"
-          prop="payTime"
-        >
-        </el-table-column>
-        <el-table-column
-          label="支付成功时间"
-          prop="paySuccessTime"
-        >
-        </el-table-column>
-        <el-table-column
-          label="会员手机号"
-          prop="memberPhone"
-        >
-        </el-table-column>
-        <el-table-column
-          label="会员登录名称"
-          prop="memberLoginName"
-        >
-        </el-table-column>
-        <el-table-column
-          label="包编号"
+          label="包名"
           prop="packageNo"
         >
         </el-table-column>
         <el-table-column
-          label="上游名称"
-          prop="payUpperName"
+          label="总uv"
+          prop="webUv"
         >
         </el-table-column>
         <el-table-column
-          label="支付金额"
-          prop="payAmount"
+          label="会员注册人数"
+          prop="registerCount"
+        >
+        </el-table-column>
+        <el-table-column
+          label="会员绑定手机人数"
+          prop="memberPhoneCount"
+        >
+        </el-table-column>
+        <!--        <el-table-column-->
+        <!--          label="各金额充值次数"-->
+        <!--          prop="vipStartTime"-->
+        <!--        >-->
+        <!--        </el-table-column>-->
+        <el-table-column
+          label="次日留存数"
+          prop="retainCount"
+        >
+        </el-table-column>
+        <el-table-column
+          label="三日留存数"
+          prop="threeRetainCount"
+        >
+        </el-table-column>
+        <el-table-column
+          label="大于等于七日留存数"
+          prop="sevenRetainCount"
         >
         </el-table-column>
       </el-table>
@@ -93,21 +93,22 @@
           <el-button  size="mini">保存权重</el-button>
           <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
         </el-col>
-        <el-col :span="14" :offset="10">
-          <div class="block">
-            <el-pagination
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
-              :current-page="current"
-              :page-sizes="[10, 20, 30, 40]"
-              :page-size="10"
-              layout="total, sizes, prev, pager, next, jumper"
-              :total="brtotal">
-            </el-pagination>
-          </div>
-        </el-col>
+<!--        <el-col :span="14" :offset="10">-->
+<!--          <div class="block">-->
+<!--            <el-pagination-->
+<!--              @size-change="handleSizeChange"-->
+<!--              @current-change="handleCurrentChange"-->
+<!--              :current-page="current"-->
+<!--              :page-sizes="[10, 20, 30, 40]"-->
+<!--              :page-size="10"-->
+<!--              layout="total, sizes, prev, pager, next, jumper"-->
+<!--              :total="brtotal">-->
+<!--            </el-pagination>-->
+<!--          </div>-->
+<!--        </el-col>-->
       </el-row>
     </div>
+
 
   </div>
 </template>
@@ -123,46 +124,56 @@
     },
     data(){
       return{
-        txtone:"成功订单",
+        txtone:"漫画统计",
         txtTwo:"",
         form: {
+          date1:"",
+          date2:"",
         },
-        memberLoginName:'',
-        memberPhone:'',
-        startTime:"",
-        endTime:"",
+        options: [{
+          value: '0',
+          label: '否'
+        }, {
+          value: '1',
+          label: '是'
+        }],
+        startTime:'',
+        endTime:'',
         hedTitle:"",
         text:"",
         list: [ ],
-        current: 0,
-        brtotal:0,
         search: '',
+        packageNo:'',
+        current:0,
+        brtotal:0,
+
       }
     },
     methods:{
+
       selectionRowsChange(val){
         console.log(val);
       },
+
       getData(){
         let _this = this;
-        let api = window.g.payOrder;
+        let api = window.g.bookReport+'/retain';
         const date ={
           params:{
-            current:this.number,
-            size:this.present,
-            payStatus:1,
             startTime:this.startTime,
             endTime:this.endTime,
-            memberPhone: this.memberPhone,
-            memberLoginName: this.memberLoginName,
+
           }
+        }
+        if(this.packageNo!=''){
+          date.params['packageNo'] = this.packageNo;
         }
         _this.list = [];
         Axios.get(api,date).then(function(res){
-          let data = res.data.records;
+          let data = res.data.data;
           console.log(res);
-          _this.brtotal = res.data.total;
-          _this.current = res.data.current;
+          // _this.brtotal = res.data.total;
+          // _this.current = res.data.current;
           _this.list = data;
           // for(let i = 0;i<data.length;i++){
           //   data[i].body = JSON.parse(data[i].body);
@@ -181,6 +192,26 @@
         console.log(`当前页: ${val}`);
         this.number=val;
         this.getData();
+      },
+      update(row){
+        const api = window.g.bookMember +'/update';
+        let param= new URLSearchParams();
+        param.append("id",this.memberId);
+        param.append("memberPhone",this.memberPhone);
+        param.append("memberLoginName",this.memberLoginName);
+        param.append("memberPass",this.memberPass);
+        param.append("memberGold",this.memberGold);
+        param.append("isVip",this.isVip);
+        param.append("startTime",this.startTime);
+        param.append("endTime",this.endTime);
+
+        Axios.post(api,param).then((res)=>{
+          console.log(res);
+          this.getData();
+          this.dialogVisible = false;
+        }).catch((err)=>{
+          console.log(err);
+        })
       },
       deleteBook(row){
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -210,6 +241,21 @@
     },
     mounted() {
       this.txtTwo = storage.get("linktxt");
+      // this.startTime=new Date();
+      // this.endTime = new Date();
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      if(month<10){
+        month = "0"+month;
+      }
+      if(day<10){
+        day = "0"+day;
+      }
+      const strDate = year+'-'+month+'-'+day;
+      this.startTime = strDate;
+      this.endTime = strDate;
       this.getData();
     }
   }

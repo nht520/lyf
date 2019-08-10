@@ -1,6 +1,6 @@
 // const api = "http://wx.bomao.xyz:8181/distributor";
-const api = "http://47.75.163.229:9999";
-// const api = "http://192.168.1.7:9999";
+// const api = "http://47.75.163.229:9999";
+const api = "http://192.168.1.7:9999";
 window.g = {
     AXIOS_TIMEOUT: 10000,
     login:api+"/login",
@@ -14,6 +14,13 @@ window.g = {
   chanlinterface:api+'/way',
     // 包管理
     productPackage:api+'/productPackage',
+
+   book:api+'/book',
+   bookMember:api+'/member',
+  payOrder:api+'/pay',
+  bookReport:api+'/bookReport',
+  paySetting:api+'/paySetting',
+
   //最近3日流水
     latelyDayData:api+'/report/latelyFlowing',
 //今日用户下单统计
