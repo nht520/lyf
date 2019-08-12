@@ -6,15 +6,15 @@
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
         <el-col :span="3" :xs="12">
-          <el-input v-model="memberLoginName"   size="small" placeholder="请输入会员登录名"></el-input>
+          <el-input v-model="memberLoginName"   size="mini" placeholder="请输入会员登录名"></el-input>
         </el-col>
         <el-col :span="3" :xs="12">
-          <el-input v-model="memberPhone"  size="small" placeholder="会员手机号"></el-input>
+          <el-input v-model="memberPhone"  size="mini" placeholder="会员手机号"></el-input>
         </el-col>
         <el-col :span="3" :xs="12">
           <el-date-picker
             v-model="startTime"
-            size="small"
+            size="mini"
             type="datetime"
             format="yyyy-MM-dd HH:mm:ss"
             value-format="yyyy-MM-dd HH:mm:ss"
@@ -24,7 +24,7 @@
         <el-col :span="3" :xs="12">
           <el-date-picker
             v-model="endTime"
-            size="small"
+            size="mini"
             type="datetime"
             format="yyyy-MM-dd HH:mm:ss"
             value-format="yyyy-MM-dd HH:mm:ss"
@@ -32,7 +32,7 @@
           </el-date-picker>
         </el-col>
         <el-col :span="2" >
-          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
       </el-row>
 

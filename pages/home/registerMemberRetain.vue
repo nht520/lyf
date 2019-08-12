@@ -6,12 +6,12 @@
     <div class="conttab">
       <el-row class="search"  :gutter="15">
         <el-col :span="3" :xs="5">
-          <el-input v-model="packageNo" size="small" placeholder="包编号"></el-input>
+          <el-input v-model="packageNo" size="mini" placeholder="包编号"></el-input>
         </el-col>
         <el-col :span="3" :xs="6">
           <el-date-picker
             v-model="startTime"
-            size="small"
+            size="mini"
             type="date"
             format="yyyy-MM-dd"
             value-format="yyyy-MM-dd"
@@ -21,7 +21,7 @@
         <el-col :span="3" :xs="6">
           <el-date-picker
             v-model="endTime"
-            size="small"
+            size="mini"
             type="date"
             format="yyyy-MM-dd"
             value-format="yyyy-MM-dd"
@@ -29,7 +29,7 @@
           </el-date-picker>
         </el-col>
         <el-col :span="3">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
         </el-col>
       </el-row>
       <!-- 表格 -->

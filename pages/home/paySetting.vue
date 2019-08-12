@@ -259,5 +259,7 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
+  .channe .el-col-5
+    text-align right  
 </style>
 

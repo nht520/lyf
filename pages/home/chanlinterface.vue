@@ -6,40 +6,40 @@
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
             <el-col :span="2" :xs="6">
-                <el-input v-model="form.region" placeholder="通道名称"  size="small"></el-input>
+                <el-input v-model="form.region" placeholder="通道名称"  size="mini"></el-input>
             </el-col>
             <el-col :span="3" :xs="6">
-                <el-select  v-model="form.region"  size="small" placeholder="通道服务商">
+                <el-select  v-model="form.region"  size="mini" placeholder="通道服务商">
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="3" :xs="6">
-                <el-select v-model="form.condition"  size="small" placeholder="支付类型" >
+                <el-select v-model="form.condition"  size="mini" placeholder="支付类型" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="3" :xs="6">
-                <el-select v-model="form.condition"  size="small" placeholder="通道模式" >
+                <el-select v-model="form.condition"  size="mini" placeholder="通道模式" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="3" :xs="6">
-                <el-select v-model="form.condition"  size="small" placeholder="限量" >
+                <el-select v-model="form.condition"  size="mini" placeholder="限量" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="3" :xs="6">
-                <el-select v-model="form.condition"  size="small" placeholder="开启" >
+                <el-select v-model="form.condition"  size="mini" placeholder="开启" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="2">
-               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+               <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
         </el-row>
         <!-- 表格 -->
@@ -123,7 +123,7 @@
         <el-row class="Pagination">
             <el-col :span="5" :xs="24">
                 <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
+                <el-button type="danger" size="mini" @click="qxDete" plain>删 除</el-button>
             </el-col>
             <el-col :span="10" :xs="24">
 

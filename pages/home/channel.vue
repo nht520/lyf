@@ -3,51 +3,52 @@
       <!-- 面包屑 -->
       <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
       <!-- 内容 -->
-      <el-form ref="form" :model="form" label-width="150px">
-        <el-form-item label="*管理系统标题">
-          <el-input v-model="form.mainTitle"></el-input>
-        </el-form-item>
-        <el-form-item label="*管理系统域名">
-          <el-input v-model="form.mainDomain"></el-input>
-        </el-form-item>
-        <el-form-item label="*渠道系统标题">
-          <el-input v-model="form.channelTitle"></el-input>
-        </el-form-item>
-        <el-form-item label="*渠道系统域名">
-          <el-input v-model="form.channelDomain"></el-input>
-        </el-form-item>
-        <el-form-item label="*系统操作密码">
-          <el-input v-model="form.sysPass"></el-input>
-        </el-form-item>
-        <el-form-item label="*反向代理服务器IP">
-          <el-input v-model="form.nginxIp"></el-input>
-        </el-form-item>
-        <el-form-item label="*SOCKET通讯网关">
-          <el-input v-model="form.socketGateway"></el-input>
-        </el-form-item>
-        <el-form-item label="*SOCKET通讯端口">
-          <el-input v-model="form.socketPort"></el-input>
-        </el-form-item>
-        <el-form-item label="*订单预支付开启状态">
-          <el-radio-group v-model="form.orderAdvanceStatus">
-            <el-radio label="开启"></el-radio>
-            <el-radio label="关闭"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="订单预支付">
-          <el-input type="textarea" v-model="form.orderAdvance"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onSubmit" plain>立即创建</el-button>
-          <el-button>取消</el-button>
-        </el-form-item>
-      </el-form>
-      <!--  -->
-      
+      <el-row :gutter="10">
+        <el-col :xs="24" :sm="12" >
+            <el-form ref="form" :model="form" label-width="150px">
+                <el-form-item label="*管理系统标题">
+                  <el-input v-model="form.mainTitle"></el-input>
+                </el-form-item>
+                <el-form-item label="*管理系统域名">
+                  <el-input v-model="form.mainDomain"></el-input>
+                </el-form-item>
+                <el-form-item label="*渠道系统标题">
+                  <el-input v-model="form.channelTitle"></el-input>
+                </el-form-item>
+                <el-form-item label="*渠道系统域名">
+                  <el-input v-model="form.channelDomain"></el-input>
+                </el-form-item>
+                <el-form-item label="*系统操作密码">
+                  <el-input v-model="form.sysPass"></el-input>
+                </el-form-item>
+                <el-form-item label="*反向代理服务器IP">
+                  <el-input v-model="form.nginxIp"></el-input>
+                </el-form-item>
+                <el-form-item label="*SOCKET通讯网关">
+                  <el-input v-model="form.socketGateway"></el-input>
+                </el-form-item>
+                <el-form-item label="*SOCKET通讯端口">
+                  <el-input v-model="form.socketPort"></el-input>
+                </el-form-item>
+                <el-form-item label="*订单预支付开启状态">
+                  <el-radio-group v-model="form.orderAdvanceStatus">
+                    <el-radio label="开启"></el-radio>
+                    <el-radio label="关闭"></el-radio>
+                  </el-radio-group>
+                </el-form-item>
+                <el-form-item label="订单预支付">
+                  <el-input type="textarea" v-model="form.orderAdvance"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" @click="onSubmit" size="mini" plain>立即创建</el-button>
+                  <el-button size="mini"> 取 消 </el-button>
+                </el-form-item>
+              </el-form>
+        </el-col>
+      </el-row>      
       <!--  -->
     </div>
 </template>
-
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';

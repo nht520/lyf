@@ -78,8 +78,8 @@
             <el-input type="textarea" v-model="form.packageRemark"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="addconvention()" plain>添加</el-button>
-            <el-button>取消</el-button>
+            <el-button type="primary" size="mini" @click="addconvention()" plain>添加</el-button>
+            <el-button size="mini">取消</el-button>
           </el-form-item>
         </el-form>
         </el-col>

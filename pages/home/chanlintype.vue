@@ -6,22 +6,22 @@
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
             <el-col :span="3" :xs="4">
-                <el-input v-model="form.name" placeholder="请输入查询内容"  size="small"></el-input>
+                <el-input v-model="form.name" placeholder="请输入查询内容"  size="mini"></el-input>
             </el-col>
             <el-col :span="3" :xs="4">
-                <el-select  v-model="form.region"  size="small" placeholder="查询类容">
+                <el-select  v-model="form.region"  size="mini" placeholder="查询类容">
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="3" :xs="4">
-                <el-select v-model="form.condition"  size="small" placeholder="状态" >
+                <el-select v-model="form.condition"  size="mini" placeholder="状态" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="2">
-               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+               <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
         </el-row>
         <!-- 表格 -->
@@ -49,7 +49,7 @@
             width="100">
                 <template slot-scope="scope">
                     <div slot="reference" class="name-wrapper">
-                        <el-input v-model="form.name"  size="small"></el-input>
+                        <el-input v-model="form.name"  size="mini"></el-input>
                     </div>
                 </template>
             </el-table-column>

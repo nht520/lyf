@@ -45,8 +45,8 @@
                             <el-input type="textarea" v-model="form.eremark"></el-input>
                             </el-form-item>
                             <el-form-item>
-                            <el-button type="primary" @click="addditch()" plain>立即创建</el-button>
-                            <el-button>重置</el-button>
+                            <el-button type="primary" size="mini" @click="addditch()" plain>立即创建</el-button>
+                            <el-button size="mini">重置</el-button>
                             </el-form-item>
                         </el-form>
                     </el-col>
@@ -69,8 +69,8 @@
                             <el-input v-model="form.name"></el-input>
                             </el-form-item>
                             <el-form-item>
-                            <el-button type="primary" @click="addditch()" plain>立即创建</el-button>
-                            <el-button>重置</el-button>
+                            <el-button type="primary" size="mini" @click="addditch()" plain>立即创建</el-button>
+                            <el-button size="mini">重置</el-button>
                             </el-form-item>
                         </el-form>
                     </el-col>

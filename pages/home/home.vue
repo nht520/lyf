@@ -206,9 +206,13 @@ export default {
 .statistics
  margin 1% 0%
 .statistics .v-icon 
-    font-size 40px
-    color #ffffff
-    margin-top 10%
+ font-size 40px
+ color #ffffff
+ margin-top 10%
+.statistics h2 
+ font-size 1.5rem
+.statistics h6 
+ font-size 0.6rem   
 .statistics .search1
     background #19d4ae
     padding 5% 1%

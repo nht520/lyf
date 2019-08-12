@@ -6,7 +6,7 @@
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
         <el-col :span="3" :xs="6">
-          <el-select v-model="value"  size="small" :span="3" placeholder="请选择">
+          <el-select v-model="value"  size="mini" :span="3" placeholder="请选择">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -16,7 +16,7 @@
           </el-select>
         </el-col>
         <el-col :span="3" :xs="6">
-          <el-select v-model="isHomePage" size="small" :span="3" placeholder="是否首页">
+          <el-select v-model="isHomePage" size="mini" :span="3" placeholder="是否首页">
             <el-option
               v-for="item in optionsHome"
               :key="item.value"
@@ -26,16 +26,16 @@
           </el-select>
         </el-col>
         <el-col :span="3" :xs="6">
-          <el-input v-model="bookId"  size="small" placeholder="请输入bookId"></el-input>
+          <el-input v-model="bookId"  size="mini" placeholder="请输入bookId"></el-input>
         </el-col>
         <el-col :span="3" :xs="6">
-          <el-input v-model="name"  size="small" placeholder="请输入书名"></el-input>
+          <el-input v-model="name"  size="mini" placeholder="请输入书名"></el-input>
         </el-col>
         <el-col :span="2" :xs="6">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
         <el-col :span="2" :xs="6">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="plxgvipOpen()" plain>批量修改vip是否免费</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="plxgvipOpen()" plain>批量修改vip是否免费</el-button>
         </el-col>
       </el-row>
 
@@ -74,10 +74,10 @@
           width="150"
           >
           <template slot-scope="scope">
-            <el-button @click="vipFree(scope.row,true)" v-if="scope.row.body.vipFree==false" type="text" size="small">vip免费</el-button>
-            <el-button @click="vipFree(scope.row,false)" v-if="scope.row.body.vipFree" type="text" size="small">vip收费</el-button>
-            <el-button @click="openDiagnosis(scope.row)" type="text" size="small">操作</el-button>
-            <el-button type="text" @click="deleteBook(scope.row)" size="small">移除</el-button>
+            <el-button @click="vipFree(scope.row,true)" v-if="scope.row.body.vipFree==false" type="text" size="mini">vip免费</el-button>
+            <el-button @click="vipFree(scope.row,false)" v-if="scope.row.body.vipFree" type="text" size="mini">vip收费</el-button>
+            <el-button @click="openDiagnosis(scope.row)" type="text" size="mini">操作</el-button>
+            <el-button type="text" @click="deleteBook(scope.row)" size="mini">移除</el-button>
           </template>
         </el-table-column>
       </el-table>
