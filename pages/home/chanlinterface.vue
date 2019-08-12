@@ -8,31 +8,31 @@
             <el-col :span="2">
                 <el-input v-model="form.region" placeholder="通道名称"  size="small"></el-input>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="3">
                 <el-select  v-model="form.region"  size="small" placeholder="通道服务商">
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="3">
                 <el-select v-model="form.condition"  size="small" placeholder="支付类型" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="3">
                 <el-select v-model="form.condition"  size="small" placeholder="通道模式" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="3">
                 <el-select v-model="form.condition"  size="small" placeholder="限量" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="3">
                 <el-select v-model="form.condition"  size="small" placeholder="开启" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>

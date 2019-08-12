@@ -4,7 +4,7 @@
          <!-- 统计+ -->
          <h5>设备统计</h5>
          <el-row class="statistics"  :gutter="15">
-            <el-col :span="4" :offset="1">
+            <el-col :span="4" :xs="8" :offset="1">
                 <el-row class="search1"  :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>
@@ -15,7 +15,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="4" :offset="2">
+            <el-col :span="4" :xs="8" :offset="2">
                 <el-row class="search2" :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>
@@ -26,7 +26,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="4" :offset="2">
+            <el-col :span="4" :xs="8" :offset="2">
                 <el-row class="search3"  :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>
@@ -37,7 +37,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="4" :offset="2">
+            <el-col :span="4" :xs="8" :offset="2">
                 <el-row class="search4" :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>

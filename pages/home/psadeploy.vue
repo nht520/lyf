@@ -66,6 +66,6 @@ export default {
     min-height 800px
   .channel .el-form
     margin 2% 4%
-    width 50%
+    // width 50%
     text-align left   
 </style>
