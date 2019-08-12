@@ -5,16 +5,16 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
-            <el-col :span="3">
+            <el-col :span="3" :xs="4">
                 <el-input v-model="form.name" placeholder="请输入查询内容"  size="small"></el-input>
             </el-col>
-            <el-col :span="3">
+            <el-col :span="3" :xs="4">
                 <el-select  v-model="form.region"  size="small" placeholder="查询类容">
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
-            <el-col :span="3">
+            <el-col :span="3" :xs="4">
                 <el-select v-model="form.condition"  size="small" placeholder="状态" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
@@ -81,12 +81,12 @@
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-            <el-col :span="5" >
+            <el-col :span="5" :xs="24">
                 <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
                 <el-button  size="mini">保存权重</el-button>
                 <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
-            <el-col :span="10" :offset="7">
+            <el-col :span="10"  :xs="24">
                 <div class="block">
                     <el-pagination
                         @size-change="handleSizeChange"

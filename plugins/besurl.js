@@ -14,6 +14,13 @@ window.g = {
   chanlinterface:api+'/way',
     // 包管理
     productPackage:api+'/productPackage',
+
+   book:api+'/book',
+   bookMember:api+'/member',
+  payOrder:api+'/pay',
+  bookReport:api+'/bookReport',
+  paySetting:api+'/paySetting',
+
   //最近3日流水
     latelyDayData:api+'/report/latelyFlowing',
 //今日用户下单统计

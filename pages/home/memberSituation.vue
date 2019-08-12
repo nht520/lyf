@@ -5,31 +5,11 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3" :xs="12">
-          <el-input v-model="memberLoginName" placeholder="请输入会员登录名"></el-input>
+        <el-col :span="3" :xs="8">
+          <el-input v-model="memberLoginName" size="small" placeholder="请输入会员登录名"></el-input>
         </el-col>
-        <el-col :span="3" :xs="12">
-          <el-input v-model="memberPhone" placeholder="会员手机号"></el-input>
-        </el-col>
-        <el-col :span="3" :xs="9">
-          <el-date-picker
-            v-model="startTime"
-            type="datetime"
-            size="small"
-            format="yyyy-MM-dd HH:mm:ss"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            placeholder="选择开始日期">
-          </el-date-picker>
-        </el-col>
-        <el-col :span="3" :xs="9">
-          <el-date-picker
-            v-model="endTime"
-            size="small"
-            type="datetime"
-            format="yyyy-MM-dd HH:mm:ss"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            placeholder="选择结束日期">
-          </el-date-picker>
+        <el-col :span="3" :xs="8">
+          <el-input v-model="memberPhone" size="small" placeholder="会员手机号"></el-input>
         </el-col>
         <el-col :span="2">
           <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
@@ -44,13 +24,8 @@
         style="width: 100%"
         @selection-change="selectionRowsChange" >
         <el-table-column
-          prop="payNo"
-          label="订单编号">
-        </el-table-column>
-        <el-table-column
-          label="创建订单时间"
-          prop="payTime"
-        >
+          prop="memberCreateDate"
+          label="会员注册时间">
         </el-table-column>
         <el-table-column
           label="会员手机号"
@@ -58,23 +33,43 @@
         >
         </el-table-column>
         <el-table-column
-          label="会员登录名称"
+          label="会员登录名"
           prop="memberLoginName"
         >
         </el-table-column>
         <el-table-column
-          label="包编号"
-          prop="packageNo"
+          label="总充值金额"
+          prop="rechargeAmount"
         >
         </el-table-column>
         <el-table-column
-          label="上游名称"
-          prop="payUpperName"
+          label="总充值次数"
+          prop="rechargeCount"
+        >
+        </el-table-column>
+<!--        <el-table-column-->
+<!--          label="各金额充值次数"-->
+<!--          prop="vipStartTime"-->
+<!--        >-->
+<!--        </el-table-column>-->
+        <el-table-column
+          label="签到总次数"
+          prop="signCount"
         >
         </el-table-column>
         <el-table-column
-          label="支付金额"
-          prop="payAmount"
+          label="账户剩余金币"
+          prop="memberGold"
+        >
+        </el-table-column>
+        <el-table-column
+          label="总消耗金币"
+          prop="consumeGold"
+        >
+        </el-table-column>
+        <el-table-column
+          label="时长"
+          prop="surplusTime"
         >
         </el-table-column>
       </el-table>
@@ -85,7 +80,7 @@
           <el-button  size="mini">保存权重</el-button>
           <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
         </el-col>
-        <el-col :span="14" :xs="24">
+        <el-col :span="14" >
           <div class="block">
             <el-pagination
               @size-change="handleSizeChange"
@@ -101,6 +96,7 @@
       </el-row>
     </div>
 
+
   </div>
 </template>
 
@@ -115,14 +111,28 @@
     },
     data(){
       return{
-        txtone:"成功订单",
+        txtone:"会员统计",
         txtTwo:"",
         form: {
+          date1:"",
+          date2:"",
         },
+        options: [{
+          value: '0',
+          label: '否'
+        }, {
+          value: '1',
+          label: '是'
+        }],
+        memberId:'',
         memberLoginName:'',
         memberPhone:'',
-        startTime:"",
-        endTime:"",
+        memberPass:'',
+        isVip:'',
+        memberGold:'',
+        startTime:'',
+        endTime:'',
+        dialogVisible: false,
         hedTitle:"",
         text:"",
         list: [ ],
@@ -132,21 +142,42 @@
       }
     },
     methods:{
+      openDiagnosis(row){
+        console.log(row);
+        this.memberId = row.id;
+        this.memberPhone = row.memberPhone;
+        this.memberLoginName = row.memberLoginName;
+        this.memberPass = row.memberPass;
+        this.isVip = row.isVip;
+        this.startTime = row.vipStartTime;
+        this.endTime = row.vipEndTime;
+        this.memberGold = row.memberGold;
+        this.dialogVisible = true;
+      },
       selectionRowsChange(val){
         console.log(val);
       },
+      //弹出层
+      handleClose(done) {
+        this.memberId = '';
+        this.memberPhone = '';
+        this.memberLoginName = '';
+        this.memberPass = ''
+        this.isVip = '';
+        this.startTime = '';
+        this.endTime = '';
+        this.memberGold = '';
+        this.dialogVisible = false;
+      },
       getData(){
         let _this = this;
-        let api = window.g.payOrder;
+        let api = window.g.bookMember+'/memberSituation';
         const date ={
           params:{
             current:this.number,
             size:this.present,
-            payStatus:0,
-            startTime:this.startTime,
-            endTime:this.endTime,
-            memberPhone: this.memberPhone,
-            memberLoginName: this.memberLoginName,
+            memberPhone:this.memberPhone,
+            memberLoginName:this.memberLoginName
           }
         }
         _this.list = [];
@@ -173,6 +204,26 @@
         console.log(`当前页: ${val}`);
         this.number=val;
         this.getData();
+      },
+      update(row){
+        const api = window.g.bookMember +'/update';
+        let param= new URLSearchParams();
+        param.append("id",this.memberId);
+        param.append("memberPhone",this.memberPhone);
+        param.append("memberLoginName",this.memberLoginName);
+        param.append("memberPass",this.memberPass);
+        param.append("memberGold",this.memberGold);
+        param.append("isVip",this.isVip);
+        param.append("startTime",this.startTime);
+        param.append("endTime",this.endTime);
+
+        Axios.post(api,param).then((res)=>{
+          console.log(res);
+          this.getData();
+          this.dialogVisible = false;
+        }).catch((err)=>{
+          console.log(err);
+        })
       },
       deleteBook(row){
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -223,8 +274,5 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
-.el-date-editor.el-input{
-    width:100%;
-}
 </style>
 

@@ -5,22 +5,22 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
-            <el-col :span="3">
+            <el-col :span="3" :xs="9">
                 <el-select  v-model="form.region"  size="small" placeholder="查询类型">
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="4" :xs="9">
                 <el-input v-model="form.name" placeholder="请输入查询内容"  size="small"></el-input>
             </el-col>
-            <el-col :span="3">
+            <el-col :span="3" :xs="9">
                 <el-select v-model="form.condition"  size="small" placeholder="状态" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
-            <el-col :span="3">
+            <el-col :span="3" :xs="9">
                 <el-select v-model="form.condition"  size="small" placeholder="扣量" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>

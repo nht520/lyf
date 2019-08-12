@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button @click="tishi()">999898</button>
         <div class="text-xs-center">
             <v-menu
             v-model="menu"

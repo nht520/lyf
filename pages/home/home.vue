@@ -4,7 +4,8 @@
          <!-- 统计+ -->
          <h5>设备统计</h5>
          <el-row class="statistics"  :gutter="15">
-            <el-col :span="4" :xs="8" :offset="1">
+
+            <el-col :span="4" :xs="10" :offset="1">
                 <el-row class="search1"  :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>
@@ -15,7 +16,8 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="4" :xs="8" :offset="2">
+
+            <el-col :span="4" :xs="10" :offset="1">
                 <el-row class="search2" :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>
@@ -26,7 +28,8 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="4" :xs="8" :offset="2">
+
+            <el-col :span="4" :xs="10" :offset="1">
                 <el-row class="search3"  :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>
@@ -37,7 +40,8 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="4" :xs="8" :offset="2">
+
+            <el-col :span="4" :xs="10" :offset="1">
                 <el-row class="search4" :gutter="15">
                     <el-col :span="10">
                         <h2>100</h2>
@@ -211,22 +215,26 @@ export default {
     text-align center
     color #ffff
     border-radius 5px;
+    margin-bottom: 4%;
 .statistics .search2
     background #5ab1ef
     padding 5% 1%
     text-align center
     color #ffff
     border-radius 5px;
+    margin-bottom:4%;
 .statistics .search3
     background #fa6e86
     padding 5% 1%
     text-align center
     color #ffff
     border-radius 5px;
+    margin-bottom: 2%;
 .statistics .search4
     background #9076ff
     padding 5% 1%
     text-align center
     color #ffff
     border-radius 5px;
+    margin-bottom: 2%;
 </style>

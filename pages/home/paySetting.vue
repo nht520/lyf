@@ -4,38 +4,6 @@
     <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
     <!-- 内容 -->
     <div class="conttab">
-      <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3" :xs="12">
-          <el-input v-model="memberLoginName"   size="small" placeholder="请输入会员登录名"></el-input>
-        </el-col>
-        <el-col :span="3" :xs="12">
-          <el-input v-model="memberPhone"  size="small" placeholder="会员手机号"></el-input>
-        </el-col>
-        <el-col :span="3" :xs="12">
-          <el-date-picker
-            v-model="startTime"
-            size="small"
-            type="datetime"
-            format="yyyy-MM-dd HH:mm:ss"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            placeholder="选择开始日期">
-          </el-date-picker>
-        </el-col>
-        <el-col :span="3" :xs="12">
-          <el-date-picker
-            v-model="endTime"
-            size="small"
-            type="datetime"
-            format="yyyy-MM-dd HH:mm:ss"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            placeholder="选择结束日期">
-          </el-date-picker>
-        </el-col>
-        <el-col :span="2" >
-          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
-        </el-col>
-      </el-row>
-
       <!-- 表格 -->
       <el-table
         :data="list"
@@ -44,48 +12,53 @@
         style="width: 100%"
         @selection-change="selectionRowsChange" >
         <el-table-column
-          prop="payNo"
-          label="订单编号">
+          prop="id"
+          label="编号">
         </el-table-column>
         <el-table-column
-          label="支付平台订单号"
-          prop="orderNum"
-        >
+          prop="paySort"
+          label="排序">
         </el-table-column>
         <el-table-column
-          label="创建订单时间"
-          prop="payTime"
-        >
-        </el-table-column>
-        <el-table-column
-          label="支付成功时间"
-          prop="paySuccessTime"
-        >
-        </el-table-column>
-        <el-table-column
-          label="会员手机号"
-          prop="memberPhone"
-        >
-        </el-table-column>
-        <el-table-column
-          label="会员登录名称"
-          prop="memberLoginName"
-        >
-        </el-table-column>
-        <el-table-column
-          label="包编号"
-          prop="packageNo"
-        >
-        </el-table-column>
-        <el-table-column
-          label="上游名称"
-          prop="payUpperName"
-        >
-        </el-table-column>
-        <el-table-column
-          label="支付金额"
+          label="金额"
           prop="payAmount"
         >
+        </el-table-column>
+        <el-table-column
+          label="充值书币"
+          prop="rechargeMoney"
+        >
+        </el-table-column>
+        <el-table-column
+          label="送书币"
+          prop="bookMoney"
+        >
+        </el-table-column>
+        <el-table-column
+          label="总书币"
+          prop="totalMoney"
+        >
+        </el-table-column>
+        <el-table-column
+          label="首充送币"
+          prop="firstGold"
+        >
+        </el-table-column>
+        <el-table-column
+          label="是否vip充值"
+        >
+          <template slot-scope="scope">
+            <div v-if="scope.row.isVip==1">是</div>
+            <div v-if="scope.row.isVip==0">否</div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="操作"
+        >
+          <template slot-scope="scope">
+            <el-button @click="openDiagnosis(scope.row)" type="text" size="small">设置</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 分业 -->
@@ -95,21 +68,47 @@
           <el-button  size="mini">保存权重</el-button>
           <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
         </el-col>
-        <el-col :span="14" :xs="24">
-          <div class="block">
-            <el-pagination
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
-              :current-page="current"
-              :page-sizes="[10, 20, 30, 40]"
-              :page-size="10"
-              layout="total, sizes, prev, pager, next, jumper"
-              :total="brtotal">
-            </el-pagination>
-          </div>
-        </el-col>
+
       </el-row>
     </div>
+
+    <!--    弹出层-->
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="70%"
+      :before-close="handleClose">
+      <div class="channe">
+        <el-row :gutter="20">
+          <el-row :gutter="20">
+            <el-col :span="5" :offset="1" :xs="8">
+              金额:
+            </el-col>
+            <el-col :span="17" :xs="14">
+              <el-input v-model="payAmount" placeholder="请输入充值金额"></el-input>
+            </el-col>
+          </el-row>
+          <el-col :span="5" :offset="1" :xs="8">
+            充值书币:
+          </el-col>
+          <el-col :span="17" :xs="14">
+            <el-input v-model="rechargeMoney" placeholder="请输入充值书币"></el-input>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="5" :offset="1" :xs="8"> 
+            送书币:
+          </el-col>
+          <el-col :span="17" :xs="14">
+            <el-input v-model="bookMoney" placeholder="请输入充值送书币"></el-input>
+          </el-col>
+        </el-row>
+      </div>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="handleClose()">取 消</el-button>
+    <el-button type="primary" @click="update()">确 定</el-button>
+  </span>
+    </el-dialog>
 
   </div>
 </template>
@@ -125,51 +124,63 @@
     },
     data(){
       return{
-        txtone:"成功订单",
+        txtone:"支付设置",
         txtTwo:"",
         form: {
+          date1:"",
+          date2:"",
         },
-        memberLoginName:'',
-        memberPhone:'',
-        startTime:"",
-        endTime:"",
+        options: [{
+          value: '0',
+          label: '否'
+        }, {
+          value: '1',
+          label: '是'
+        }],
+        paySettingId:'',
+        payAmount:0,
+        rechargeMoney:0,
+        bookMoney:0,
+        dialogVisible:false,
         hedTitle:"",
         text:"",
         list: [ ],
-        current: 0,
-        brtotal:0,
         search: '',
+        packageNo:'',
+        current:0,
+        brtotal:0,
+
       }
     },
     methods:{
+      openDiagnosis(row){
+        console.log(row);
+        this.paySettingId = row.id;
+        this.payAmount = row.payAmount;
+        this.rechargeMoney = row.rechargeMoney;
+        this.bookMoney = row.bookMoney;
+        this.dialogVisible = true;
+      },
+      //弹出层
+      handleClose(done) {
+        this.dialogVisible = false;
+      },
       selectionRowsChange(val){
         console.log(val);
       },
+
       getData(){
         let _this = this;
-        let api = window.g.payOrder;
+        let api = window.g.paySetting+'/list';
         const date ={
           params:{
-            current:this.number,
-            size:this.present,
-            payStatus:1,
-            startTime:this.startTime,
-            endTime:this.endTime,
-            memberPhone: this.memberPhone,
-            memberLoginName: this.memberLoginName,
           }
         }
         _this.list = [];
         Axios.get(api,date).then(function(res){
-          let data = res.data.records;
+          let data = res.data.data;
           console.log(res);
-          _this.brtotal = res.data.total;
-          _this.current = res.data.current;
           _this.list = data;
-          // for(let i = 0;i<data.length;i++){
-          //   data[i].body = JSON.parse(data[i].body);
-          //   _this.list.push(data[i]);
-          // }
         }).catch(function(err){
           console.log(err);
         });
@@ -183,6 +194,21 @@
         console.log(`当前页: ${val}`);
         this.number=val;
         this.getData();
+      },
+      update(row){
+        const api = window.g.paySetting +'/update';
+        let param= new URLSearchParams();
+        param.append("id",this.paySettingId);
+        param.append("payAmount",this.payAmount);
+        param.append("rechargeMoney",this.rechargeMoney);
+        param.append("bookMoney",this.bookMoney);
+        Axios.post(api,param).then((res)=>{
+          console.log(res);
+          this.getData();
+          this.dialogVisible = false;
+        }).catch((err)=>{
+          console.log(err);
+        })
       },
       deleteBook(row){
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -233,8 +259,5 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
-.el-date-editor.el-input{
-    width:100%;
-}
 </style>
 

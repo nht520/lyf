@@ -4,27 +4,32 @@
     <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
     <!-- 内容 -->
     <div class="conttab">
-      <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3" :xs="6">
-          <el-input v-model="packageNo" placeholder="包编号" size="small"></el-input>
+      <el-row class="search"  :gutter="15">
+        <el-col :span="3" :xs="4">
+          <el-input v-model="packageNo"  size="small" placeholder="包编号"></el-input>
         </el-col>
-        <el-col :span="3" :xs="9">
-          <el-date-picker type="date" 
-          format="yyyy-MM-dd"
-          value-format="yyyy-MM-dd"
-          placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
+        <el-col :span="3" :xs="7">
+          <el-date-picker
+            v-model="startTime"
+            type="datetime"
+             size="small"
+            format="yyyy-MM-dd HH"
+            value-format="yyyy-MM-dd HH:mm:ss"
+            placeholder="选择开始日期">
+          </el-date-picker>
         </el-col>
-        <el-col :span="4" :xs="9">
-          <el-date-picker type="date"
-          format="yyyy-MM-dd"
-          value-format="yyyy-MM-dd"
-           placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
+        <el-col :span="3" :xs="7">
+          <el-date-picker
+            v-model="endTime"
+            type="date"
+             size="small"
+            format="yyyy-MM-dd"
+            value-format="yyyy-MM-dd"
+            placeholder="选择结束日期">
+          </el-date-picker>
         </el-col>
-        <el-col :span="6" :xs="6">
+        <el-col :span="3">
           <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
-        </el-col>
-        <el-col :span="2" :xs="6">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="sysComicsStatistics()" plain>同步</el-button>
         </el-col>
       </el-row>
       <!-- 表格 -->
@@ -35,7 +40,7 @@
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
-        @selection-change="selectionRowsChange" >
+          >
         <el-table-column
           prop="date"
           label="日期">
@@ -73,11 +78,6 @@
           label="成功率">
           <template slot-scope="scope">{{ scope.row.successRate }}%</template>
         </el-table-column>
-<!--       <el-table-column-->
-<!--         label="成功率"-->
-<!--         prop="successRate"-->
-<!--       >-->
-<!--      </el-table-column>-->
         <el-table-column
           label="AP"
           prop="ap"
@@ -105,7 +105,7 @@
           </div>
         </el-col>
       </el-row>
-        
+
 
     </div>
 
@@ -128,10 +128,8 @@
         txtTwo:"",
         hedTitle:"",
         text:"",
-        form: {
-          date1:"",
-          date2:"",
-        },
+        startTime:'',
+        endTime:'',
         packageNo:'',
         currentPage1: 4,
         list: [ ],
@@ -150,45 +148,45 @@
     methods:{
       getSummaries(param) {
         const { columns, data } = param;
-          const sums = [];
-          columns.forEach((column, index) => {
-            if (index === 0) {
-              sums[index] = '合计';
-              return;
-            };
-            if(index===1){
-              sums[index]='';
-              return;
-            }
-           if(index===7){
-             sums[index]=((sums[3]/sums[2])*100).toFixed(2)+'%';
-             return;
-           }
-           if(index===8){
-             sums[index]=(sums[5]/sums[6]).toFixed(2);
-             return;
-           }
-            const values = data.map(item => Number(item[column.property]));
-            if (!values.every(value => isNaN(value))) {
-              sums[index] = values.reduce((prev, curr) => {
-                const value = Number(curr);
-                if (!isNaN(value)) {
-                  return prev + curr;
-                } else {
-                  return prev;
-                }
-              }, 0);
-              sums[index] += '';
-            } else {
-              sums[index] = 'N/A';
-            }
-          });
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '合计';
+            return;
+          };
+          if(index===1){
+            sums[index]='';
+            return;
+          }
+          if(index===7){
+            sums[index]=((sums[3]/sums[2])*100).toFixed(2)+'%';
+            return;
+          }
+          if(index===8){
+            sums[index]=(sums[5]/sums[6]).toFixed(2);
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += '';
+          } else {
+            sums[index] = 'N/A';
+          }
+        });
         return sums;
       },
       onSubmit() {
         console.log('submit!');
       },
-     handleSizeChange(val) {
+      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
         this.present=val;
         this.getData();
@@ -198,47 +196,10 @@
         this.number=val;
         this.getData();
       },
-      //全选
-      toggleSelect(rows) {
-        console.log(rows);
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row);
-          });
-        } else {
-          this.$refs.multipleTable.clearSelection();
-        }
-      },
-      //获取全选的key
-      selectionRowsChange(val){
-        console.log(val);
-      },
-      //删除当前一行
-      deleteRow(index, rows) {
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
-      },
-      //删除选中数据
-      qxDete(){
-        console.log("删除选中数据");
-      },
       //   搜索
       seekdithc(){
-        console.log(this.form.date1 + this.form.date2);
-        this.getData();
+        console.log(this.startTime);
+        // this.getData();
       },
       sysComicsStatistics(){
         let _this = this;
@@ -255,13 +216,13 @@
         let _this = this;
         let api = window.g.simplehistorystatistics;
         const date ={
-            params:{
-                current:this.number,
-                size:this.present,
-              packageNo:this.packageNo,
-              startTime:this.form.date1,
-              endTime:this.form.date2,
-            }
+          params:{
+            current:this.number,
+            size:this.present,
+            packageNo:this.packageNo,
+            startTime:this.startTime,
+            endTime:this.endTime,
+          }
         }
         Axios.get(api,date).then(function(res){
           let data = res.data.records;
@@ -293,7 +254,7 @@
       },
     },
     mounted(){
-      this.getData();
+      // this.getData();
       this.txtTwo = storage.get("linktxt")
     }
   }
@@ -314,5 +275,7 @@
     text-align left
   .Pagination
     margin-top 1%
-
+.el-date-editor.el-input{
+    width:100%;
+}
 </style>
