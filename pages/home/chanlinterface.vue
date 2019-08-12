@@ -126,17 +126,19 @@
                 <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
             <el-col :span="10" :xs="24">
+
                 <div class="block">
                     <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
-                        :current-page="currentPage1"
+                        :current-page="current"
                         :page-sizes="[10, 20, 30, 40]"
                         :page-size="10"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="100">
+                        :total="branches">
                     </el-pagination>
                 </div>
+
             </el-col>
         </el-row>
       </div>
@@ -165,6 +167,8 @@ export default {
               condition:"",
             },
             currentPage1: 4,
+            current: 0,
+            branches:0,
             list: [
               // {
               //   date: '2016-05-02',
@@ -193,9 +197,13 @@ export default {
       },
      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+        this.atnumber = val;
+        this.conventionlist();
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.atcurrent = val;
+        this.conventionlist();
       },
         //全选
       toggleSelect(rows) {
@@ -245,6 +253,7 @@ export default {
         Axios.get(url,_param).then(function (value) {
           console.log(value);
           _this.list = value.data.records;
+          this.branches = res.data.total;
         }).catch(function (res) {
           console.log(res);
         })

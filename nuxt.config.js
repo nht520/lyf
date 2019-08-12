@@ -47,6 +47,7 @@ export default {
     '@/plugins/storage',
     '@/plugins/v-touch',
     '@/plugins/echarts',
+    '@/plugins/vant',
   ],
 
   /*

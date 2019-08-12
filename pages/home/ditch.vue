@@ -106,6 +106,7 @@
                 <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
             <el-col :span="10"  :xs="24">
+
                 <div class="block">
                     <el-pagination
                         @size-change="handleSizeChange"
@@ -117,6 +118,7 @@
                         :total="branches">
                     </el-pagination>
                 </div>
+
             </el-col>
         </el-row>
       </div>
