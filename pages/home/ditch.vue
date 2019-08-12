@@ -98,12 +98,26 @@
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-            <el-col :span="7" :xs="24">
-                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                <el-button size="mini" @click="frozenOrThaw(1)" icon="el-icon-lock">冻结</el-button>
-                <el-button size="mini" @click="frozenOrThaw(0)" icon="el-icon-unlock">解冻</el-button>
-                <el-button size="mini" icon="el-icon-brush">密码初始</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
+            <el-col :span="8" :xs="24">
+                      <el-row class="Pagination">
+                        <el-col :span="5" :xs="6">
+                            <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
+                        </el-col>
+                        <el-col :span="5" :xs="6">
+                            <el-button size="mini" @click="frozenOrThaw(1)" icon="el-icon-lock">冻 结</el-button>
+                        </el-col>
+                        <el-col :span="5" :xs="7">
+                            <el-button size="mini" @click="frozenOrThaw(0)" icon="el-icon-unlock">解 冻</el-button>    
+                        </el-col>
+                        <el-col :span="5" :xs="7">
+                            <el-button size="mini" icon="el-icon-brush">密码初始</el-button>
+                        </el-col>
+                        <el-col :span="4" :xs="6">
+                            <el-button type="danger" size="mini" icon="el-icon-delete" @click="qxDete" plain>删除</el-button>
+                        </el-col>
+                      </el-row>
+                
+                <!-- < -->
             </el-col>
             <el-col :span="10"  :xs="24">
 

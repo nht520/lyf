@@ -93,7 +93,7 @@
             <el-table-column
             fixed="right"
             align="right"
-             width="170"
+            width="190"
             >
             <template slot="header">
               <nuxt-link to="/home/addconvention">
@@ -108,6 +108,7 @@
                 <el-button
                 size="mini"
                 type="danger"
+                icon="el-icon-delete"
                 @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
             </template>
             </el-table-column>
@@ -118,7 +119,7 @@
                 <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
                 <el-button size="mini" icon="el-icon-lock">关闭</el-button>
                 <el-button size="mini" icon="el-icon-unlock">开启</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
+                <el-button type="danger"  icon="el-icon-delete"  size="mini" @click="qxDete" plain>删除</el-button>
             </el-col>
             <el-col :span="10" :xs="24">
                 <div class="block">

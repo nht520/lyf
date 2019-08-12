@@ -99,7 +99,7 @@
             >
             </el-table-column>
             <el-table-column
-            width="170px"
+            width="190px"
             fixed="right"
             align="right">
             <template slot="header">
@@ -115,6 +115,7 @@
                 <el-button
                 size="mini"
                 type="danger"
+                icon="el-icon-delete"
                 @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
             </template>
             </el-table-column>
@@ -123,7 +124,7 @@
         <el-row class="Pagination">
             <el-col :span="5" :xs="24">
                 <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" plain>删 除</el-button>
+                <el-button type="danger" size="mini" icon="el-icon-delete" @click="qxDete" plain>删 除</el-button>
             </el-col>
             <el-col :span="10" :xs="24">
 
