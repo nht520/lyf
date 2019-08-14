@@ -74,10 +74,10 @@
           width="150"
           >
           <template slot-scope="scope">
-            <el-button @click="vipFree(scope.row,true)" v-if="scope.row.body.vipFree==false" type="text" size="mini">vip免费</el-button>
-            <el-button @click="vipFree(scope.row,false)" v-if="scope.row.body.vipFree" type="text" size="mini">vip收费</el-button>
+            <el-button @click="vipFree(scope.row,true)" v-if="scope.row.body.vipFree==false" type="text" size="mini" style="color: #00bd07;">vip免费</el-button>
+            <el-button @click="vipFree(scope.row,false)" v-if="scope.row.body.vipFree" type="text" size="mini" style="color: #f00;">vip收费</el-button>
             <el-button @click="openDiagnosis(scope.row)" type="text" size="mini">操作</el-button>
-            <el-button type="text" @click="deleteBook(scope.row)" size="mini" >移除</el-button>
+            <el-button type="text" @click="deleteBook(scope.row)" size="mini" style="color:#F00">移除</el-button>
           </template>
         </el-table-column>
       </el-table>

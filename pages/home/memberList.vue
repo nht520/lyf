@@ -104,7 +104,6 @@
         </el-col>
       </el-row>
     </div>
-
     <!--    弹出层-->
     <el-dialog
       title="提示"
@@ -371,6 +370,8 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
+  .channe .el-col-17
+    text-align left 
 .el-date-editor.el-input{
     width:100%;
 }

@@ -5,13 +5,13 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3" :xs="12">
+        <el-col :span="2" :xs="12">
           <el-input v-model="memberLoginName"   size="mini" placeholder="请输入会员登录名"></el-input>
         </el-col>
-        <el-col :span="3" :xs="12">
+        <el-col :span="2" :xs="12">
           <el-input v-model="memberPhone"  size="mini" placeholder="会员手机号"></el-input>
         </el-col>
-        <el-col :span="3" :xs="12">
+        <el-col :span="2" :xs="12">
           <el-date-picker
             v-model="startTime"
             size="mini"
@@ -21,7 +21,7 @@
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="3" :xs="12">
+        <el-col :span="2" :xs="12">
           <el-date-picker
             v-model="endTime"
             size="mini"
