@@ -5,23 +5,23 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
-            <el-col :span="2">
-                <el-input v-model="form.name" placeholder="请输入查询内容"  size="small"></el-input>
+            <el-col :span="2" :xs="4">
+                <el-input v-model="form.name" placeholder="请输入查询内容"  size="mini"></el-input>
             </el-col>
-            <el-col :span="2">
-                <el-select  v-model="form.region"  size="small" placeholder="查询类容">
+            <el-col :span="2" :xs="4">
+                <el-select  v-model="form.region"  size="mini" placeholder="查询类容">
+                    <el-option label="111" value="shanghai"></el-option>
+                    <el-option label="222" value="beijing"></el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="2" :xs="4">
+                <el-select v-model="form.condition"  size="mini" placeholder="状态" >
                     <el-option label="111" value="shanghai"></el-option>
                     <el-option label="222" value="beijing"></el-option>
                 </el-select>
             </el-col>
             <el-col :span="2">
-                <el-select v-model="form.condition"  size="small" placeholder="状态" >
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+               <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
         </el-row>
         <!-- 表格 -->
@@ -49,7 +49,7 @@
             width="100">
                 <template slot-scope="scope">
                     <div slot="reference" class="name-wrapper">
-                        <el-input v-model="form.name"  size="small"></el-input>
+                        <el-input v-model="form.name"  size="mini"></el-input>
                     </div>
                 </template>
             </el-table-column>
@@ -59,7 +59,7 @@
             >
             </el-table-column>
             <el-table-column
-            width="170px"
+            width="190px"
             fixed="right"
             align="right">
             <template slot="header">
@@ -75,27 +75,28 @@
                 <el-button
                 size="mini"
                 type="danger"
+                icon="el-icon-delete"
                 @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
             </template>
             </el-table-column>
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-            <el-col :span="5" >
+            <el-col :span="5" :xs="24">
                 <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
                 <el-button  size="mini">保存权重</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
+                <el-button type="danger" size="mini" icon="el-icon-delete" @click="qxDete" plain>删除</el-button>
             </el-col>
-            <el-col :span="10" :offset="7">
+            <el-col :span="10"  :xs="24">
                 <div class="block">
                     <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
-                        :current-page="currentPage1"
+                        :current-page="current"
                         :page-sizes="[10, 20, 30, 40]"
                         :page-size="10"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="100">
+                        :total="branches">
                     </el-pagination>
                 </div>
             </el-col>
@@ -126,6 +127,8 @@ export default {
               condition:"",
             },
             currentPage1: 4,
+            current: 0,
+            branches:0,
             list: [{
                 date: '2016-05-02',
                 name: '王小虎',
@@ -152,9 +155,13 @@ export default {
       },
      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+        this.atnumber = val;
+        this.conventionlist();
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.atcurrent = val;
+        this.conventionlist();
       },
         //全选
       toggleSelect(rows) {

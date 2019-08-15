@@ -3,59 +3,63 @@
       <!-- 面包屑 -->
       <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
       <!-- 内容 -->
-      <el-form ref="form" :model="form" label-width="150px">
-        <el-form-item label="*扣量开关">
-          <el-switch
-            v-model="form.bucklone"
-            active-color="#13ce66"
-            inactive-color="#dddddd">
-          </el-switch>
-        </el-form-item>
-        <el-form-item label="*扣量基数">
-          <el-input v-model="form.buckleSwitch"></el-input>
-        </el-form-item>
-        <el-form-item label="*扣量比列">
-          <el-input v-model="form.deductionBase"></el-input>
-        </el-form-item>
-        <el-form-item label="*金额区间">
-          <el-input v-model="form.deductionRatio"></el-input>
-        </el-form-item>
-        <el-form-item label="*图片域名">
-          <el-input v-model="form.amountInterval"></el-input>
-        </el-form-item>
-        <el-form-item label="*媒体域名">
-          <el-input v-model="form.imageDomain"></el-input>
-        </el-form-item>
-        <el-form-item label="*限制转移包（APP）">
-          <el-input v-model="form.videoDomain"></el-input>
-        </el-form-item>
-        <el-form-item label="*闲置转移包（h5）">
-          <el-input v-model="form.transferApp"></el-input>
-        </el-form-item>
-        <el-form-item label="*落地页模版">
-          <el-input v-model="form.transferWeb"></el-input>
-        </el-form-item>
-        <el-form-item label="*APK下载模版">
-          <el-input v-model="form.landingTemplate"></el-input>
-        </el-form-item>
-        <el-form-item label="*H5网页模版">
-          <el-input v-model="form.templateApk"></el-input>
-        </el-form-item>
-        <el-form-item label="*包升级开关">
-          <el-switch
-            v-model="form.buckltwo"
-            active-color="#13ce66"
-            inactive-color="#dddddd">
-          </el-switch>
-        </el-form-item>
-        <el-form-item label="*升级包签名">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onSubmit" plain>立即创建</el-button>
-          <el-button>取消</el-button>
-        </el-form-item>
-      </el-form>
+      <el-row :gutter="10">
+        <el-col :xs="24" :sm="12" >
+           <el-form ref="form" :model="form" label-width="150px">
+              <el-form-item label="*扣量开关">
+                <el-switch
+                  v-model="form.bucklone"
+                  active-color="#13ce66"
+                  inactive-color="#dddddd">
+                </el-switch>
+              </el-form-item>
+              <el-form-item label="*扣量基数">
+                <el-input v-model="form.buckleSwitch"></el-input>
+              </el-form-item>
+              <el-form-item label="*扣量比列">
+                <el-input v-model="form.deductionBase"></el-input>
+              </el-form-item>
+              <el-form-item label="*金额区间">
+                <el-input v-model="form.deductionRatio"></el-input>
+              </el-form-item>
+              <el-form-item label="*图片域名">
+                <el-input v-model="form.amountInterval"></el-input>
+              </el-form-item>
+              <el-form-item label="*媒体域名">
+                <el-input v-model="form.imageDomain"></el-input>
+              </el-form-item>
+              <el-form-item label="*限制转移包（APP）">
+                <el-input v-model="form.videoDomain"></el-input>
+              </el-form-item>
+              <el-form-item label="*闲置转移包（h5）">
+                <el-input v-model="form.transferApp"></el-input>
+              </el-form-item>
+              <el-form-item label="*落地页模版">
+                <el-input v-model="form.transferWeb"></el-input>
+              </el-form-item>
+              <el-form-item label="*APK下载模版">
+                <el-input v-model="form.landingTemplate"></el-input>
+              </el-form-item>
+              <el-form-item label="*H5网页模版">
+                <el-input v-model="form.templateApk"></el-input>
+              </el-form-item>
+              <el-form-item label="*包升级开关">
+                <el-switch
+                  v-model="form.buckltwo"
+                  active-color="#13ce66"
+                  inactive-color="#dddddd">
+                </el-switch>
+              </el-form-item>
+              <el-form-item label="*升级包签名">
+                <el-input v-model="form.name"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="onSubmit" size="mini" plain>立即创建</el-button>
+                <el-button size="mini">取消</el-button>
+              </el-form-item>
+            </el-form>
+        </el-col>
+      </el-row>
     </div>
 </template>
 
@@ -174,6 +178,6 @@ export default {
     min-height 800px
   .leading .el-form
     margin 2% 4%
-    width 50%
+    // width 50%
     text-align left  
 </style>

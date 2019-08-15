@@ -5,14 +5,14 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3">
-          <el-input v-model="memberLoginName" placeholder="请输入会员登录名"></el-input>
+        <el-col :span="3" :xs="8">
+          <el-input v-model="memberLoginName" size="mini" placeholder="请输入会员登录名"></el-input>
         </el-col>
-        <el-col :span="3">
-          <el-input v-model="memberPhone" placeholder="会员手机号"></el-input>
+        <el-col :span="3" :xs="8">
+          <el-input v-model="memberPhone" size="mini" placeholder="会员手机号"></el-input>
         </el-col>
         <el-col :span="2">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
       </el-row>
 
@@ -75,10 +75,10 @@
         <el-table-column
           fixed="right"
           label="操作"
-          width="100">
+          width="50">
           <template slot-scope="scope">
-            <el-button @click="openDiagnosis(scope.row)" type="text" size="small">操作</el-button>
-<!--            <el-button type="text" @click="deleteBook(scope.row)" size="small">移除</el-button>-->
+            <el-button @click="openDiagnosis(scope.row)" type="text" size="mini">操作</el-button>
+<!--            <el-button type="text" @click="deleteBook(scope.row)" size="mini">移除</el-button>-->
           </template>
         </el-table-column>
       </el-table>
@@ -89,7 +89,7 @@
           <el-button  size="mini">保存权重</el-button>
           <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
         </el-col>
-        <el-col :span="14" :offset="10">
+        <el-col :span="14" >
           <div class="block">
             <el-pagination
               @size-change="handleSizeChange"
@@ -104,43 +104,42 @@
         </el-col>
       </el-row>
     </div>
-
     <!--    弹出层-->
     <el-dialog
       title="提示"
       :visible.sync="dialogVisible"
-      width="30%"
+      width="70%"
       :before-close="handleClose">
       <div class="channe">
           <el-row :gutter="20">
-            <el-col :span="5" :offset="1">
+            <el-col :span="5" :offset="1" :xs="7">
               会员手机号:
             </el-col>
-            <el-col :span="17">
+            <el-col :span="17" :xs="15">
               <el-input v-model="memberPhone" placeholder="请输入排序"></el-input>
             </el-col>
           </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="7">
             会员登录名:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="15">
             <el-input v-model="memberLoginName" placeholder="请输入排序"></el-input>
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="7">
             会员密码:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="15">
             <el-input v-model="memberPass" placeholder="请输入排序"></el-input>
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="7">
             是否会员:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="15">
             <el-select v-model="isVip" placeholder="请选择">
               <el-option
                 v-for="item in options"
@@ -152,10 +151,10 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="7">
             会员开始时间:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="15">
             <el-date-picker
               v-model="startTime"
               type="datetime"
@@ -166,10 +165,10 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="7">
             会员结束时间:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="15">
             <el-date-picker
               v-model="endTime"
               type="datetime"
@@ -180,10 +179,10 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="7">
             会员书币:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="15">
             <el-input v-model="memberGold" placeholder="请输入会员书币"></el-input>
           </el-col>
         </el-row>
@@ -371,5 +370,10 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
+  .channe .el-col-17
+    text-align left 
+.el-date-editor.el-input{
+    width:100%;
+}
 </style>
 

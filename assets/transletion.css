@@ -56,6 +56,9 @@ body {
   .tableclass .el-table__body-wrapper is-scrolling-none .el-table__empty-block .el-table__empty-text{
      display: none !important;
    }
+   .el-date-editor.el-input{
+    width:100%;
+   }
   /*动画2  */
   /* .transleft-enter-active{
     transition: all 1s ease;

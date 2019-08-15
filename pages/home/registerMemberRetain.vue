@@ -5,21 +5,23 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search"  :gutter="15">
-        <el-col :span="3">
-          <el-input v-model="packageNo" placeholder="包编号"></el-input>
+        <el-col :span="3" :xs="5">
+          <el-input v-model="packageNo" size="mini" placeholder="包编号"></el-input>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="3" :xs="6">
           <el-date-picker
             v-model="startTime"
+            size="mini"
             type="date"
             format="yyyy-MM-dd"
             value-format="yyyy-MM-dd"
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="3" :xs="6">
           <el-date-picker
             v-model="endTime"
+            size="mini"
             type="date"
             format="yyyy-MM-dd"
             value-format="yyyy-MM-dd"
@@ -27,7 +29,7 @@
           </el-date-picker>
         </el-col>
         <el-col :span="3">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
         </el-col>
       </el-row>
       <!-- 表格 -->
@@ -158,6 +160,7 @@
           params:{
             startTime:this.startTime,
             endTime:this.endTime,
+
           }
         }
         if(this.packageNo!=''){
@@ -272,5 +275,7 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
+  .el-date-editor.el-input
+   width:100%;
 </style>
 

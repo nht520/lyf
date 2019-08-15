@@ -124,7 +124,7 @@ export default {
               },
               {
                 id:4,
-                icon:"assessment",
+                icon:"el-icon-s-opportunity",
                 title:"漫画资源",
                 twolist:[
                   {
@@ -137,7 +137,7 @@ export default {
               },
               {
                 id:5,
-                icon:"assessment",
+                icon:"el-icon-s-finance",
                 title:"会员管理",
                 twolist:[
                   {
@@ -163,7 +163,7 @@ export default {
               },
               {
                 id:7,
-                icon:"shopping_basket",
+                icon:"el-icon-s-tools",
                 title:"设置",
                 twolist:[
                   {
@@ -326,6 +326,8 @@ export default {
  box-shadow 0 2px 4px -1px rgba(199, 203, 255, 0.2), 0 4px 5px 0 rgba(221, 228, 255, 0.14), 0 1px 10px 0 rgba(206, 207, 255, 0.12)
 .v-btn .v-btn__content .v-icon
  color  #409EFF !important
+.theme--light.v-icon
+ font-size: 1.2rem;
 .hidden-sm-and-down
  color #303133
 .hidden-sm

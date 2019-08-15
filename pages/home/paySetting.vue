@@ -45,7 +45,6 @@
         >
         </el-table-column>
         <el-table-column
-          fixed="right"
           label="是否vip充值"
         >
           <template slot-scope="scope">
@@ -77,30 +76,30 @@
     <el-dialog
       title="提示"
       :visible.sync="dialogVisible"
-      width="30%"
+      width="70%"
       :before-close="handleClose">
       <div class="channe">
         <el-row :gutter="20">
           <el-row :gutter="20">
-            <el-col :span="5" :offset="1">
+            <el-col :span="5" :offset="1" :xs="8">
               金额:
             </el-col>
-            <el-col :span="17">
+            <el-col :span="17" :xs="14">
               <el-input v-model="payAmount" placeholder="请输入充值金额"></el-input>
             </el-col>
           </el-row>
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="8">
             充值书币:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="14">
             <el-input v-model="rechargeMoney" placeholder="请输入充值书币"></el-input>
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5" :offset="1" :xs="8"> 
             送书币:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="14">
             <el-input v-model="bookMoney" placeholder="请输入充值送书币"></el-input>
           </el-col>
         </el-row>
@@ -260,5 +259,7 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
+  .channe .el-col-5
+    text-align right  
 </style>
 

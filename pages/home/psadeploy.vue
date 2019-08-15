@@ -11,8 +11,8 @@
           <el-input type="textarea" v-model="form.desc"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit" plain>保存</el-button>
-          <el-button>取消</el-button>
+          <el-button type="primary" @click="onSubmit" size="mini" plain>保存</el-button>
+          <el-button size="mini">取消</el-button>
         </el-form-item>
       </el-form>
       <!--  -->
@@ -66,6 +66,6 @@ export default {
     min-height 800px
   .channel .el-form
     margin 2% 4%
-    width 50%
+    // width 50%
     text-align left   
 </style>

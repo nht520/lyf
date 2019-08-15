@@ -9,6 +9,36 @@
                 <el-input v-model="form.region" placeholder="通道名称"  size="small"></el-input>
             </el-col>
             <el-col :span="2">
+                <el-select  v-model="form.region"  size="small" placeholder="通道服务商">
+                    <el-option label="111" value="shanghai"></el-option>
+                    <el-option label="222" value="beijing"></el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="2">
+                <el-select v-model="form.condition"  size="small" placeholder="支付类型" >
+                    <el-option label="111" value="shanghai"></el-option>
+                    <el-option label="222" value="beijing"></el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="2">
+                <el-select v-model="form.condition"  size="small" placeholder="通道模式" >
+                    <el-option label="111" value="shanghai"></el-option>
+                    <el-option label="222" value="beijing"></el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="2">
+                <el-select v-model="form.condition"  size="small" placeholder="限量" >
+                    <el-option label="111" value="shanghai"></el-option>
+                    <el-option label="222" value="beijing"></el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="2">
+                <el-select v-model="form.condition"  size="small" placeholder="开启" >
+                    <el-option label="111" value="shanghai"></el-option>
+                    <el-option label="222" value="beijing"></el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="2">
                <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
         </el-row>
@@ -27,67 +57,87 @@
             prop="payName"
             label="通道名称">
             </el-table-column>
-
             <el-table-column
-            prop="fixedAmount"
-            label="金额">
+            label="服务商"
+            prop="payProvider"
+            >
+            </el-table-column>
+            <el-table-column
+            prop="payType"
+            label="支付类型">
+            </el-table-column>
+            <el-table-column
+            label="通道模式"
+            prop="payModel"
+            >
+            </el-table-column>
+            <el-table-column
+            prop="payAttribute"
+            label="通道属性">
+            </el-table-column>
+            <el-table-column
+            label="通道费率"
+            prop="payRate"
+            >
+            </el-table-column>
+            <el-table-column
+            prop="singleQuota"
+            label="单笔限额">
+            </el-table-column>
+            <el-table-column
+            label="限量"
+            prop="payLimit"
+            >
+            </el-table-column>
+            <el-table-column
+            prop="payPriority"
+            label="优先级">
             </el-table-column>
             <el-table-column
             label="状态"
+            prop="payStatus"
             >
-              <template slot-scope="scope" >
-                <div v-if="scope.row.payStatus==0">正常</div>
-                <div v-if="scope.row.payStatus==1">禁用</div>
-              </template>
             </el-table-column>
             <el-table-column
             width="170px"
-            label="操作"
             fixed="right"
             align="right">
-<!--            <template slot="header">-->
-<!--              <nuxt-link to="/home/addchanlinterface">-->
-<!--                <el-button type="primary" icon="el-icon-plus" size="mini" plain>添加</el-button>-->
-<!--              </nuxt-link>-->
-<!--            </template>-->
+            <template slot="header">
+              <nuxt-link to="/home/addchanlinterface">
+                <el-button type="primary" icon="el-icon-plus" size="mini" plain>添加</el-button>
+              </nuxt-link>
+            </template>
             <template slot-scope="scope" >
                 <el-button
                     size="mini"
                     icon="el-icon-edit"
-                    v-if="scope.row.payStatus==0"
-                >禁用</el-button>
-              <el-button
+                >编辑</el-button>
+                <el-button
                 size="mini"
-                icon="el-icon-edit"
-                v-if="scope.row.payStatus==1"
-              >启用</el-button>
-<!--                <el-button-->
-<!--                size="mini"-->
-<!--                type="danger"-->
-<!--                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>-->
+                type="danger"
+                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
             </template>
             </el-table-column>
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-          <el-col >
-            <!-- <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-            <el-button  size="mini">保存权重</el-button>
-            <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
-          </el-col>
-          <el-col :span="14" :offset="10">
-            <div class="block">
-              <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="current"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="10"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="brtotal">
-              </el-pagination>
-            </div>
-          </el-col>
+            <el-col :span="5" >
+                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
+                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
+            </el-col>
+            <el-col :span="10" :offset="7">
+                <div class="block">
+                    <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage1"
+                        :page-sizes="[10, 20, 30, 40]"
+                        :page-size="10"
+                        layout="total, sizes, prev, pager, next, jumper"
+                        :total="100">
+                    </el-pagination>
+                </div>
+            </el-col>
         </el-row>
       </div>
     </div>
@@ -115,10 +165,26 @@ export default {
               condition:"",
             },
             currentPage1: 4,
-          current: 0,
-          brtotal:0,
-            list: [],
-          search: ''
+            list: [
+              // {
+              //   date: '2016-05-02',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1518 弄'
+              //   }, {
+              //   date: '2016-05-04',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1517 弄'
+              //   }, {
+              //   date: '2016-05-01',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1519 弄'
+              //   }, {
+              //   date: '2016-05-03',
+              //   name: '王小虎',
+              //   address: '上海市普陀区金沙江路 1516 弄'
+              //   }
+                ],
+                search: ''
         }
     },
     methods:{
@@ -179,8 +245,6 @@ export default {
         Axios.get(url,_param).then(function (value) {
           console.log(value);
           _this.list = value.data.records;
-          _this.brtotal = value.data.total;
-          _this.current = value.data.current;
         }).catch(function (res) {
           console.log(res);
         })

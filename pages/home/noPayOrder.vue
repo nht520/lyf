@@ -5,24 +5,26 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3">
-          <el-input v-model="memberLoginName" placeholder="请输入会员登录名"></el-input>
+        <el-col :span="2" :xs="12">
+          <el-input v-model="memberLoginName" size="mini" placeholder="请输入会员登录名"></el-input>
         </el-col>
-        <el-col :span="3">
-          <el-input v-model="memberPhone" placeholder="会员手机号"></el-input>
+        <el-col :span="2" :xs="12">
+          <el-input v-model="memberPhone" size="mini" placeholder="会员手机号"></el-input>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="2" :xs="9">
           <el-date-picker
             v-model="startTime"
             type="datetime"
+            size="mini"
             format="yyyy-MM-dd HH:mm:ss"
             value-format="yyyy-MM-dd HH:mm:ss"
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="2" :xs="9">
           <el-date-picker
             v-model="endTime"
+            size="mini"
             type="datetime"
             format="yyyy-MM-dd HH:mm:ss"
             value-format="yyyy-MM-dd HH:mm:ss"
@@ -30,7 +32,7 @@
           </el-date-picker>
         </el-col>
         <el-col :span="2">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
       </el-row>
 
@@ -83,7 +85,7 @@
           <el-button  size="mini">保存权重</el-button>
           <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
         </el-col>
-        <el-col :span="14" :offset="10">
+        <el-col :span="14" :xs="24">
           <div class="block">
             <el-pagination
               @size-change="handleSizeChange"
@@ -221,5 +223,8 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
+.el-date-editor.el-input{
+    width:100%;
+}
 </style>
 

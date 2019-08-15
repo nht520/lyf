@@ -2,13 +2,13 @@
   <div>
     <v-app id="inspire">
       <v-navigation-drawer
-        v-model="drawer"
-        :clipped="$vuetify.breakpoint.lgAndUp"
-        fixed
-        app
-      >
-      <!-- 左侧导航 -->
-      <Navmenu></Navmenu>
+          v-model="drawer"
+          :clipped="$vuetify.breakpoint.lgAndUp"
+          fixed
+          app
+        >
+        <!-- 左侧导航 -->
+        <Navmenu></Navmenu>
       </v-navigation-drawer>
       <!-- 头部 -->
       <v-toolbar

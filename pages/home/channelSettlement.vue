@@ -5,20 +5,20 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3">
+        <el-col :span="2" :xs="9">
           <el-date-picker type="date"
                           format="yyyy-MM-dd"
                           value-format="yyyy-MM-dd"
-                          placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
+                          placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="mini"></el-date-picker>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="2"  :xs="9">
           <el-date-picker type="date"
                           format="yyyy-MM-dd"
                           value-format="yyyy-MM-dd"
-                          placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
+                          placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="mini"></el-date-picker>
         </el-col>
         <el-col :span="2">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
         </el-col>
       </el-row>
       <!-- 表格 -->
@@ -120,7 +120,7 @@
           <el-button  size="mini">保存权重</el-button>
           <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
         </el-col>
-        <el-col :span="14" :offset="10">
+        <el-col :span="14" >
           <div class="block">
             <el-pagination
               @size-change="handleSizeChange"
