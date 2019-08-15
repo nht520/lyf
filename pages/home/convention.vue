@@ -54,11 +54,11 @@
             prop="merchantLoginName"
             label="渠道账号">
             </el-table-column>
-            <el-table-column
-            label="产品类型"
-            prop="productType"
-            >
-            </el-table-column>
+<!--            <el-table-column-->
+<!--            label="产品类型"-->
+<!--            prop="productType"-->
+<!--            >-->
+<!--            </el-table-column>-->
             <el-table-column
             prop="deductionStatus"
             label="扣量状态">
@@ -72,15 +72,15 @@
             prop="deductionRatio"
             label="扣量比列">
             </el-table-column>
-            <el-table-column
-            label="一级渠道比例"
-            prop="primaryChannel"
-            >
-            </el-table-column>
-            <el-table-column
-            prop="twoChannel"
-            label="二级渠道比例">
-            </el-table-column>
+<!--            <el-table-column-->
+<!--            label="一级渠道比例"-->
+<!--            prop="primaryChannel"-->
+<!--            >-->
+<!--            </el-table-column>-->
+<!--            <el-table-column-->
+<!--            prop="twoChannel"-->
+<!--            label="二级渠道比例">-->
+<!--            </el-table-column>-->
             <el-table-column
             label="状态"
             prop="packageStatus"
@@ -105,21 +105,21 @@
                     size="mini"
                     icon="el-icon-edit"
                 >编辑</el-button>
-                <el-button
-                size="mini"
-                type="danger"
-                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
+<!--                <el-button-->
+<!--                size="mini"-->
+<!--                type="danger"-->
+<!--                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>-->
             </template>
             </el-table-column>
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-            <el-col :span="7" >
-                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                <el-button size="mini" icon="el-icon-lock">关闭</el-button>
-                <el-button size="mini" icon="el-icon-unlock">开启</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
-            </el-col>
+<!--            <el-col :span="7" >-->
+<!--                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>-->
+<!--                <el-button size="mini" icon="el-icon-lock">关闭</el-button>-->
+<!--                <el-button size="mini" icon="el-icon-unlock">开启</el-button>-->
+<!--                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>-->
+<!--            </el-col>-->
             <el-col :span="10" :offset="5">
                 <div class="block">
                     <el-pagination

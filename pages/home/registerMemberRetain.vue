@@ -27,7 +27,7 @@
           </el-date-picker>
         </el-col>
         <el-col :span="3">
-          <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="small" @click="getData()" plain>搜索</el-button>
         </el-col>
       </el-row>
       <!-- 表格 -->
@@ -158,7 +158,6 @@
           params:{
             startTime:this.startTime,
             endTime:this.endTime,
-
           }
         }
         if(this.packageNo!=''){

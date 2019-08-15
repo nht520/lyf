@@ -4,29 +4,23 @@
     <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
     <!-- 内容 -->
     <div class="conttab">
-      <el-row class="search"  :gutter="15">
+      <el-row class="search" :model="form" :gutter="15">
         <el-col :span="3">
           <el-input v-model="packageNo" placeholder="包编号"></el-input>
         </el-col>
         <el-col :span="3">
-          <el-date-picker
-            v-model="startTime"
-            type="datetime"
-            format="yyyy-MM-dd HH"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            placeholder="选择开始日期">
-          </el-date-picker>
+          <el-date-picker type="datetime"
+                          format="yyyy-MM-dd HH:00:00"
+                          value-format="yyyy-MM-dd HH:00:00"
+                          placeholder="选择日期" v-model="startTime" style="width: 100%;" ></el-date-picker>
         </el-col>
         <el-col :span="3">
-          <el-date-picker
-            v-model="endTime"
-            type="date"
-            format="yyyy-MM-dd"
-            value-format="yyyy-MM-dd"
-            placeholder="选择结束日期">
-          </el-date-picker>
+          <el-date-picker type="datetime"
+                          format="yyyy-MM-dd"
+                          value-format="yyyy-MM-dd"
+                          placeholder="选择日期" v-model="endTime" style="width: 100%;" ></el-date-picker>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="2">
           <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
         </el-col>
       </el-row>
@@ -38,7 +32,7 @@
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
-          >
+         >
         <el-table-column
           prop="date"
           label="日期">
@@ -103,8 +97,6 @@
           </div>
         </el-col>
       </el-row>
-
-
     </div>
 
   </div>
@@ -129,6 +121,7 @@
         startTime:'',
         endTime:'',
         packageNo:'',
+        form:[],
         currentPage1: 4,
         list: [ ],
         requestCountTotal:0,

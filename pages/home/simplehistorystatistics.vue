@@ -46,6 +46,11 @@
         >
         </el-table-column>
         <el-table-column
+          label="uv"
+          prop="webUv"
+        >
+        </el-table-column>
+        <el-table-column
           label="请求量"
           prop="requestCount"
         >
@@ -245,6 +250,7 @@
         let api = window.g.simplehistorystatistics+'/sysComicsStatistics';
         Axios.post(api).then((res)=>{
           console.log(res);
+          alert("同步成功");
           this.getData();
         }).catch((err)=>{
           console.log(err);

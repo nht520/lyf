@@ -39,31 +39,31 @@ export default {
     data(){
         return{
             list:[
-                {
-                    id:0,
-                    icon:"settings",
-                    title:"常规设置",
-                    twolist:[
-                        {
-                            id:0,
-                            icon:"back",
-                            title:"系统设置",
-                            path:"/home/channel"
-                        },
-                        {
-                            id:1,
-                            icon:"backqww",
-                            title:"PSA配置",
-                            path:"/home/psadeploy"
-                        },
-                        {
-                            id:2,
-                            icon:"backqww",
-                            title:"前端配置",
-                            path:"/home/leading"
-                        }
-                    ]
-                },
+                // {
+                //     id:0,
+                //     icon:"settings",
+                //     title:"常规设置",
+                //     twolist:[
+                //         {
+                //             id:0,
+                //             icon:"back",
+                //             title:"系统设置",
+                //             path:"/home/channel"
+                //         },
+                //         {
+                //             id:1,
+                //             icon:"backqww",
+                //             title:"PSA配置",
+                //             path:"/home/psadeploy"
+                //         },
+                //         {
+                //             id:2,
+                //             icon:"backqww",
+                //             title:"前端配置",
+                //             path:"/home/leading"
+                //         }
+                //     ]
+                // },
                 {
                     id:1,
                     icon:"supervisor_account",
@@ -88,14 +88,14 @@ export default {
                     icon:"dns",
                     title:"通道管理",
                     twolist:[
+                        // {
+                        //     id:0,
+                        //     icon:"back",
+                        //     title:"通道类型",
+                        //     path:"/home/chanlintype"
+                        // },
                         {
                             id:0,
-                            icon:"back",
-                            title:"通道类型",
-                            path:"/home/chanlintype"
-                        },
-                        {
-                            id:1,
                             icon:"backqww",
                             title:"通道接口",
                             path:"/home/chanlinterface"
