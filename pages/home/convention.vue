@@ -5,27 +5,27 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
-            <el-col :span="2">
-                <el-select  v-model="form.region"  size="small" placeholder="查询类型">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
+<!--            <el-col :span="2">-->
+<!--                <el-select  v-model="form.region"  size="small" placeholder="查询类型">-->
+<!--                    <el-option label="111" value="shanghai"></el-option>-->
+<!--                    <el-option label="222" value="beijing"></el-option>-->
+<!--                </el-select>-->
+<!--            </el-col>-->
             <el-col :span="3">
-                <el-input v-model="form.name" placeholder="请输入查询内容"  size="small"></el-input>
+                <el-input v-model="form.packageNo" placeholder="请输入包编号"  size="small"></el-input>
             </el-col>
-            <el-col :span="2">
-                <el-select v-model="form.condition"  size="small" placeholder="状态" >
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-select v-model="form.condition"  size="small" placeholder="扣量" >
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
+<!--            <el-col :span="2">-->
+<!--                <el-select v-model="form.condition"  size="small" placeholder="状态" >-->
+<!--                    <el-option label="111" value="shanghai"></el-option>-->
+<!--                    <el-option label="222" value="beijing"></el-option>-->
+<!--                </el-select>-->
+<!--            </el-col>-->
+<!--            <el-col :span="2">-->
+<!--                <el-select v-model="form.condition"  size="small" placeholder="扣量" >-->
+<!--                    <el-option label="111" value="shanghai"></el-option>-->
+<!--                    <el-option label="222" value="beijing"></el-option>-->
+<!--                </el-select>-->
+<!--            </el-col>-->
             <el-col :span="2">
                <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
@@ -55,13 +55,12 @@
             label="渠道账号">
             </el-table-column>
             <el-table-column
-            label="产品类型"
-            prop="productType"
-            >
-            </el-table-column>
-            <el-table-column
-            prop="deductionStatus"
+
             label="扣量状态">
+              <template slot-scope="scope">
+                <div v-if="scope.row.deductionStatus==0">是</div>
+                <div v-if="scope.row.deductionStatus==1">否</div>
+              </template>
             </el-table-column>
             <el-table-column
             label="扣量基数"
@@ -72,24 +71,16 @@
             prop="deductionRatio"
             label="扣量比列">
             </el-table-column>
-            <el-table-column
-            label="一级渠道比例"
-            prop="primaryChannel"
-            >
-            </el-table-column>
-            <el-table-column
-            prop="twoChannel"
-            label="二级渠道比例">
-            </el-table-column>
-            <el-table-column
-            label="状态"
-            prop="packageStatus"
-            >
-            </el-table-column>
-            <el-table-column
-            prop="createDate"
-            label="时间">
-            </el-table-column>
+           <el-table-column
+             label="扣量时间"
+             prop="deductionTime"
+           >
+           </el-table-column>
+<!--            <el-table-column-->
+<!--            label="状态"-->
+<!--            prop="packageStatus"-->
+<!--            >-->
+<!--            </el-table-column>-->
             <el-table-column
             fixed="right"
             align="right"
@@ -104,22 +95,23 @@
                 <el-button
                     size="mini"
                     icon="el-icon-edit"
+                    @click="compile(scope.$index, scope.row)"
                 >编辑</el-button>
-                <el-button
-                size="mini"
-                type="danger"
-                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>
+<!--                <el-button-->
+<!--                size="mini"-->
+<!--                type="danger"-->
+<!--                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>-->
             </template>
             </el-table-column>
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-            <el-col :span="7" >
-                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                <el-button size="mini" icon="el-icon-lock">关闭</el-button>
-                <el-button size="mini" icon="el-icon-unlock">开启</el-button>
-                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>
-            </el-col>
+<!--            <el-col :span="7" >-->
+<!--                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>-->
+<!--                <el-button size="mini" icon="el-icon-lock">关闭</el-button>-->
+<!--                <el-button size="mini" icon="el-icon-unlock">开启</el-button>-->
+<!--                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>-->
+<!--            </el-col>-->
             <el-col :span="10" :offset="5">
                 <div class="block">
                     <el-pagination
@@ -158,6 +150,7 @@ export default {
               name: '',
               region:"",
               condition:"",
+              packageNo:'',
             },
            selectIds:[],//选中的ids
             current: 0,
@@ -203,6 +196,11 @@ export default {
           console.log(i);
         })
       },
+      // 编辑
+      compile(index, rows){
+        console.log(rows);
+        this.$router.push({path:'/home/addconvention',query: {id:rows.id}})
+      },
       //删除当前一行
       deleteRow(index, rows) {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -227,7 +225,8 @@ export default {
       },
      //   搜索
       seekdithc(){
-        console.log(this.form);
+        this.conventionlist();
+        // console.log(this.form);
       },
       //数据 
       conventionlist(){
@@ -237,6 +236,7 @@ export default {
             params:{
                 current:this.atcurrent,
                 size:this.atnumber,
+              packageNo:this.form.packageNo,
             }
         }
         Axios.get(api,date).then((res)=>{

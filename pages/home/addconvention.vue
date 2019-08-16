@@ -10,15 +10,10 @@
             <el-input v-model="form.packageNo"></el-input>
           </el-form-item>
           <el-form-item label="所属渠道">
-            <el-select v-model="form.merchantNo" placeholder="请选择活动区域">
-              <el-option v-for="(item,idx) in form.regionone" :key="idx" :label="item.spMerchantNickName" :value="idx" ></el-option>
+            <el-select v-model="form.merchantNo" filterable placeholder="请选择所属渠道">
+              <el-option v-for="(item,idx) in form.regionone" :key="idx" :label="item.spMerchantLoginName" :value="idx" ></el-option>
             </el-select>
           </el-form-item>
-  <!--        <el-form-item label="产品类型">-->
-  <!--          <el-select v-model="form.region" placeholder="请选择活动区域">-->
-  <!--            <el-option v-for="item in form.regionone" :key="item" :label="item" :value="item" ></el-option>-->
-  <!--          </el-select>-->
-  <!--        </el-form-item>-->
           <el-form-item label="*落地页地址">
             <el-input v-model="form.pageUrl"></el-input>
           </el-form-item>
@@ -33,47 +28,24 @@
           </el-form-item>
           <el-form-item label="扣量基数">
               <el-input placeholder="请输入内容" v-model="form.deductionBase">
-                  <template slot="append">单</template>
+                  <template slot="append">元</template>
               </el-input>
           </el-form-item>
           <el-form-item label="扣量比列">
               <el-input placeholder="请输入内容" v-model="form.deductionRatio">
-                  <template slot="append">:1</template>
-              </el-input>
-          </el-form-item>
-          <el-form-item label="安装扣量基数">
-              <el-input placeholder="请输入内容" v-model="form.installDeduction">
-                  <template slot="append">个</template>
-              </el-input>
-          </el-form-item>
-          <el-form-item label="安装扣量保留">
-              <el-input placeholder="请输入内容" v-model="form.installRetain">
                   <template slot="append">%</template>
               </el-input>
           </el-form-item>
-          <el-form-item label="*渠道支持">
-            <el-radio-group v-model="form.resource">
-              <el-radio label="全局"></el-radio>
-              <el-radio label="专用"></el-radio>
-              <el-radio label="全局专用混合"></el-radio>
-            </el-radio-group>
+          <el-form-item label="扣量时间">
+            <el-date-picker
+              v-model="form.deductionTime"
+              type="date"
+              format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd 00:00:00"
+              placeholder="选择日期">
+            </el-date-picker>
           </el-form-item>
-          <el-form-item label="一级渠道结算比列">
-              <el-input placeholder="请输入内容" v-model="form.primaryChannel">
-                  <template slot="append">%</template>
-              </el-input>
-          </el-form-item>
-          <el-form-item label="二级渠道结算比列">
-              <el-input placeholder="请输入内容" v-model="form.twoChannel">
-                  <template slot="append">%</template>
-              </el-input>
-          </el-form-item>
-          <el-form-item label="*状态">
-            <el-radio-group v-model="form.packageStatus">
-              <el-radio label="活动"></el-radio>
-              <el-radio label="闲置"></el-radio>
-            </el-radio-group>
-          </el-form-item>
+
           <el-form-item label="备注">
             <el-input type="textarea" v-model="form.packageRemark"></el-input>
           </el-form-item>
@@ -102,6 +74,7 @@ export default {
             txtone:"渠道管理",
             txtTwo:"添加包",
             form: {
+              id:'',
               name: '',
               region: '',
               regionone:[],
@@ -110,7 +83,9 @@ export default {
               delivery: false,
               type: [],
               resource: '',
-              desc: ''
+              desc: '',
+              deductionTime:'',
+              merchantNo:'',
             }
         }
     },
@@ -119,51 +94,74 @@ export default {
         console.log(this.form);
       },
       addconvention(){
-        const api = window.g.productPackage;
-        // console.log(this.form);
+        let api = window.g.productPackage;
         let _this = this;
         let _param = new URLSearchParams();
+        if(_this.form.id!=''){
+          api = api+'/update';
+          _param.append("id",_this.form.id);
+        }
         let merchant = _this.form.regionone[_this.form.merchantNo];
-        // console.log(merchant);
         let deductionStatus = _this.form.deductionStatus;
         if(deductionStatus=='是'){
           deductionStatus = 0;
         }else{
           deductionStatus=1;
         }
-        let packageStatus = _this.form.packageStatus;
-        if(packageStatus =='活动'){
-          packageStatus = 0;
-        }else{
-          packageStatus =1;
-        }
-        console.log(packageStatus);
+        let packageStatus = 0;
+        if(merchant){
+          _param.append("merchantId",merchant.id);
           _param.append("merchantNo",merchant.spMerchantNo);//渠道编号
-          _param.append("packageNo",_this.form.packageNo);//包编号
           _param.append("merchantLoginName",merchant.spMerchantLoginName);//渠道账号
-          _param.append("productType","");//产品类型
+
+        }
+          _param.append("packageNo",_this.form.packageNo);//包编号
           _param.append("deductionStatus",deductionStatus);//扣量状态
           _param.append("deductionBase",_this.form.deductionBase);//扣量基数
           _param.append("deductionRatio",_this.form.deductionRatio);//扣量比例
-          _param.append("primaryChannel",_this.form.primaryChannel);//一级渠道比例
-          _param.append("twoChannel",_this.form.twoChannel);//二级渠道比例
           _param.append("pageUrl",_this.form.pageUrl);//落地页地址
           _param.append("packageUrl",_this.form.packageUrl);//包下载地址
-          _param.append("installDeduction",_this.form.installDeduction);//安装扣量基数
-          _param.append("installRetain",_this.form.installRetain);//安装扣量保留
           _param.append("packageRemark",_this.form.packageRemark);//备注
           _param.append("packageStatus",packageStatus);//安装包状态
+        _param.append("kouTime",this.form.deductionTime);
         Axios.post(api,_param).then((res)=>{
           console.log(res);
           if(res.data.code === 200){
               this.$message({
-                  message: '添加成功',
+                  message: '操作成功',
                   type: 'success'
               });
             this.$router.push({path:'/home/convention'})
           }
         }).catch((err)=>{
           console.log(err)
+        })
+      },
+      getConventionById(){
+        const api = window.g.productPackage+'/findById';
+        let _param = {
+          params:{
+            id:this.form.id,
+          }
+        };
+        Axios.get(api,_param).then((res)=>{
+          console.log(res);
+          const data = res.data.data;
+          this.form.id = data.id;
+          this.form.merchantNo = data.merchantNo;
+          this.form.packageNo = data.packageNo;
+          this.form.deductionBase = data.deductionBase;
+          this.form.deductionRatio = data.deductionRatio;
+          this.form.pageUrl = data.pageUrl;
+          this.form.packageUrl = data.packageUrl;
+          let deductionStatus = data.deductionStatus; ;
+          if(deductionStatus==0){
+            _this.form.deductionStatus = '是';
+          }else{
+            _this.form.deductionStatus = '否';
+          }
+        }).catch((err)=>{
+          console.log(err);
         })
       },
       //得到包
@@ -174,7 +172,8 @@ export default {
           console.log(value);
           _this.form.regionone = value.data.data;
           console.log(_this.regionone);
-          
+          _this.getConventionById();
+
         }).catch(function(res){
           console.log(res);
         });
@@ -183,6 +182,11 @@ export default {
     mounted(){
       this.searchChannel();
       this.txtTwo = storage.get("linktxt")
+      const id = this.$route.query.id;
+      if (id != undefined) {
+        this.form.id = id;
+
+      }
     }
 }
 

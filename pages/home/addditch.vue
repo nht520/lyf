@@ -120,7 +120,11 @@
         _params.append("spRemark", this.form.eremark);
         Axios.post(api, _params).then((res) => {
           console.log(res);
-          alert("操作成功");
+          this.$message({
+            message: '操作成功',
+            type: 'success'
+          });
+          this.$router.push({path:'/home/ditch'})
         }).catch((err) => {
           console.log(err)
         })
