@@ -5,21 +5,21 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
+<!--            <el-col :span="2" :xs="6">-->
+<!--                <el-select  v-model="form.region"  size="mini" placeholder="查询类型">-->
+<!--                    <el-option label="111" value="shanghai"></el-option>-->
+<!--                    <el-option label="222" value="beijing"></el-option>-->
+<!--                </el-select>-->
+<!--            </el-col>-->
             <el-col :span="2" :xs="6">
-                <el-select  v-model="form.region"  size="mini" placeholder="查询类型">
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
+                <el-input v-model="form.name" placeholder="请输入登录名"  size="mini"></el-input>
             </el-col>
-            <el-col :span="2" :xs="6">
-                <el-input v-model="form.name" placeholder="请输入查询内容"  size="mini"></el-input>
-            </el-col>
-            <el-col :span="2" :xs="6">
-                <el-select v-model="form.condition"  size="mini" placeholder="状态" >
-                    <el-option label="111" value="shanghai"></el-option>
-                    <el-option label="222" value="beijing"></el-option>
-                </el-select>
-            </el-col>
+<!--            <el-col :span="2" :xs="6">-->
+<!--                <el-select v-model="form.condition"  size="mini" placeholder="状态" >-->
+<!--                    <el-option label="111" value="shanghai"></el-option>-->
+<!--                    <el-option label="222" value="beijing"></el-option>-->
+<!--                </el-select>-->
+<!--            </el-col>-->
             <el-col :span="2">
                <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
             </el-col>
@@ -35,48 +35,51 @@
             type="selection"
             width="55">
             </el-table-column>
-<!--            <el-table-column-->
-<!--            prop="id"-->
-<!--            label="编号">-->
-<!--            </el-table-column>-->
             <el-table-column
             label="登录名"
             prop="spMerchantLoginName"
             >
             </el-table-column>
+<!--            <el-table-column-->
+<!--            prop="spMerchantType"-->
+<!--            label="类型">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column-->
+<!--            label="昵称"-->
+<!--            prop="spMerchantNickName"-->
+<!--            >-->
+<!--            </el-table-column>-->
+<!--            <el-table-column-->
+<!--            prop="spMerchantMobile"-->
+<!--            label="电话">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column-->
+<!--            label="邮箱"-->
+<!--            prop="spMerchantEmail"-->
+<!--            >-->
+<!--            </el-table-column>-->
+<!--            <el-table-column-->
+<!--            prop="date"-->
+<!--            label="是否扣量">-->
+<!--            </el-table-column>-->
+<!--           <el-table-column-->
+<!--             prop="spCreateDate"-->
+<!--             label="扣量日期">-->
+<!--           </el-table-column>-->
+           <el-table-column
+             label="状态"
+             prop="spMerchantStatus"
+           >
+           </el-table-column>
             <el-table-column
-            prop="spMerchantType"
-            label="类型">
-            </el-table-column>
-            <el-table-column
-            label="昵称"
-            prop="spMerchantNickName"
-            >
-            </el-table-column>
-            <el-table-column
-            prop="spMerchantMobile"
-            label="电话">
-            </el-table-column>
-            <el-table-column
-            label="邮箱"
-            prop="spMerchantEmail"
-            >
-            </el-table-column>
-            <el-table-column
-            prop="date"
-            label="包量">
-            </el-table-column>
-            <el-table-column
-            label="状态"
+            label="备注"
             prop="spMerchantStatus"
             >
             </el-table-column>
-            <el-table-column
-            prop="spCreateDate"
-            label="注册">
-            </el-table-column>
+
             <el-table-column
             fixed="right"
+            label="操作"
             align="right">
             <template slot="header">
               <nuxt-link to="/home/addditch">
@@ -98,27 +101,25 @@
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-            <el-col :span="8" :xs="24">
-                      <el-row class="Pagination">
-                        <el-col :span="5" :xs="6">
-                            <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-                        </el-col>
-                        <el-col :span="5" :xs="6">
-                            <el-button size="mini" @click="frozenOrThaw(1)" icon="el-icon-lock">冻 结</el-button>
-                        </el-col>
-                        <el-col :span="5" :xs="7">
-                            <el-button size="mini" @click="frozenOrThaw(0)" icon="el-icon-unlock">解 冻</el-button>    
-                        </el-col>
-                        <el-col :span="5" :xs="7">
-                            <el-button size="mini" icon="el-icon-brush">密码初始</el-button>
-                        </el-col>
-                        <el-col :span="4" :xs="6">
-                            <el-button type="danger" size="mini" icon="el-icon-delete" @click="qxDete" plain>删除</el-button>
-                        </el-col>
-                      </el-row>
-                
-                <!-- < -->
-            </el-col>
+<!--            <el-col :span="8" :xs="24">-->
+<!--                      <el-row class="Pagination">-->
+<!--                        <el-col :span="5" :xs="6">-->
+<!--                            <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>-->
+<!--                        </el-col>-->
+<!--                        <el-col :span="5" :xs="6">-->
+<!--                            <el-button size="mini" @click="frozenOrThaw(1)" icon="el-icon-lock">冻 结</el-button>-->
+<!--                        </el-col>-->
+<!--                        <el-col :span="5" :xs="7">-->
+<!--                            <el-button size="mini" @click="frozenOrThaw(0)" icon="el-icon-unlock">解 冻</el-button>    -->
+<!--                        </el-col>-->
+<!--                        <el-col :span="5" :xs="7">-->
+<!--                            <el-button size="mini" icon="el-icon-brush">密码初始</el-button>-->
+<!--                        </el-col>-->
+<!--                        <el-col :span="4" :xs="6">-->
+<!--                            <el-button type="danger" size="mini" icon="el-icon-delete" @click="qxDete" plain>删除</el-button>-->
+<!--                        </el-col>-->
+<!--                      </el-row>-->
+<!--            </el-col>-->
             <el-col :span="10"  :xs="24">
 
                 <div class="block">
@@ -256,7 +257,8 @@ export default {
       },
       // 编辑
       compile(index, rows){
-        console.log(rows)
+        console.log(rows);
+        this.$router.push({path:'/home/addditch',query: {id:rows.id}})
       },
       //删除选中数据
       merchantdelete(index, rows){
@@ -278,7 +280,8 @@ export default {
       },
      //   搜索
       seekdithc(){
-        console.log(this.form);
+        this.ditch();
+        // console.log(this.form);
       },
       // 获取数据
       ditch(){
@@ -287,6 +290,7 @@ export default {
             params:{
                 current:this.number,
                 size:this.present,
+              spMerchantLoginName:this.form.name,
             }
         }
         Axios.get(api,date).then((res)=>{
