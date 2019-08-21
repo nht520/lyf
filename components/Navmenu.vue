@@ -172,6 +172,12 @@ export default {
                     title:"支付设置",
                     path:"/home/paySetting"
                   },
+                  {
+                    id:2,
+                    icon:"backqww",
+                    title:"资源cdn设置",
+                    path:"/home/cdnsetting"
+                  },
                 ]
               },
               {
@@ -211,6 +217,19 @@ export default {
                   },
                 ]
               },
+              {
+                    id:9,
+                    icon:"date_range",
+                    title:"日志管理",
+                    twolist:[
+                        {
+                            id:0,
+                            icon:"back",
+                            title:"通道日志",
+                            path:"/home/Channellogport"
+                        },
+                 ]
+              }
 
                 // {
                 //     id:7,

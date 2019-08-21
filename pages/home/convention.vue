@@ -45,6 +45,10 @@
             prop="packageNo"
             label="包编号">
             </el-table-column>
+           <el-table-column
+             prop="productType"
+             label="产品类型">
+           </el-table-column>
             <el-table-column
             label="渠道编号"
             prop="merchantNo"

@@ -5,21 +5,21 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
-            <el-col :span="3">
-                <el-input v-model="form.name" placeholder="请输入错误代码"  size="small"></el-input>
-            </el-col>
-             <el-col :span="3">
-                <el-input v-model="form.name" placeholder="请输入系统订单编号"  size="small"></el-input>
-            </el-col>           
-            <el-col :span="3">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>
-            </el-col>
-            <el-col :span="3">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>
-            </el-col>
-            <el-col :span="2">
-               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>
-            </el-col>
+<!--            <el-col :span="3">-->
+<!--                <el-input v-model="form.name" placeholder="请输入错误代码"  size="small"></el-input>-->
+<!--            </el-col>-->
+<!--             <el-col :span="3">-->
+<!--                <el-input v-model="form.name" placeholder="请输入系统订单编号"  size="small"></el-input>-->
+<!--            </el-col>           -->
+<!--            <el-col :span="3">-->
+<!--                <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="small"></el-date-picker>-->
+<!--            </el-col>-->
+<!--            <el-col :span="3">-->
+<!--                <el-date-picker type="date" placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="small"></el-date-picker>-->
+<!--            </el-col>-->
+<!--            <el-col :span="2">-->
+<!--               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>-->
+<!--            </el-col>-->
         </el-row>
         <!-- 表格 -->
            <el-table
@@ -27,28 +27,16 @@
             border
             style="width: 100%">
             <el-table-column
-              prop="name"
-              label="编号"
+              prop="payName"
+              label="通道"
               width="180">
             </el-table-column>
             <el-table-column
-              prop="name"
-              label="错误代码">
-            </el-table-column>
-            <el-table-column
-              prop="name"
-              label="订单号">
-            </el-table-column>
-            <el-table-column
-              prop="amount1"
-              label="通道">
-            </el-table-column>
-            <el-table-column
-              prop="amount2"
+              prop="logTime"
               label="时间">
             </el-table-column>
             <el-table-column
-              prop="amount2"
+              prop="logData"
               label="日志内容">
             </el-table-column>
           </el-table>
@@ -61,15 +49,15 @@
             </el-col>
             <el-col :span="10" :offset="13">
                 <div class="block">
-                    <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage1"
-                        :page-sizes="[10, 20, 30, 40]"
-                        :page-size="10"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="100">
-                    </el-pagination>
+                  <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="current"
+                    :page-sizes="[10, 20, 30, 40]"
+                    :page-size="10"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="brtotal">
+                  </el-pagination>
                 </div>
             </el-col>
         </el-row>
@@ -80,6 +68,7 @@
 <script>
 import Breadcrumb from '../../components/Breadcrumb'; 
 import storage from '~~/plugins/storage';
+import Axios from 'axios';
 export default {
     // 页面切换动画
     transition:"transleft",
@@ -103,58 +92,13 @@ export default {
               
             },
             currentPage1: 4,
-            tableData: [{
-                id: '12987122',
-                name: '王小虎',
-                amount1: '234',
-                amount2: '3.2',
-                amount3: 10,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987123',
-                name: '王小虎',
-                amount1: '165',
-                amount2: '4.43',
-                amount3: 12,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987124',
-                name: '王小虎',
-                amount1: '324',
-                amount2: '1.9',
-                amount3: 9,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987125',
-                name: '王小虎',
-                amount1: '621',
-                amount2: '2.2',
-                amount3: 17,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }, {
-                id: '12987126',
-                name: '王小虎',
-                amount1: '539',
-                amount2: '4.1',
-                amount3: 15,
-                amount4: 10,
-                amount5: 11,
-                amount6: 5,
-                amount7: 1,
-              }],
-              search: ''
+            tableData: [
+
+              ],
+              search: '',
+          number:0,
+          brtotal:0,
+          current:1,
         }
     },
     methods:{
@@ -204,6 +148,26 @@ export default {
           this.$refs.multipleTable.clearSelection();
         }
       },
+      getData(){
+        const _this = this;
+        const api = window.g.payLog;
+        const date ={
+          params:{
+            current:this.number,
+            size:this.present,
+          }
+        }
+        _this.tableData = [];
+        Axios.get(api,date).then(function(res){
+          let data = res.data.records;
+          console.log(res);
+          _this.brtotal = res.data.total;
+          _this.current = res.data.current;
+          _this.tableData = data;
+        }).catch(function(err){
+          console.log(err);
+        });
+      },
        //获取全选的key
       selectionRowsChange(val){
         console.log(val);
@@ -236,7 +200,8 @@ export default {
       },
     },
     mounted(){
-      this.txtTwo = storage.get("linktxt")
+      this.txtTwo = storage.get("linktxt");
+      this.getData();
     }
 }
 

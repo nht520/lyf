@@ -9,9 +9,9 @@
           <el-input v-model="memberLoginName" size="mini" placeholder="请输入会员登录名"></el-input>
         </el-col>
         <el-col :span="2" :xs="12">
-          <el-input v-model="memberPhone" size="mini" placeholder="会员手机号"></el-input>
+          <el-input v-model="memberPhone"  size="mini" placeholder="会员手机号"></el-input>
         </el-col>
-        <el-col :span="2" :xs="9">
+        <el-col :span="3" :xs="9">
           <el-date-picker
             v-model="startTime"
             type="datetime"
@@ -21,7 +21,7 @@
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="2" :xs="9">
+        <el-col :span="3" :xs="9">
           <el-date-picker
             v-model="endTime"
             size="mini"
@@ -34,6 +34,9 @@
         <el-col :span="2">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
+        <el-col :span="2" >
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="exportExcel()" plain>导出excel</el-button>
+        </el-col>
       </el-row>
 
       <!-- 表格 -->
@@ -42,6 +45,8 @@
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
+        :summary-method="getSummaries"
+        show-summary
         @selection-change="selectionRowsChange" >
         <el-table-column
           prop="payNo"
@@ -132,6 +137,42 @@
       }
     },
     methods:{
+      getSummaries(param) {
+        const { columns, data } = param;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '合计';
+            return;
+          };
+
+          if(index!=6){
+
+            sums[index]='';
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += '';
+          } else {
+            sums[index] = '';
+          }
+        });
+        return sums;
+      },
+      exportExcel(){
+        let api = window.g.payOrder+'/exportExcel';
+        let date = "current="+this.number+"&size="+this.present+"&payStatus=0&startTime="+this.startTime+"&endTime="+this.endTime+"&memberPhone="+this.memberPhone+"&memberLoginName="+this.memberLoginName;
+        window.open(api+'?'+date);
+      },
       selectionRowsChange(val){
         console.log(val);
       },
@@ -202,6 +243,19 @@
     },
     mounted() {
       this.txtTwo = storage.get("linktxt");
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      if(month<10){
+        month = "0"+month;
+      }
+      if(day<10){
+        day = "0"+day;
+      }
+      const strDate = year+'-'+month+'-'+day;
+      this.startTime = strDate+" 00:00:00";
+      this.endTime = strDate+" 23:59:59";
       this.getData();
     }
   }

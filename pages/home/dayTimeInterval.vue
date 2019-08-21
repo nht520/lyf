@@ -5,26 +5,26 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search"  :gutter="15">
-        <el-col :span="3" :xs="4">
-          <el-input v-model="packageNo"  size="mini" placeholder="包编号"></el-input>
-        </el-col>
+<!--        <el-col :span="3" :xs="4">-->
+<!--          <el-input v-model="packageNo"  size="mini"  placeholder="包编号"></el-input>-->
+<!--        </el-col>-->
         <el-col :span="3" :xs="7">
           <el-date-picker
             v-model="startTime"
             type="datetime"
-             size="mini"
-            format="yyyy-MM-dd HH"
-            value-format="yyyy-MM-dd HH:mm:ss"
+            size="mini"
+            format="yyyy-MM-dd HH:00:00"
+            value-format="yyyy-MM-dd HH:00:00"
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
         <el-col :span="3" :xs="7">
           <el-date-picker
             v-model="endTime"
-            type="date"
-             size="mini"
-            format="yyyy-MM-dd"
-            value-format="yyyy-MM-dd"
+            type="datetime"
+            size="mini"
+            format="yyyy-MM-dd HH:00:00"
+            value-format="yyyy-MM-dd HH:00:00"
             placeholder="选择结束日期">
           </el-date-picker>
         </el-col>
@@ -46,8 +46,12 @@
           label="日期">
         </el-table-column>
         <el-table-column
-          label="包名"
           prop="packageNo"
+          label="包名">
+        </el-table-column>
+        <el-table-column
+          label="uv"
+          prop="webUv"
         >
         </el-table-column>
         <el-table-column
@@ -82,6 +86,14 @@
           label="AP"
           prop="ap"
         >
+        </el-table-column>
+        <el-table-column
+          label="uv/注册占比"
+        >
+          <template slot-scope="scope">
+            <div v-if="scope.row.installCount==0">0%</div>
+            <div v-if="scope.row.installCount!=0">{{(scope.row.installCount/scope.row.webUv).toFixed(2)}}%</div>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 分业 -->
@@ -154,16 +166,28 @@
             sums[index] = '合计';
             return;
           };
-          if(index===1){
-            sums[index]='';
-            return;
-          }
+          // if(index===1){
+          //   sums[index]='';
+          //   return;
+          // }
           if(index===7){
-            sums[index]=((sums[3]/sums[2])*100).toFixed(2)+'%';
+            sums[index]=((sums[2]/sums[1])*100).toFixed(2)+'%';
             return;
           }
           if(index===8){
-            sums[index]=(sums[5]/sums[6]).toFixed(2);
+            if(sums[4]==0){
+              sums[index] = 0;
+            } else{
+              sums[index]=(sums[4]/sums[5]).toFixed(2);
+            }
+            return;
+          }
+          if(index==9){
+            if(sums[6]==0){
+              sums[index] = '0%';
+            }else{
+              sums[index]=(sums[6]/sums[1]).toFixed(2)+'%';
+            }
             return;
           }
           const values = data.map(item => Number(item[column.property]));
@@ -199,22 +223,12 @@
       //   搜索
       seekdithc(){
         console.log(this.startTime);
-        // this.getData();
-      },
-      sysComicsStatistics(){
-        let _this = this;
-        let api = window.g.simplehistorystatistics+'/sysComicsStatistics';
-        Axios.post(api).then((res)=>{
-          console.log(res);
-          this.getData();
-        }).catch((err)=>{
-          console.log(err);
-        })
+        this.getData();
       },
       // 获取列表数据
       getData(){
         let _this = this;
-        let api = window.g.simplehistorystatistics;
+        let api = window.g.bookReport+'/dayTimInterVal';
         const date ={
           params:{
             current:this.number,
@@ -254,8 +268,22 @@
       },
     },
     mounted(){
-      // this.getData();
-      this.txtTwo = storage.get("linktxt")
+      this.txtTwo = storage.get("linktxt");
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      if(month<10){
+        month = "0"+month;
+      }
+      if(day<10){
+        day = "0"+day;
+      }
+      const strDate = year+'-'+month+'-'+day;
+      this.startTime = strDate+" 00:00:00";
+      this.endTime = strDate+" 23:00:00";
+      this.getData();
+
     }
   }
 

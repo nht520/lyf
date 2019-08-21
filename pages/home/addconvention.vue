@@ -144,6 +144,7 @@ export default {
             id:this.form.id,
           }
         };
+        const _this = this;
         Axios.get(api,_param).then((res)=>{
           console.log(res);
           const data = res.data.data;
@@ -154,7 +155,7 @@ export default {
           this.form.deductionRatio = data.deductionRatio;
           this.form.pageUrl = data.pageUrl;
           this.form.packageUrl = data.packageUrl;
-          let deductionStatus = data.deductionStatus; ;
+          let deductionStatus = data.deductionStatus;
           if(deductionStatus==0){
             _this.form.deductionStatus = '是';
           }else{

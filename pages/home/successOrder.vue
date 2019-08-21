@@ -6,12 +6,12 @@
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
         <el-col :span="2" :xs="12">
-          <el-input v-model="memberLoginName"   size="mini" placeholder="请输入会员登录名"></el-input>
+          <el-input v-model="memberLoginName"  size="mini" placeholder="请输入会员登录名"></el-input>
         </el-col>
         <el-col :span="2" :xs="12">
           <el-input v-model="memberPhone"  size="mini" placeholder="会员手机号"></el-input>
         </el-col>
-        <el-col :span="2" :xs="12">
+        <el-col :span="3" :xs="12">
           <el-date-picker
             v-model="startTime"
             size="mini"
@@ -21,7 +21,7 @@
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="2" :xs="12">
+        <el-col :span="3" :xs="12">
           <el-date-picker
             v-model="endTime"
             size="mini"
@@ -34,11 +34,16 @@
         <el-col :span="2" >
           <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
+        <el-col :span="2" >
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="exportExcel()" plain>导出excel</el-button>
+        </el-col>
       </el-row>
 
       <!-- 表格 -->
       <el-table
         :data="list"
+        :summary-method="getSummaries"
+        show-summary
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
@@ -139,11 +144,49 @@
         current: 0,
         brtotal:0,
         search: '',
+        number:1,
+        present:10,
       }
     },
     methods:{
+      getSummaries(param) {
+        const { columns, data } = param;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '合计';
+            return;
+          };
+
+          if(index!=8){
+
+            sums[index]='';
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += '';
+          } else {
+            sums[index] = '';
+          }
+        });
+        return sums;
+      },
       selectionRowsChange(val){
         console.log(val);
+      },
+      exportExcel(){
+        let api = window.g.payOrder+'/exportExcel';
+        let date = "current="+this.number+"&size="+this.present+"&payStatus=1&startTime="+this.startTime+"&endTime="+this.endTime+"&memberPhone="+this.memberPhone+"&memberLoginName="+this.memberLoginName;
+        window.open(api+'?'+date);
       },
       getData(){
         let _this = this;
@@ -184,34 +227,22 @@
         this.number=val;
         this.getData();
       },
-      deleteBook(row){
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          const api = window.g.book+'/delete';
-          let param= new URLSearchParams();
-          param.append("bookId",row.bookId);
-          Axios.post(api,param).then((res)=>{
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-          }).catch((err)=>{
-            console.log(err);
-          })
-
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
-      },
     },
     mounted() {
       this.txtTwo = storage.get("linktxt");
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      if(month<10){
+        month = "0"+month;
+      }
+      if(day<10){
+        day = "0"+day;
+      }
+      const strDate = year+'-'+month+'-'+day;
+      this.startTime = strDate+" 00:00:00";
+      this.endTime = strDate+" 23:59:59";
       this.getData();
     }
   }

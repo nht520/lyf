@@ -65,8 +65,8 @@
         >
         </el-table-column>
         <el-table-column
-          label="收益"
-          prop="revenue"
+          label="渠道收益"
+          prop="channelRevenue"
         >
         </el-table-column>
         <el-table-column
@@ -78,15 +78,20 @@
           label="成功率">
           <template slot-scope="scope">{{ scope.row.successRate }}%</template>
         </el-table-column>
-<!--       <el-table-column-->
-<!--         label="成功率"-->
-<!--         prop="successRate"-->
-<!--       >-->
-<!--      </el-table-column>-->
+
         <el-table-column
           label="AP"
           prop="ap"
         >
+        </el-table-column>
+        <el-table-column
+          label="uv/注册占比"
+        >
+          <template slot-scope="scope">
+            <div v-if="scope.row.webUv==0">0%</div>
+            <div v-else-if="scope.row.installCount==0">0%</div>
+            <div v-else="scope.row.installCount!=0">{{((scope.row.installCount/scope.row.webUv)*100).toFixed(2)}}%</div>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 分业 -->
@@ -165,12 +170,31 @@
               sums[index]='';
               return;
             }
-           if(index===7){
-             sums[index]=((sums[3]/sums[2])*100).toFixed(2)+'%';
+           if(index===8){
+             if(sums[3]==0){
+               sums[index]='0%';
+             }else{
+               sums[index]=((sums[4]/sums[3])*100).toFixed(2)+'%';
+             }
+
              return;
            }
-           if(index===8){
-             sums[index]=(sums[5]/sums[6]).toFixed(2);
+           if(index===9){
+             if(sums[6]==0){
+               sums[index]=0;
+             }else{
+               sums[index]=(sums[5]/sums[6]).toFixed(2);
+             }
+
+             return;
+           }
+           if(index==10){
+             if(sums[2]==0){
+               sums[index]='0%';
+             }else{
+               sums[index]=((sums[7]/sums[2])*100).toFixed(2)+'%';
+             }
+
              return;
            }
             const values = data.map(item => Number(item[column.property]));
@@ -299,6 +323,19 @@
       },
     },
     mounted(){
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      if(month<10){
+        month = "0"+month;
+      }
+      if(day<10){
+        day = "0"+day;
+      }
+      const strDate = year+'-'+month+'-'+day;
+      this.form.date1 = strDate;
+      this.form.date2 = strDate;
       this.getData();
       this.txtTwo = storage.get("linktxt")
     }

@@ -29,7 +29,7 @@
           </el-date-picker>
         </el-col>
         <el-col :span="3">
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
       </el-row>
       <!-- 表格 -->
@@ -239,8 +239,6 @@
     },
     mounted() {
       this.txtTwo = storage.get("linktxt");
-      // this.startTime=new Date();
-      // this.endTime = new Date();
       let date = new Date();
       let year = date.getFullYear();
       let month = date.getMonth()+1;
