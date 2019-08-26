@@ -133,9 +133,13 @@ export default {
       },
      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
+       this.number = val;
+        this.getData();
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
+        this.number = val;
+        this.getData();
       },
         //全选
       toggleSelect(rows) {

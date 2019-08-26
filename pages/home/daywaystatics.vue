@@ -6,22 +6,19 @@
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
         <el-col :span="2" :xs="6">
-          <el-input v-model="packageNo" placeholder="包编号" size="mini"></el-input>
-        </el-col>
-        <el-col :span="2" :xs="6">
-          <el-input v-model="productType" placeholder="产品类型" size="mini"></el-input>
-        </el-col>
-        <el-col :span="2" :xs="9">
-          <el-date-picker type="date" 
-          format="yyyy-MM-dd"
-          value-format="yyyy-MM-dd"
-          placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="mini"></el-date-picker>
+          <el-input v-model="form.wayName" placeholder="上游名称" size="mini"></el-input>
         </el-col>
         <el-col :span="2" :xs="9">
           <el-date-picker type="date"
-          format="yyyy-MM-dd"
-          value-format="yyyy-MM-dd"
-           placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="mini"></el-date-picker>
+                          format="yyyy-MM-dd"
+                          value-format="yyyy-MM-dd"
+                          placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="mini"></el-date-picker>
+        </el-col>
+        <el-col :span="2" :xs="9">
+          <el-date-picker type="date"
+                          format="yyyy-MM-dd"
+                          value-format="yyyy-MM-dd"
+                          placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="mini"></el-date-picker>
         </el-col>
         <el-col :span="2" :xs="6">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
@@ -38,24 +35,14 @@
         ref="multipleTable"
         tooltip-effect="dark"
         style="width: 100%"
-        @selection-change="selectionRowsChange" >
+         >
         <el-table-column
           prop="date"
           label="日期">
         </el-table-column>
         <el-table-column
-          label="包名"
-          prop="packageNo"
-        >
-        </el-table-column>
-        <el-table-column
-          label="产品类型"
-          prop="productType"
-        >
-        </el-table-column>
-        <el-table-column
-          label="uv"
-          prop="webUv"
+          label="上游名称"
+          prop="wayName"
         >
         </el-table-column>
         <el-table-column
@@ -64,51 +51,26 @@
         >
         </el-table-column>
         <el-table-column
+          label="效果数"
           prop="payCount"
-          label="效果数">
+        >
         </el-table-column>
         <el-table-column
-          label="效果金额"
+          label="请求金额"
+          prop="requestAmount"
+        >
+        </el-table-column>
+        <el-table-column
           prop="payAmount"
-        >
-        </el-table-column>
-        <el-table-column
-          label="渠道收益"
-          prop="channelRevenue"
-        >
-        </el-table-column>
-        <el-table-column
-          label="新增会员"
-          prop="installCount"
-        >
+          label="效果金额">
         </el-table-column>
         <el-table-column
           label="成功率">
-          <template slot-scope="scope">{{ scope.row.successRate }}%</template>
-        </el-table-column>
-
-        <el-table-column
-          label="AP"
-          prop="ap"
-        >
-        </el-table-column>
-        <el-table-column
-          label="uv/注册占比"
-        >
-          <template slot-scope="scope">
-            <div v-if="scope.row.webUv==0">0%</div>
-            <div v-else-if="scope.row.installCount==0">0%</div>
-            <div v-else="scope.row.installCount!=0">{{((scope.row.installCount/scope.row.webUv)*100).toFixed(2)}}%</div>
-          </template>
+          <template slot-scope="scope">{{ ((scope.row.payCount/scope.row.requestCount)*100).toFixed(2) }}%</template>
         </el-table-column>
       </el-table>
       <!-- 分业 -->
       <el-row class="Pagination">
-        <el-col >
-          <!-- <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>
-          <el-button  size="mini">保存权重</el-button>
-          <el-button type="danger" size="mini" @click="qxDete" >删除</el-button> -->
-        </el-col>
         <el-col :span="14" >
           <div class="block">
             <el-pagination
@@ -123,7 +85,7 @@
           </div>
         </el-col>
       </el-row>
-        
+
 
     </div>
 
@@ -149,9 +111,8 @@
         form: {
           date1:"",
           date2:"",
+          wayName:'',
         },
-        packageNo:'',
-        productType:'',
         currentPage1: 4,
         list: [ ],
         requestCountTotal:0,
@@ -169,68 +130,44 @@
     methods:{
       getSummaries(param) {
         const { columns, data } = param;
-          const sums = [];
-          columns.forEach((column, index) => {
-            if (index === 0) {
-              sums[index] = '合计';
-              return;
-            };
-            if(index===1){
-              sums[index]='';
-              return;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '合计';
+            return;
+          };
+          if(index===1){
+            sums[index]='';
+            return;
+          }
+          if(index===6){
+            if(sums[3]==0){
+              sums[index]='0%';
+            }else{
+              sums[index]=((sums[3]/sums[2])*100).toFixed(2)+'%';
             }
-            if(index===2){
-              sums[index]='';
-              return;
-            }
-           if(index===9){
-             if(sums[4]==0){
-               sums[index]='0%';
-             }else{
-               sums[index]=((sums[5]/sums[4])*100).toFixed(2)+'%';
-             }
 
-             return;
-           }
-           if(index===10){
-             if(sums[7]==0){
-               sums[index]=0;
-             }else{
-               sums[index]=(sums[6]/sums[8]).toFixed(2);
-             }
+            return;
+          }
 
-             return;
-           }
-           if(index==11){
-             if(sums[3]==0){
-               sums[index]='0%';
-             }else{
-               sums[index]=((sums[8]/sums[3])*100).toFixed(2)+'%';
-             }
-
-             return;
-           }
-            const values = data.map(item => Number(item[column.property]));
-            if (!values.every(value => isNaN(value))) {
-              sums[index] = values.reduce((prev, curr) => {
-                const value = Number(curr);
-                if (!isNaN(value)) {
-                  return prev + curr;
-                } else {
-                  return prev;
-                }
-              }, 0);
-              sums[index] += '';
-            } else {
-              sums[index] = 'N/A';
-            }
-          });
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += '';
+          } else {
+            sums[index] = 'N/A';
+          }
+        });
         return sums;
       },
-      onSubmit() {
-        console.log('submit!');
-      },
-     handleSizeChange(val) {
+      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
         this.present=val;
         this.getData();
@@ -240,43 +177,6 @@
         this.number=val;
         this.getData();
       },
-      //全选
-      toggleSelect(rows) {
-        console.log(rows);
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row);
-          });
-        } else {
-          this.$refs.multipleTable.clearSelection();
-        }
-      },
-      //获取全选的key
-      selectionRowsChange(val){
-        console.log(val);
-      },
-      //删除当前一行
-      deleteRow(index, rows) {
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
-      },
-      //删除选中数据
-      qxDete(){
-        console.log("删除选中数据");
-      },
       //   搜索
       seekdithc(){
         console.log(this.form.date1 + this.form.date2);
@@ -284,7 +184,7 @@
       },
       sysComicsStatistics(){
         let _this = this;
-        let api = window.g.simplehistorystatistics+'/sysComicsStatistics';
+        let api = window.g.dayway+'/synch';
         Axios.post(api).then((res)=>{
           console.log(res);
           alert("同步成功");
@@ -296,16 +196,15 @@
       // 获取列表数据
       getData(){
         let _this = this;
-        let api = window.g.simplehistorystatistics;
+        let api = window.g.dayway;
         const date ={
-            params:{
-                current:this.number,
-                size:this.present,
-              packageNo:this.packageNo,
-              startTime:this.form.date1,
-              endTime:this.form.date2,
-              productType:this.productType,
-            }
+          params:{
+            current:this.number,
+            size:this.present,
+            startTime:this.form.date1,
+            endTime:this.form.date2,
+            wayName:this.form.wayName,
+          }
         }
         Axios.get(api,date).then(function(res){
           let data = res.data.records;
@@ -331,9 +230,6 @@
           }
         }
         return json;
-      },
-      getParams:function(){
-
       },
     },
     mounted(){

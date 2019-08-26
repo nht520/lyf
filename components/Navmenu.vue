@@ -194,23 +194,29 @@ export default {
                   {
                     id:1,
                     icon:"back",
+                    title:"上游统计",
+                    path:"/home/daywaystatics"
+                  },
+                  {
+                    id:2,
+                    icon:"back",
                     title:"会员情况分析",
                     path:"/home/memberSituation"
                   },
                   {
-                    id:2,
+                    id:3,
                     icon:"back",
                     title:"注册用户留存分析",
                     path:"/home/registerMemberRetain"
                   },
                   {
-                    id:3,
+                    id:4,
                     icon:"back",
                     title:"每日时段统计",
                     path:"/home/dayTimeInterval"
                   },
                   {
-                    id:4,
+                    id:5,
                     icon:"back",
                     title:"汇总统计",
                     path:"/home/summaryStatistics"

@@ -1,3 +1,4 @@
+// const api = "http://wx.bomao.xyz:8181/distributor";
 const api = "http://47.75.163.229:9999";
 // const api = "http://192.168.1.7:9999";
 window.g = {
@@ -21,6 +22,7 @@ window.g = {
   paySetting:api+'/paySetting',
   cdnSetting:api+'/cdnSetting',
   payLog:api+'/payLog',
+  dayway:api+'/dayWay',
 
   //最近3日流水
     latelyDayData:api+'/report/latelyFlowing',

@@ -9,6 +9,9 @@
           <el-form-item label="*包编号">
             <el-input v-model="form.packageNo"></el-input>
           </el-form-item>
+          <el-form-item label="*产品类型">
+            <el-input v-model="form.productType"></el-input>
+          </el-form-item>
           <el-form-item label="所属渠道">
             <el-select v-model="form.merchantNo" filterable placeholder="请选择所属渠道">
               <el-option v-for="(item,idx) in form.regionone" :key="idx" :label="item.spMerchantLoginName" :value="idx" ></el-option>
@@ -86,6 +89,8 @@ export default {
               desc: '',
               deductionTime:'',
               merchantNo:'',
+              packageNo:'',
+              productType:'',
             }
         }
     },
@@ -115,6 +120,7 @@ export default {
           _param.append("merchantLoginName",merchant.spMerchantLoginName);//渠道账号
 
         }
+        _param.append("productType",_this.form.productType);
           _param.append("packageNo",_this.form.packageNo);//包编号
           _param.append("deductionStatus",deductionStatus);//扣量状态
           _param.append("deductionBase",_this.form.deductionBase);//扣量基数
@@ -147,20 +153,20 @@ export default {
         const _this = this;
         Axios.get(api,_param).then((res)=>{
           console.log(res);
-          const data = res.data.data;
-          this.form.id = data.id;
-          this.form.merchantNo = data.merchantNo;
-          this.form.packageNo = data.packageNo;
-          this.form.deductionBase = data.deductionBase;
-          this.form.deductionRatio = data.deductionRatio;
-          this.form.pageUrl = data.pageUrl;
-          this.form.packageUrl = data.packageUrl;
-          let deductionStatus = data.deductionStatus;
-          if(deductionStatus==0){
-            _this.form.deductionStatus = '是';
-          }else{
-            _this.form.deductionStatus = '否';
-          }
+          this.form = res.data.data;
+          // this.form.id = data.id;
+          // this.form.merchantNo = data.merchantNo;
+          // this.form.packageNo = data.packageNo;
+          // this.form.deductionBase = data.deductionBase;
+          // this.form.deductionRatio = data.deductionRatio;
+          // this.form.pageUrl = data.pageUrl;
+          // this.form.packageUrl = data.packageUrl;
+          // let deductionStatus = data.deductionStatus;
+          // if(deductionStatus==0){
+          //   _this.form.deductionStatus = '是';
+          // }else{
+          //   _this.form.deductionStatus = '否';
+          // }
         }).catch((err)=>{
           console.log(err);
         })
@@ -173,7 +179,9 @@ export default {
           console.log(value);
           _this.form.regionone = value.data.data;
           console.log(_this.regionone);
-          _this.getConventionById();
+          if(_this.form.id){
+            _this.getConventionById();
+          }
 
         }).catch(function(res){
           console.log(res);
