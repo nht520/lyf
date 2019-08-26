@@ -11,7 +11,7 @@
 <!--                    <el-option label="222" value="beijing"></el-option>-->
 <!--                </el-select>-->
 <!--            </el-col>-->
-            <el-col :span="2" :xs="6">
+            <el-col :span="2" :xs="10">
                 <el-input v-model="form.name" placeholder="请输入登录名"  size="mini"></el-input>
             </el-col>
 <!--            <el-col :span="2" :xs="6">-->
@@ -80,6 +80,7 @@
             <el-table-column
             fixed="right"
             label="操作"
+            width="180px"
             align="right">
             <template slot="header">
               <nuxt-link to="/home/addditch">

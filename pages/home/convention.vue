@@ -11,7 +11,7 @@
 <!--                    <el-option label="222" value="beijing"></el-option>-->
 <!--                </el-select>-->
 <!--            </el-col>-->
-            <el-col :span="3">
+            <el-col :span="3" :xs="10">
                 <el-input v-model="form.packageNo" placeholder="请输入包编号"  size="small"></el-input>
             </el-col>
 <!--            <el-col :span="2">-->
@@ -88,7 +88,7 @@
             <el-table-column
             fixed="right"
             align="right"
-             width="200"
+             width="100"
             >
             <template slot="header">
               <nuxt-link to="/home/addconvention">

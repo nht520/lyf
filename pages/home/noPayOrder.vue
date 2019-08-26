@@ -11,7 +11,7 @@
         <el-col :span="2" :xs="12">
           <el-input v-model="memberPhone"  size="mini" placeholder="会员手机号"></el-input>
         </el-col>
-        <el-col :span="3" :xs="9">
+        <el-col :span="3" :xs="12">
           <el-date-picker
             v-model="startTime"
             type="datetime"
@@ -21,7 +21,7 @@
             placeholder="选择开始日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="3" :xs="9">
+        <el-col :span="3" :xs="12">
           <el-date-picker
             v-model="endTime"
             size="mini"
@@ -31,11 +31,11 @@
             placeholder="选择结束日期">
           </el-date-picker>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="2" :xs="6">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
-        <el-col :span="2" >
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="exportExcel()" plain>导出excel</el-button>
+        <el-col :span="2" :xs="6">
+          <el-button type="primary"  size="mini" @click="exportExcel()" plain>导出excel</el-button>
         </el-col>
       </el-row>
 

@@ -31,7 +31,7 @@
         <el-table-column
         fixed="right"
         label="操作"
-        width="150"
+        width="50"
         >
         <template slot-scope="scope">
           <el-button @click="enableCdn(scope.row)" v-if="scope.row.cdnStatus==1" type="text" size="mini" style="color: #00bd07;">启用</el-button>

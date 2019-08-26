@@ -89,7 +89,7 @@
               </template>
             </el-table-column>
             <el-table-column
-            width="170px"
+            width="50px"
             fixed="right"
             label="操作"
             align="right">

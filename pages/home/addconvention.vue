@@ -201,4 +201,7 @@ export default {
   .channel .el-form
     margin 2% 4%
     text-align left   
+.el-date-editor.el-input{
+    width:100%;
+}
 </style>
