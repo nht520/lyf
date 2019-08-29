@@ -44,7 +44,7 @@
               v-model="form.deductionTime"
               type="date"
               format="yyyy-MM-dd"
-              value-format="yyyy-MM-dd 00:00:00"
+              value-format="yyyy-MM-dd"
               placeholder="选择日期">
             </el-date-picker>
           </el-form-item>
@@ -81,7 +81,7 @@ export default {
               name: '',
               region: '',
               regionone:[],
-              date1: '',
+              date1 : '',
               date2: '',
               delivery: false,
               type: [],
@@ -91,7 +91,8 @@ export default {
               merchantNo:'',
               packageNo:'',
               productType:'',
-            }
+            },
+          regionone:[],
         }
     },
     methods:{
@@ -129,7 +130,7 @@ export default {
           _param.append("packageUrl",_this.form.packageUrl);//包下载地址
           _param.append("packageRemark",_this.form.packageRemark);//备注
           _param.append("packageStatus",packageStatus);//安装包状态
-        _param.append("kouTime",this.form.deductionTime);
+        _param.append("kouTime",_this.form.deductionTime+" 00:00:00");
         Axios.post(api,_param).then((res)=>{
           console.log(res);
           if(res.data.code === 200){
@@ -154,6 +155,7 @@ export default {
         Axios.get(api,_param).then((res)=>{
           console.log(res);
           this.form = res.data.data;
+          _this.form.regionone = _this.regionone;
           // this.form.id = data.id;
           // this.form.merchantNo = data.merchantNo;
           // this.form.packageNo = data.packageNo;
@@ -177,8 +179,8 @@ export default {
         let url = window.g.merchant;
         Axios.get(url+'/findAll').then(function(value){
           console.log(value);
-          _this.form.regionone = value.data.data;
-          console.log(_this.regionone);
+          _this.regionone = value.data.data;
+
           if(_this.form.id){
             _this.getConventionById();
           }

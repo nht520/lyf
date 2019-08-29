@@ -23,6 +23,8 @@ window.g = {
   cdnSetting:api+'/cdnSetting',
   payLog:api+'/payLog',
   dayway:api+'/dayWay',
+  payModelApp:api+'/payModelApp',
+  payModelH5:api+'/payModelH5',
 
   //最近3日流水
     latelyDayData:api+'/report/latelyFlowing',

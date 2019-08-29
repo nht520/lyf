@@ -2,13 +2,13 @@
   <div class="convention">
     <!-- 面包屑 -->
     <Breadcrumb :txtone="txtone" :txtTwo="txtTwo"></Breadcrumb>
-    <el-row class="search" :model="form" :gutter="15">
-      <el-col :span="4" :xs="6">
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="createJson()" plain>生成静态文件</el-button>
-      </el-col>
-    </el-row>
     <!-- 内容 -->
     <div class="conttab">
+      <el-row class="search" :model="form" :gutter="15">
+        <el-col :span="4" :xs="6">
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="createJson()" plain>生成静态文件</el-button>
+        </el-col>
+      </el-row>
       <!-- 表格 -->
       <el-table
         :data="list"
@@ -21,40 +21,38 @@
           label="编号">
         </el-table-column>
         <el-table-column
-          prop="paySort"
-          label="排序">
+          prop="modelName"
+          label="模式名称">
         </el-table-column>
         <el-table-column
-          label="金额"
-          prop="payAmount"
+          label="模式提示"
+          prop="modelTips"
         >
         </el-table-column>
         <el-table-column
-          label="充值书币"
-          prop="rechargeMoney"
-        >
-        </el-table-column>
-        <el-table-column
-          label="送书币"
-          prop="bookMoney"
-        >
-        </el-table-column>
-        <el-table-column
-          label="总书币"
-          prop="totalMoney"
-        >
-        </el-table-column>
-        <el-table-column
-          label="首充送币"
-          prop="firstGold"
-        >
-        </el-table-column>
-        <el-table-column
-          label="是否vip充值"
+          label="是否默认"
         >
           <template slot-scope="scope">
-            <div v-if="scope.row.isVip==1">是</div>
-            <div v-if="scope.row.isVip==0">否</div>
+            <div v-if="scope.row.isDefault==0">是</div>
+            <div v-if="scope.row.isDefault==1">否</div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="模式类型"
+          prop="modelType"
+        >
+        </el-table-column>
+        <el-table-column
+          label="模式排序"
+          prop="modelSort"
+        >
+        </el-table-column>
+        <el-table-column
+          label="是否显示"
+        >
+          <template slot-scope="scope">
+            <div v-if="scope.row.isDisable==0">是</div>
+            <div v-if="scope.row.isDisable==1">否</div>
           </template>
         </el-table-column>
         <el-table-column
@@ -63,6 +61,9 @@
         >
           <template slot-scope="scope">
             <el-button @click="openDiagnosis(scope.row)" type="text" size="small">设置</el-button>
+            <el-button @click="setDefault(scope.row)" type="text" size="small">默认</el-button>
+            <el-button v-if="scope.row.isDisable==1" @click="setDisable(scope.row,0)" type="text" size="small">显示</el-button>
+            <el-button v-if="scope.row.isDisable==0" @click="setDisable(scope.row,1)" type="text" size="small">不显示</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -87,25 +88,42 @@
         <el-row :gutter="20">
           <el-row :gutter="20">
             <el-col :span="5" :offset="1" :xs="8">
-              金额:
+              模式名称:
             </el-col>
             <el-col :span="17" :xs="14">
-              <el-input v-model="payAmount" placeholder="请输入充值金额"></el-input>
+              <el-input v-model="modelName" placeholder="请输模式名称"></el-input>
             </el-col>
           </el-row>
           <el-col :span="5" :offset="1" :xs="8">
-            充值书币:
+            模式提示:
           </el-col>
           <el-col :span="17" :xs="14">
-            <el-input v-model="rechargeMoney" placeholder="请输入充值书币"></el-input>
+            <el-input v-model="modelTips" placeholder="请输入模式提示"></el-input>
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1" :xs="8"> 
-            送书币:
+          <el-col :span="5" :offset="1" :xs="8">
+            模式排序:
           </el-col>
           <el-col :span="17" :xs="14">
-            <el-input v-model="bookMoney" placeholder="请输入充值送书币"></el-input>
+            <el-input  v-model="modelSort" value="是"  placeholder="请输入模式排序"></el-input>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="5" :offset="1" :xs="8">
+            是否默认:
+          </el-col>
+          <el-col :span="17" :xs="14">
+            <el-input v-if="isDefault==0" value="是" disabled="true" ></el-input>
+            <el-input v-if="isDefault==1" value="否" disabled="true" ></el-input>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="5" :offset="1" :xs="8">
+            模式类型
+          </el-col>
+          <el-col :span="17" :xs="14">
+            <el-input v-model="modelType" disabled="true" ></el-input>
           </el-col>
         </el-row>
       </div>
@@ -132,26 +150,18 @@
         txtone:"支付设置",
         txtTwo:"",
         form: {
-          date1:"",
-          date2:"",
         },
-        options: [{
-          value: '0',
-          label: '否'
-        }, {
-          value: '1',
-          label: '是'
-        }],
-        paySettingId:'',
-        payAmount:0,
-        rechargeMoney:0,
-        bookMoney:0,
+        id:'',
+        modelName:'',
+        modelTips:'',
+        isDefault:'',
+        modelType:'',
+        modelSort:'',
         dialogVisible:false,
         hedTitle:"",
         text:"",
         list: [ ],
         search: '',
-        packageNo:'',
         current:0,
         brtotal:0,
 
@@ -160,10 +170,12 @@
     methods:{
       openDiagnosis(row){
         console.log(row);
-        this.paySettingId = row.id;
-        this.payAmount = row.payAmount;
-        this.rechargeMoney = row.rechargeMoney;
-        this.bookMoney = row.bookMoney;
+        this.id = row.id;
+        this.modelName = row.modelName;
+        this.modelTips = row.modelTips;
+        this.isDefault = row.isDefault;
+        this.modelType = row.modelType;
+        this.modelSort = row.modelSort;
         this.dialogVisible = true;
       },
       //弹出层
@@ -174,7 +186,7 @@
         console.log(val);
       },
       createJson(){
-        const api = window.g.paySetting +'/createJson';
+        const api = window.g.payModelApp +'/createJson';
         Axios.post(api).then((res)=>{
           alert("生成成功");
         }).catch((err)=>{
@@ -183,17 +195,18 @@
       },
       getData(){
         let _this = this;
-        let api = window.g.paySetting+'/list';
+        let api = window.g.payModelApp;
         const date ={
           params:{
           }
         }
         _this.list = [];
         Axios.get(api,date).then(function(res){
-          let data = res.data.data;
+          let data = res.data.records;
           console.log(res);
           _this.list = data;
-        }).catch(function(err){
+        })
+          .catch(function(err){
           console.log(err);
         });
       },
@@ -207,13 +220,13 @@
         this.number=val;
         this.getData();
       },
-      update(row){
-        const api = window.g.paySetting +'/update';
+      update(){
+        const api = window.g.payModelApp +'/update';
         let param= new URLSearchParams();
-        param.append("id",this.paySettingId);
-        param.append("payAmount",this.payAmount);
-        param.append("rechargeMoney",this.rechargeMoney);
-        param.append("bookMoney",this.bookMoney);
+        param.append("id",this.id);
+        param.append("modelName",this.modelName);
+        param.append("modelTips",this.modelTips);
+        param.append("modelSort",this.modelSort);
         Axios.post(api,param).then((res)=>{
           console.log(res);
           this.getData();
@@ -222,31 +235,31 @@
           console.log(err);
         })
       },
-      deleteBook(row){
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          const api = window.g.book+'/delete';
-          let param= new URLSearchParams();
-          param.append("bookId",row.bookId);
-          Axios.post(api,param).then((res)=>{
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-          }).catch((err)=>{
-            console.log(err);
-          })
-
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
+      setDefault(row){
+        const api = window.g.payModelApp +'/setDefault';
+        let param= new URLSearchParams();
+        param.append("id",row.id);
+        Axios.post(api,param).then((res)=>{
+          console.log(res);
+          this.getData();
+          this.dialogVisible = false;
+        }).catch((err)=>{
+          console.log(err);
+        })
       },
+      setDisable(row,isDisable){
+        const api = window.g.payModelApp +'/update';
+        let param= new URLSearchParams();
+        param.append("id",row.id);
+        param.append("isDisable",isDisable);
+        Axios.post(api,param).then((res)=>{
+          console.log(res);
+          this.getData();
+          this.dialogVisible = false;
+        }).catch((err)=>{
+          console.log(err);
+        })
+      }
     },
     mounted() {
       this.txtTwo = storage.get("linktxt");
@@ -272,6 +285,6 @@
   .channe .el-row
     margin-bottom 3%
   .channe .el-col-5
-    text-align right  
+    text-align right
 </style>
 

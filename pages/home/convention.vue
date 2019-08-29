@@ -110,12 +110,6 @@
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-<!--            <el-col :span="7" >-->
-<!--                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>-->
-<!--                <el-button size="mini" icon="el-icon-lock">关闭</el-button>-->
-<!--                <el-button size="mini" icon="el-icon-unlock">开启</el-button>-->
-<!--                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>-->
-<!--            </el-col>-->
             <el-col :span="10" :offset="5">
                 <div class="block">
                     <el-pagination
@@ -229,6 +223,7 @@ export default {
       },
      //   搜索
       seekdithc(){
+        this.atcurrent=1;
         this.conventionlist();
         // console.log(this.form);
       },
