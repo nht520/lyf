@@ -5,7 +5,7 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="3" :xs="6">
+        <el-col :span="2" :xs="8">
           <el-select v-model="value"  size="mini" :span="3" placeholder="请选择">
             <el-option
               v-for="item in options"
@@ -15,7 +15,7 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="3" :xs="6">
+        <el-col :span="2" :xs="8">
           <el-select v-model="isHomePage" size="mini" :span="3" placeholder="是否首页">
             <el-option
               v-for="item in optionsHome"
@@ -25,10 +25,10 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="3" :xs="6">
+        <el-col :span="2" :xs="8">
           <el-input v-model="bookId"  size="mini" placeholder="请输入bookId"></el-input>
         </el-col>
-        <el-col :span="3" :xs="6">
+        <el-col :span="2" :xs="6">
           <el-input v-model="name"  size="mini" placeholder="请输入书名"></el-input>
         </el-col>
         <el-col :span="2" :xs="6">
@@ -113,14 +113,14 @@
       <div class="channe">
         <el-row :gutter="20">
           <el-row :gutter="20">
-            <el-col :span="5" :offset="1" :xs="7">
+            <el-col :span="2" :offset="1" :xs="7">
               bookId:
             </el-col>
             <el-col :span="17" :xs="15">
               {{settmentId}}
             </el-col>
           </el-row>
-          <el-col :span="5" :offset="1" :xs="7">
+          <el-col :span="2" :offset="1" :xs="7">
             书名:
           </el-col>
           <el-col :span="17" :xs="15">
@@ -128,7 +128,7 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1" :xs="7">
+          <el-col :span="2" :offset="1" :xs="7">
             排序:
           </el-col>
           <el-col :span="17" :xs="15">
@@ -136,10 +136,10 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1" :xs="7">
+          <el-col :span="2" :offset="1" :xs="7">
             首页:
           </el-col>
-          <el-col :span="5"  :xs="16">
+          <el-col :span="5"  :xs="15">
               <el-select v-model="isHomePage"   placeholder="请选择"> 
                 <el-option
                   v-for="item in optionsHome"
@@ -151,10 +151,10 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1" :xs="7">
+          <el-col :span="2" :offset="1" :xs="7">
             类型:
           </el-col>
-          <el-col :span="5"  :xs="16">
+          <el-col :span="5"  :xs="15">
              <el-select v-model="value1" multiple  placeholder="请选择">
               <el-option
                 v-for="item in options"
@@ -176,35 +176,46 @@
     <el-dialog
       title="提示"
       :visible.sync="isPlxgvipOpen"
-      width="30%"
+      width="70%"
       :before-close="plxgvipOpen">
       <div class="channe">
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5"  :xs="7">
             排序:
           </el-col>
-          <el-col :span="17">
+          <el-col :span="17" :xs="16">
             <el-input v-model="bookIds" placeholder="请输入排序"></el-input>
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1">
+          <el-col :span="5"  :xs="7">
             是否免费:
           </el-col>
-          <el-select v-model="isFree"  :span="3" placeholder="请选择">
-            <el-option
-              v-for="item in isFreeArr"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
+          <el-col :span="17" :xs="16">
+            <el-select v-model="isFree" placeholder="请选择" style="float:left;">
+              <el-option
+                v-for="item in isFreeArr"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <!--  -->
+        <el-row :gutter="20">
+          <el-col :span="2"  :xs="8" :offset="5">
+            <el-button @click="plxgvipOpen()" size="medium">取 消</el-button>
+          </el-col>
+          <el-col :span="2" :xs="10">
+            <el-button type="primary" size="medium" @click="updatesVipFree()">确 定</el-button>
+          </el-col>
         </el-row>
       </div>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="plxgvipOpen()">取 消</el-button>
-    <el-button type="primary" @click="updatesVipFree()">确 定</el-button>
-  </span>
+      <!-- <span slot="footer" class="dialog-footer">
+          
+          
+      </span> -->
     </el-dialog>
   </div>
 </template>
@@ -454,5 +465,8 @@
     margin-top 1%
   .channe .el-row
     margin-bottom 3%
+  .channe .el-col-xs-15{
+    text-align left 
+  }
 </style>
 

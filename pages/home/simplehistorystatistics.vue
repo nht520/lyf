@@ -5,28 +5,28 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="2" :xs="6">
+        <el-col :span="2" :xs="7">
           <el-input v-model="packageNo" placeholder="包编号" size="mini"></el-input>
         </el-col>
-        <el-col :span="2" :xs="6">
+        <el-col :span="2" :xs="7">
           <el-input v-model="productType" placeholder="产品类型" size="mini"></el-input>
         </el-col>
-        <el-col :span="2" :xs="9">
+        <el-col :span="3" :xs="10">
           <el-date-picker type="date" 
           format="yyyy-MM-dd"
           value-format="yyyy-MM-dd"
           placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="mini"></el-date-picker>
         </el-col>
-        <el-col :span="2" :xs="9">
+        <el-col :span="3" :xs="10">
           <el-date-picker type="date"
           format="yyyy-MM-dd"
           value-format="yyyy-MM-dd"
            placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="mini"></el-date-picker>
         </el-col>
-        <el-col :span="2" :xs="6">
+        <el-col :span="2" :xs="7">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
         </el-col>
-        <el-col :span="2" :xs="6">
+        <el-col :span="2" :xs="7">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="sysComicsStatistics()" plain>同步</el-button>
         </el-col>
       </el-row>

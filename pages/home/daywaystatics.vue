@@ -8,17 +8,17 @@
         <el-col :span="2" :xs="6">
           <el-input v-model="form.wayName" placeholder="上游名称" size="mini"></el-input>
         </el-col>
-        <el-col :span="2" :xs="9">
+        <el-col :span="3" :xs="9">
           <el-date-picker type="date"
-                          format="yyyy-MM-dd"
-                          value-format="yyyy-MM-dd"
-                          placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="mini"></el-date-picker>
+              format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期" v-model="form.date1" style="width: 100%;" size="mini"></el-date-picker>
         </el-col>
-        <el-col :span="2" :xs="9">
+        <el-col :span="3" :xs="9">
           <el-date-picker type="date"
-                          format="yyyy-MM-dd"
-                          value-format="yyyy-MM-dd"
-                          placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="mini"></el-date-picker>
+              format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd"
+              placeholder="选择日期" v-model="form.date2" style="width: 100%;" size="mini"></el-date-picker>
         </el-col>
         <el-col :span="2" :xs="6">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="seekdithc()" plain>搜索</el-button>
