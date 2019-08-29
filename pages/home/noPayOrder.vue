@@ -11,6 +11,15 @@
         <el-col :span="2" :xs="12">
           <el-input v-model="memberPhone"  size="mini" placeholder="会员手机号"></el-input>
         </el-col>
+        <el-col :span="2" :xs="12">
+          <el-input v-model="packageNo"  size="mini" placeholder="包编号"></el-input>
+        </el-col>
+        <el-col :span="2" :xs="12">
+          <el-input v-model="memberDeviceType"  size="mini" placeholder="设备类型"></el-input>
+        </el-col>
+        <el-col :span="2" :xs="12">
+          <el-input v-model="wxZfb"  size="mini" placeholder="ali(支付宝)/wx(微信)"></el-input>
+        </el-col>
         <el-col :span="3" :xs="12">
           <el-date-picker
             v-model="startTime"
@@ -82,6 +91,20 @@
           prop="payAmount"
         >
         </el-table-column>
+        <el-table-column
+          label="支付宝/微信"
+          prop="wxZfb"
+        >
+        </el-table-column>
+        <el-table-column
+          label="设备类型"
+          prop="memberDeviceType"
+        >
+        </el-table-column>
+        <el-table-column
+          label="设备"
+          prop="memberDevice"
+        />
       </el-table>
       <!-- 分业 -->
       <el-row class="Pagination">
@@ -126,6 +149,9 @@
         },
         memberLoginName:'',
         memberPhone:'',
+        packageNo:'',
+        memberDeviceType:'',
+        wxZfb:'',
         startTime:"",
         endTime:"",
         hedTitle:"",
@@ -170,7 +196,7 @@
       },
       exportExcel(){
         let api = window.g.payOrder+'/exportExcel';
-        let date = "current="+this.number+"&size="+this.present+"&payStatus=0&startTime="+this.startTime+"&endTime="+this.endTime+"&memberPhone="+this.memberPhone+"&memberLoginName="+this.memberLoginName;
+        let date = "payStatus=0&startTime="+this.startTime+"&endTime="+this.endTime+"&memberPhone="+this.memberPhone+"&memberLoginName="+this.memberLoginName;
         window.open(api+'?'+date);
       },
       selectionRowsChange(val){
@@ -188,6 +214,9 @@
             endTime:this.endTime,
             memberPhone: this.memberPhone,
             memberLoginName: this.memberLoginName,
+            packageNo:this.packageNo,
+            memberDeviceType:this.memberDeviceType,
+            wxZfb:this.wxZfb,
           }
         }
         _this.list = [];

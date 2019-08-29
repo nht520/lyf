@@ -11,6 +11,12 @@
         <el-col :span="3" :xs="8">
           <el-input v-model="memberPhone" size="mini" placeholder="会员手机号"></el-input>
         </el-col>
+        <el-col :span="3" :xs="8">
+          <el-input v-model="memberPackageNo" size="mini" placeholder="包编号"></el-input>
+        </el-col>
+        <el-col :span="3" :xs="8">
+          <el-input v-model="memberDeviceType" size="mini" placeholder="设备类型"></el-input>
+        </el-col>
         <el-col :span="2">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
@@ -28,32 +34,37 @@
           label="会员id">
         </el-table-column>
         <el-table-column
-          label="会员手机号"
+          label="手机号"
           prop="memberPhone"
         >
         </el-table-column>
         <el-table-column
-          label="会员登录名"
+          label="登录名"
           prop="memberLoginName"
         >
         </el-table-column>
         <el-table-column
-          label="会员密码"
+          label="密码"
           prop="memberPass"
         >
         </el-table-column>
         <el-table-column
-          label="是否会员"
+          label="包编号"
+          prop="memberPackageNo"
+        >
+        </el-table-column>
+        <el-table-column
+          label="是否vip"
           prop="isVip"
         >
         </el-table-column>
         <el-table-column
-          label="会员开始时间"
+          label="vip开始时间"
           prop="vipStartTime"
         >
         </el-table-column>
         <el-table-column
-          label="会员结束时间"
+          label="vip结束时间"
           prop="vipEndTime"
         >
         </el-table-column>
@@ -63,15 +74,29 @@
         >
         </el-table-column>
         <el-table-column
-          label="会员创建时间"
+          label="创建时间"
           prop="memberCreateDate"
         >
         </el-table-column>
         <el-table-column
-          label="会员最近一次登录时间"
+          label="最近登录时间"
           prop="memberUpdateDate"
         >
         </el-table-column>
+        <el-table-column
+          label="设备类型"
+          prop="memberDeviceType"
+        >
+        </el-table-column>
+        <el-table-column
+          label="访问类型"
+          prop="memberAccessType"
+        >
+        </el-table-column>
+        <el-table-column
+         label="设备"
+         prop="memberDevice"
+        />
         <el-table-column
           fixed="right"
           label="操作"
@@ -221,6 +246,8 @@
           label: '是'
         }],
         memberId:'',
+        memberPackageNo:'',
+        memberDeviceType:'',
         memberLoginName:'',
         memberPhone:'',
         memberPass:'',
@@ -273,7 +300,9 @@
             current:this.number,
             size:this.present,
             memberPhone:this.memberPhone,
-            memberLoginName:this.memberLoginName
+            memberLoginName:this.memberLoginName,
+            memberPackageNo:this.memberPackageNo,
+            memberDeviceType:this.memberDeviceType,
           }
         }
         _this.list = [];

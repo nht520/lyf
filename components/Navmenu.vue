@@ -178,6 +178,18 @@ export default {
                     title:"资源cdn设置",
                     path:"/home/cdnsetting"
                   },
+                  {
+                    id:3,
+                    icon:"backqww",
+                    title:"支付模式App",
+                    path:"/home/payModelApp"
+                  },
+                  {
+                    id:4,
+                    icon:"backqww",
+                    title:"支付模式H5",
+                    path:"/home/payModelH5"
+                  },
                 ]
               },
               {

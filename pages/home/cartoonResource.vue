@@ -37,6 +37,9 @@
         <el-col :span="2" :xs="6">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="plxgvipOpen()" plain>批量修改vip是否免费</el-button>
         </el-col>
+        <el-col :span="4" :xs="6">
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="createJson()" plain>生成静态文件</el-button>
+        </el-col>
       </el-row>
 
       <!-- 表格 -->
@@ -329,6 +332,14 @@
         },
         selectionRowsChange(val){
           console.log(val);
+        },
+        createJson(){
+          let api = window.g.book+'/createJson';
+          Axios.get(api).then((res)=>{
+            alert("生成成功");
+          }).catch((err)=>{
+
+          })
         },
         //弹出层
         handleClose(done) {
