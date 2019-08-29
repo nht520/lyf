@@ -5,7 +5,7 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="4" :xs="6">
+        <el-col :span="2" :xs="6">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="createJson()" plain>生成静态文件</el-button>
         </el-col>
       </el-row>
@@ -58,6 +58,7 @@
         <el-table-column
           fixed="right"
           label="操作"
+          width="150px"
         >
           <template slot-scope="scope">
             <el-button @click="openDiagnosis(scope.row)" type="text" size="small">设置</el-button>
@@ -87,14 +88,14 @@
       <div class="channe">
         <el-row :gutter="20">
           <el-row :gutter="20">
-            <el-col :span="5" :offset="1" :xs="8">
+            <el-col :span="5"  :xs="8">
               模式名称:
             </el-col>
             <el-col :span="17" :xs="14">
               <el-input v-model="modelName" placeholder="请输模式名称"></el-input>
             </el-col>
           </el-row>
-          <el-col :span="5" :offset="1" :xs="8">
+          <el-col :span="5":xs="8">
             模式提示:
           </el-col>
           <el-col :span="17" :xs="14">
@@ -102,7 +103,7 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1" :xs="8">
+          <el-col :span="5" :xs="8">
             模式排序:
           </el-col>
           <el-col :span="17" :xs="14">
@@ -110,7 +111,7 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1" :xs="8">
+          <el-col :span="5" :xs="8">
             是否默认:
           </el-col>
           <el-col :span="17" :xs="14">
@@ -119,7 +120,7 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="5" :offset="1" :xs="8">
+          <el-col :span="5" :xs="8">
             模式类型
           </el-col>
           <el-col :span="17" :xs="14">

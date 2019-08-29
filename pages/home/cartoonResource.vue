@@ -5,7 +5,7 @@
     <!-- 内容 -->
     <div class="conttab">
       <el-row class="search" :model="form" :gutter="15">
-        <el-col :span="2" :xs="8">
+        <el-col :span="2" :xs="6">
           <el-select v-model="value"  size="mini" :span="3" placeholder="请选择">
             <el-option
               v-for="item in options"
@@ -15,7 +15,7 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="2" :xs="8">
+        <el-col :span="2" :xs="6">
           <el-select v-model="isHomePage" size="mini" :span="3" placeholder="是否首页">
             <el-option
               v-for="item in optionsHome"
@@ -25,7 +25,7 @@
             </el-option>
           </el-select>
         </el-col>
-        <el-col :span="2" :xs="8">
+        <el-col :span="2" :xs="6">
           <el-input v-model="bookId"  size="mini" placeholder="请输入bookId"></el-input>
         </el-col>
         <el-col :span="2" :xs="6">
@@ -34,11 +34,11 @@
         <el-col :span="2" :xs="6">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="getData()" plain>搜索</el-button>
         </el-col>
-        <el-col :span="2" :xs="6">
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="plxgvipOpen()" plain>批量修改vip是否免费</el-button>
+        <el-col :span="2" :xs="10">
+          <el-button type="primary" size="mini" @click="plxgvipOpen()" plain>批量修改vip是否免费</el-button>
         </el-col>
-        <el-col :span="4" :xs="6">
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="createJson()" plain>生成静态文件</el-button>
+        <el-col :span="4" :xs="8">
+          <el-button type="primary" size="mini" @click="createJson()" plain>生成静态文件</el-button>
         </el-col>
       </el-row>
 
