@@ -5,42 +5,7 @@
       <!-- 内容 -->
       <div class="conttab">
         <el-row class="search" :model="form" :gutter="15">
-<!--            <el-col :span="2">-->
-<!--                <el-input v-model="form.region" placeholder="通道名称"  size="small"></el-input>-->
-<!--            </el-col>-->
-<!--            <el-col :span="2">-->
-<!--                <el-select  v-model="form.region"  size="small" placeholder="通道服务商">-->
-<!--                    <el-option label="111" value="shanghai"></el-option>-->
-<!--                    <el-option label="222" value="beijing"></el-option>-->
-<!--                </el-select>-->
-<!--            </el-col>-->
-<!--            <el-col :span="2">-->
-<!--                <el-select v-model="form.condition"  size="small" placeholder="支付类型" >-->
-<!--                    <el-option label="111" value="shanghai"></el-option>-->
-<!--                    <el-option label="222" value="beijing"></el-option>-->
-<!--                </el-select>-->
-<!--            </el-col>-->
-<!--            <el-col :span="2">-->
-<!--                <el-select v-model="form.condition"  size="small" placeholder="通道模式" >-->
-<!--                    <el-option label="111" value="shanghai"></el-option>-->
-<!--                    <el-option label="222" value="beijing"></el-option>-->
-<!--                </el-select>-->
-<!--            </el-col>-->
-<!--            <el-col :span="2">-->
-<!--                <el-select v-model="form.condition"  size="small" placeholder="限量" >-->
-<!--                    <el-option label="111" value="shanghai"></el-option>-->
-<!--                    <el-option label="222" value="beijing"></el-option>-->
-<!--                </el-select>-->
-<!--            </el-col>-->
-<!--            <el-col :span="2">-->
-<!--                <el-select v-model="form.condition"  size="small" placeholder="开启" >-->
-<!--                    <el-option label="111" value="shanghai"></el-option>-->
-<!--                    <el-option label="222" value="beijing"></el-option>-->
-<!--                </el-select>-->
-<!--            </el-col>-->
-<!--            <el-col :span="2">-->
-<!--               <el-button type="primary" icon="el-icon-search" size="small" @click="seekdithc()" plain>搜索</el-button>-->
-<!--            </el-col>-->
+
         </el-row>
         <!-- 表格 -->
          <el-table
@@ -94,30 +59,15 @@
             label="操作"
             align="right">
             <template slot="header">
-<!--              <nuxt-link to="/home/addchanlinterface">-->
-<!--                <el-button type="primary" icon="el-icon-plus" size="mini" plain>添加</el-button>-->
-<!--              </nuxt-link>-->
             </template>
             <template slot-scope="scope" >
               <el-button @click="enableWay(scope.row,1)" v-if="scope.row.payStatus==0" type="text" size="mini" style="color: #00bd07;">禁用</el-button>
               <el-button @click="enableWay(scope.row,0)" v-if="scope.row.payStatus==1" type="text" size="mini" style="color: #00bd07;">启用</el-button>
-<!--                <el-button-->
-<!--                    size="mini"-->
-<!--                    icon="el-icon-edit"-->
-<!--                >编辑</el-button>-->
-<!--                <el-button-->
-<!--                size="mini"-->
-<!--                type="danger"-->
-<!--                @click="deleteRow(scope.$index, scope.row)" plain>删除</el-button>-->
             </template>
             </el-table-column>
         </el-table>
         <!-- 分业 -->
         <el-row class="Pagination">
-<!--            <el-col :span="5" >-->
-<!--                <el-button @click="toggleSelect(list)" size="mini">全选/反选</el-button>-->
-<!--                <el-button type="danger" size="mini" @click="qxDete" plain>删除</el-button>-->
-<!--            </el-col>-->
           <el-col :span="10"  :xs="24">
 
             <div class="block">
@@ -162,25 +112,7 @@ export default {
           current: 0,
           branches:0,
             currentPage1: 4,
-            list: [
-              // {
-              //   date: '2016-05-02',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1518 弄'
-              //   }, {
-              //   date: '2016-05-04',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1517 弄'
-              //   }, {
-              //   date: '2016-05-01',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1519 弄'
-              //   }, {
-              //   date: '2016-05-03',
-              //   name: '王小虎',
-              //   address: '上海市普陀区金沙江路 1516 弄'
-              //   }
-                ],
+            list: [ ],
                 search: ''
         }
     },
@@ -211,7 +143,7 @@ export default {
       },
       enableWay(row,status){
         let _this = this;
-        let url = window.g.chanlinterface+'/update';
+        let url = window.g.videoChanlinterface+'/update';
         let _param = new URLSearchParams();
         _param.append("id",row.id);
         _param.append("payStatus",status);
@@ -251,7 +183,7 @@ export default {
       },
       getData:function(){
         let _this = this;
-        let url = window.g.chanlinterface;
+        let url = window.g.videoChanlinterface;
         let _param = _this.getParam();
         Axios.get(url,_param).then(function (value) {
           console.log(value);
